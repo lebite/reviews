@@ -1,17 +1,40 @@
 {
-    "name": "",
-    "version": "",
-    "description": "",
-    "author": "",
-    "license": "",
-    "engines": {
-      "node": ">=6.13.0"
-    },
-    "scripts": {
-    },
-    "dependencies": {
-    },
-    "devDependencies": {
-      "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
-    }
+  "name": "reviews",
+  "version": "",
+  "description": "Front end capstone project",
+  "author": "Janice Lam",
+  "license": "ISC",
+  "engines": {
+    "node": ">=6.13.0"
+  },
+  "scripts": {
+    "react-dev": "webpack -d --watch",
+    "test": "jest"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.15.0",
+    "jquery": "^3.1.1",
+    "mongoose": "^4.13.18",
+    "morgan": "^1.9.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.2",
+    "jest": "^24.8.0",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5"
   }
+}
