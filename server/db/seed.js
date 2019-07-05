@@ -46,26 +46,23 @@ const sqlusersreq = 'INSERT INTO users (review_id, user_name, user_location, use
 
 const sqlrestreq = 'INSERT INTO restaurants (review_id, restaurant_name) VALUES ?';
 
-const getrandinfo = (cb) => {
-  db.connection.query(sqlreviewsreq, [reviews], (err) => {
-    if (err) {
-      cb(err);
-    } else {
-      db.connection.query(sqlusersreq, [users], (err2) => {
-        if (err2) {
-          cb(err2);
-        } else {
-          db.connection.query(sqlrestreq, [restaurants], (err3) => {
-            if (err3) {
-              cb(err3);
-            } else {
-              cb(null, 'success adding to database');
-            }
-          });
-        }
-      });
-    }
-  });
-};
 
-module.exports.getrandinfo = getrandinfo;
+db.connection.query(sqlreviewsreq, [reviews], (err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    db.connection.query(sqlusersreq, [users], (err2) => {
+      if (err2) {
+        console.log(err2);
+      } else {
+        db.connection.query(sqlrestreq, [restaurants], (err3) => {
+          if (err3) {
+            console.log(err3);
+          } else {
+            console.log('success adding to database');
+          }
+        });
+      }
+    });
+  }
+});

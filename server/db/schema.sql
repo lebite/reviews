@@ -1,4 +1,4 @@
-DROP DATABASE reservlyreviews;
+-- DROP DATABASE reservlyreviews;
 CREATE DATABASE reservlyreviews;
 
 USE reservlyreviews;
