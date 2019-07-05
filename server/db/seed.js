@@ -4,9 +4,10 @@ const db = require('./index.js');
 const reviews = [];
 const users = [];
 const restaurants = [];
-for (let i = 1; i<=100; i++) {
-  const newReview = [];
 
+for (let i = 1; i<=100; i++) {
+
+  const newReview = [];
   const date = faker.date.past();
   const overallRating = faker.random.number({ min: 1, max: 5 });
   const foodRating = faker.random.number({ min: 1, max: 5 });
@@ -16,7 +17,6 @@ for (let i = 1; i<=100; i++) {
   const helpfulCount = faker.random.number({ min: 0, max: 20 });
   const noise = faker.random.number({ min: 1, max: 4 });
   const body = faker.lorem.paragraph();
-
   newReview.push(date, overallRating, foodRating, serviceRating, ambienceRating, valueRating, helpfulCount, noise, body);
   reviews.push(newReview);
 
@@ -39,6 +39,7 @@ for (let i = 1; i<=100; i++) {
 // mysql query
 // mysql giving error if we do not explicitly hav ea value
 // for review_id in users and restaurants table.
+// could think about generating more users and reviews for 100 restaurants
 const sqlreviewsreq = 'INSERT INTO reviews (review_date, review_overall_rating, review_food_rating, review_service_rating, review_ambience_rating, review_value_rating, review_helpful_count, review_noise, review_body) VALUES ?';
 
 const sqlusersreq = 'INSERT INTO users (review_id, user_name, user_location, user_total_reviews) VALUES ?';
