@@ -1,7 +1,7 @@
 {
   "name": "reviews",
-  "version": "",
-  "description": "Front end capstone project",
+  "version": "1.0.0",
+  "description": "A reviews module similar to OpenTable that will allow users to view, search for, and sort all restaurant reviews",
   "author": "Janice Lam",
   "license": "ISC",
   "engines": {
@@ -13,16 +13,18 @@
     "seed": "node ./server/db/seed.js"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "express": "^4.15.0",
     "faker": "^4.1.0",
-    "jquery": "^3.1.1",
     "mongoose": "^4.13.18",
     "morgan": "^1.9.1",
     "mysql": "^2.17.1",
     "nodemon": "^1.19.1",
+    "path": "^0.12.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-star-rating-component": "^1.4.1",
     "request": "^2.81.0"
   },
   "devDependencies": {

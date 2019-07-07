@@ -1,9 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App.jsx';
 
-const Welcome = () => {
-  return (
-    <div>Hello world</div>
-  );
-};
-
-export default Welcome;
+ReactDOM.render(<App />, document.getElementById('app'));
