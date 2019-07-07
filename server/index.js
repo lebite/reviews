@@ -7,9 +7,10 @@ const port = 3000;
 
 const db = require('./db/index.js');
 
-app.get('/restaurant', (req, res) => {
-  const sqlreq = 'SELECT * FROM reviews';
-  db.connection.query(sqlreq, (err, data) => {
+app.get('/:restaurant_id/reviews', (req, res) => {
+  const sqlreq = 'SELECT * FROM reviews WHERE restaurant_id=?';
+  const sqlargs = req.params.restaurant_id;
+  db.connection.query(sqlreq, sqlargs, (err, data) => {
     if (err) {
       res.status(500).send(err);
     } else {

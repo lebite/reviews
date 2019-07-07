@@ -24,7 +24,9 @@ for (let i = 1; i <= 100; i += 1) {
     const body = faker.lorem.paragraph();
 
     reviews.push([
-      restaurantID, userName, city, totalReviews, date, overallRating, foodRating, serviceRating, ambienceRating, valueRating, helpfulCount, noise, body,
+      restaurantID, userName, city, totalReviews, date,
+      overallRating, foodRating, serviceRating,
+      ambienceRating, valueRating, helpfulCount, noise, body,
     ]);
   }
 }
