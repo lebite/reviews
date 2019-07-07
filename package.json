@@ -1,7 +1,7 @@
 {
   "name": "reviews",
   "version": "1.0.0",
-  "description": "reviews module that will allow users to view, search for, and sort all restaurant reviews",
+  "description": "A reviews module similar to OpenTable5 that will allow users to view, search for, and sort all restaurant reviews",
   "author": "Janice Lam",
   "license": "ISC",
   "engines": {
