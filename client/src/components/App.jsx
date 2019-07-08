@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Header from './Header.jsx';
 import Reviews from './Reviews.jsx';
+import styles from './style/app.css';
 
 class App extends React.Component {
   constructor() {
@@ -31,7 +32,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.body}>
         <div>
           <Header reviews={this.state.reviews}/>
           <Reviews reviews={this.state.reviews} />
