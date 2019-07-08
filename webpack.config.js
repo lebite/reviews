@@ -1,6 +1,3 @@
-const path = require('path');
-
-
 module.exports = {
   mode: 'development',
   watch: 'true',
@@ -14,13 +11,25 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [{
+          loader: 'style-loader',
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            modules: true,
+            modules: {
+              localIdentname: '[path][name]__[local]__[hash:base64:5]',
+            },
+          },
+        },
+        ],
       },
     ],
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, '/client/dist'),
+    path: __dirname + '/client/dist',
   },
   resolve: {
     extensions: ['*', '.js', '.jsx'],
