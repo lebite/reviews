@@ -2,8 +2,8 @@ import React from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 
 class StarRating extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       rating_half_star: 3.5,
     };
@@ -22,20 +22,25 @@ class StarRating extends React.Component {
   }
 
   render() {
+    const avgRating = this.props.rating[0] || {};
     return (
-      <StarRatingComponent
-        name="overallrate"
-        // eslint-disable-next-line react/destructuring-assignment
-        value={this.state.rating_half_star}
-        starCount={5}
-        starColor="red"
-        emptyStarColor="#f6f6f6"
-        // onStarClick={this.onStarClickHalfStar}
-        // renderStarIcon={(index, value) => (
-        //   <span className={index <= value ? 'fa fa-star' : 'fa fa-star-o'} />
-        // )}
-        // renderStarIconHalf={() => <span className="fa fa-star-half-full" />}
-      />
+      <div>
+        <StarRatingComponent
+          name="overallrate"
+          // eslint-disable-next-line react/destructuring-assignment
+          value={this.state.rating_half_star}
+          starCount={5}
+          starColor="red"
+          emptyStarColor="#f6f6f6"
+          // onStarClick={this.onStarClickHalfStar}
+          // renderStarIcon={(index, value) => (
+          //   <span className={index <= value ? 'fa fa-star' : 'fa fa-star-o'} />
+          // )}
+          // renderStarIconHalf={() => <span className="fa fa-star-half-full" />}
+        />
+        <span>{avgRating.avg_overall_rating}</span>
+        <span>based on recent ratings</span>
+      </div>
     );
   }
 }

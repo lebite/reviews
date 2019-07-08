@@ -19,9 +19,8 @@ class App extends React.Component {
 
   // eslint-disable-next-line class-methods-use-this
   handleReviews() {
-    axios.get('/1/reviews')
+    axios.get('/80/reviews')
       .then((reviews) => {
-        // console.log('these are the reviews', reviews.data);
         this.setState({ reviews: reviews.data });
       })
       .catch((error) => {
@@ -32,7 +31,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className={styles.body}>
+      <div className={styles.master}>
         <div>
           <Header reviews={this.state.reviews}/>
           <Reviews reviews={this.state.reviews} />
