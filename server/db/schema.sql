@@ -31,7 +31,8 @@ CREATE TABLE IF NOT EXISTS restaurants (
   avg_ambience_rating INT,
   avg_value_rating INT,
   avg_noise_rating INT,
-  avg_rec_rating INT
+  avg_rec_rating INT,
+  PRIMARY KEY (restaurant_id)
 )
 
 
