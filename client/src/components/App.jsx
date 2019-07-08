@@ -20,7 +20,7 @@ class App extends React.Component {
   handleReviews() {
     axios.get('/1/reviews')
       .then((reviews) => {
-        console.log('these are the reviews', Array.isArray(reviews.data));
+        // console.log('these are the reviews', reviews.data);
         this.setState({ reviews: reviews.data });
       })
       .catch((error) => {

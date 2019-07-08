@@ -10,21 +10,11 @@ class Header extends React.Component {
 
   render() {
 
-    const totalReviewsLength = this.props.reviews.length;
-    console.log(totalReviewsLength);
-
-    const totalReviewsScoreArr = [];
-    for (const i = 0; i < totalReviewsLength; i++) {
-      totalReviewsScoreArr.push(this.props.reviews[i].review_overall_rating)
-    }
-    console.log(totalReviewsScoreArr)
-    const totalReviewsScore = totalReviewsScoreArr.reduce((accum, currVal) => accum + currVal);
-    console.log(totalReviewsScore);
-
+    const numReviews = this.props.reviews[0] || {};
     return (
       <div className="feed">
         <div className="feed-list">
-          What {totalReviewsLength} people are saying
+          What {numReviews.restaurant_total_reviews} people are saying
         </div>
         <div>
           <div>

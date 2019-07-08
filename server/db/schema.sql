@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS restaurants (
   avg_noise_rating INT,
   avg_rec_rating INT,
   PRIMARY KEY (restaurant_id)
-)
+);
 
 
 
