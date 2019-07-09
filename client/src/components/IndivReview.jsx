@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import { FiMessageSquare } from 'react-icons/fi';
 import Avatar from 'react-avatar';

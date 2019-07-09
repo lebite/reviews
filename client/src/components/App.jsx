@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import React from 'react';
 import axios from 'axios';
 import Summary from './Summary.jsx';

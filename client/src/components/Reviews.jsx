@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import React from 'react';
 import PropTypes from 'prop-types';
 import IndivReview from './IndivReview.jsx';
