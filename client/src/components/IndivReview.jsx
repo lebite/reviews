@@ -9,10 +9,18 @@ import styles from './style/indivReview.css';
 
 const IndivReview = ({ review }) => {
   const {
-    review_food_rating, review_service_rating, review_ambience_rating,
-    review_value_rating, user_name, user_location,
-    user_total_reviews, review_date, review_overall_rating, review_body,
+    review_food_rating,
+    review_service_rating,
+    review_ambience_rating,
+    review_value_rating,
+    user_name,
+    user_location,
+    user_total_reviews,
+    review_date,
+    review_overall_rating,
+    review_body,
   } = review;
+
   const colors = ['#df4e96', '#d86441', '#6c8ae4', '#bb6acd'];
   const index = Math.floor(Math.random() * Math.floor(colors.length));
   const rating = Math.ceil(({ review_food_rating }.review_food_rating

@@ -17,6 +17,7 @@ class StarRating extends React.Component {
     const { rating_half_star } = this.state;
     const { rating } = this.props;
     const avgRating = { rating }.rating[0] || {};
+
     return (
       <div className={styles.staroverall}>
         <StarRatingComponent

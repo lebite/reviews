@@ -19,6 +19,7 @@ class Header extends React.Component {
   render() {
     const { reviews } = this.props;
     const numReviews = { reviews }.reviews[0] || {};
+
     return (
       <div className={styles.feed}>
         <div className={styles.feedlist}>

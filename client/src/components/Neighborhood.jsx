@@ -24,7 +24,8 @@ class Neighborhood extends React.Component {
   render() {
     const { format } = this.state;
     const {
-      mouseOver, mouseOut,
+      mouseOver,
+      mouseOut,
     } = this;
 
     return (

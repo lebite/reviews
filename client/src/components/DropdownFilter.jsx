@@ -43,11 +43,17 @@ class DropdownFilter extends React.Component {
 
   render() {
     const {
-      newest, highestrating, lowestrating, bordercolor, dropdown,
+      newest,
+      highestrating,
+      lowestrating,
+      bordercolor,
+      dropdown,
     } = this.state;
 
     const {
-      mouseEnter, mouseOut, mouseClick,
+      mouseEnter,
+      mouseOut,
+      mouseClick,
     } = this;
 
     return (

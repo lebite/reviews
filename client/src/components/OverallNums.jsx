@@ -5,8 +5,12 @@ import styles from './style/overallnums.css';
 
 const OverallNums = ({ nums }) => {
   const {
-    avg_food_rating, avg_service_rating, avg_ambience_rating, avg_value_rating,
+    avg_food_rating,
+    avg_service_rating,
+    avg_ambience_rating,
+    avg_value_rating,
   } = nums;
+
   return (
     <div className={styles.overallrev}>
       <div className={styles.indiv}>
