@@ -26,11 +26,6 @@ class StarRating extends React.Component {
           starCount={5}
           starColor="red"
           emptyStarColor="#f6f6f6"
-          // onStarClick={this.onStarClickHalfStar}
-          // renderStarIcon={(index, value) => (
-          //   <span className={index <= value ? 'fa fa-star' : 'fa fa-star-o'} />
-          // )}
-          // renderStarIconHalf={() => <span className="fa fa-star-half-full" />}
         />
         <span className={styles.startext}>{avgRating.avg_overall_rating}</span>
         <span>&nbsp;&nbsp;based on recent ratings</span>
