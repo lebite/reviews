@@ -1,6 +1,7 @@
+/* eslint-disable import/extensions */
 import React from 'react';
 import axios from 'axios';
-import Header from './Header.jsx';
+import Summary from './Summary.jsx';
 import Reviews from './Reviews.jsx';
 import styles from './style/app.css';
 
@@ -17,7 +18,6 @@ class App extends React.Component {
     this.handleReviews();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   handleReviews() {
     axios.get('/80/reviews')
       .then((reviews) => {
@@ -30,13 +30,13 @@ class App extends React.Component {
   }
 
   render() {
+    const { reviews } = this.state;
     return (
       <div className={styles.master}>
         <div>
-          <Header reviews={this.state.reviews}/>
-          <Reviews reviews={this.state.reviews} />
+          <Summary reviews={reviews} />
+          <Reviews reviews={reviews} />
         </div>
-
       </div>
     );
   }

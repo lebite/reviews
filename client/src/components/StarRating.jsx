@@ -1,6 +1,8 @@
+/* eslint-disable camelcase */
 import React from 'react';
-import styles from './style/starrating.css';
+import PropTypes from 'prop-types';
 import StarRatingComponent from 'react-star-rating-component';
+import styles from './style/starrating.css';
 
 class StarRating extends React.Component {
   constructor(props) {
@@ -8,28 +10,18 @@ class StarRating extends React.Component {
     this.state = {
       rating_half_star: 3.5,
     };
-    this.onStarClickHalfStar = this.onStarClickHalfStar.bind(this);
-  }
-
-  onStarClickHalfStar(e, nextValue, prevValue, name) {
-    const xPos = (e.pageX - e.currentTarget.getBoundingClientRect().left) / e.currentTarget.offsetWidth;
-
-    if (xPos <= 0.5) {
-      nextValue -= 0.5;
-    }
-
-    console.log('name: %s, nextValue: %s, prevValue: %s', name, nextValue, prevValue);
-    this.setState({ rating_half_star: nextValue });
+    // still need to work on this to get it rendering correctly
   }
 
   render() {
-    const avgRating = this.props.rating[0] || {};
+    const { rating_half_star } = this.state;
+    const { rating } = this.props;
+    const avgRating = { rating }.rating[0] || {};
     return (
       <div className={styles.staroverall}>
         <StarRatingComponent
           name="overallrate"
-          // eslint-disable-next-line react/destructuring-assignment
-          value={this.state.rating_half_star}
+          value={rating_half_star}
           starCount={5}
           starColor="red"
           emptyStarColor="#f6f6f6"
@@ -45,5 +37,9 @@ class StarRating extends React.Component {
     );
   }
 }
+
+StarRating.propTypes = {
+  rating: PropTypes.shape.isRequired,
+};
 
 export default StarRating;

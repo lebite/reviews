@@ -1,7 +1,6 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
+/* eslint-disable import/extensions */
 import React from 'react';
+import PropTypes from 'prop-types';
 import StarRating from './StarRating.jsx';
 import Noise from './Noise.jsx';
 import Recommend from './Recommend.jsx';
@@ -18,11 +17,14 @@ class Header extends React.Component {
   }
 
   render() {
-    const numReviews = this.props.reviews[0] || {};
+    const { reviews } = this.props;
+    const numReviews = { reviews }.reviews[0] || {};
     return (
       <div className={styles.feed}>
         <div className={styles.feedlist}>
-          What {numReviews.restaurant_total_reviews} people are saying
+          What&nbsp;
+          {numReviews.restaurant_total_reviews}
+          &nbsp;People are saying
         </div>
         <div className={styles.header_lower}>
           <div>
@@ -32,7 +34,7 @@ class Header extends React.Component {
             Reviews can only be made by diners who have eaten at this restaurant
           </div>
           <div>
-            <StarRating rating={this.props.reviews} />
+            <StarRating rating={reviews} />
           </div>
           <div>
             <OverallNums nums={numReviews} />
@@ -51,5 +53,9 @@ class Header extends React.Component {
     );
   }
 }
+
+Header.propTypes = {
+  reviews: PropTypes.arrayOf.isRequired,
+};
 
 export default Header;
