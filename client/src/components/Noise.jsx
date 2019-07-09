@@ -1,11 +1,13 @@
 import React from 'react';
-import styles from './style/noise.css';
+import { FiBarChart } from 'react-icons/fi';
+import styles from './style/noiseandrec.css';
 
 class Noise extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       color: styles.noise,
+      color2: styles.noise2,
     };
     this.mouseOver = this.mouseOver.bind(this);
     this.mouseOut = this.mouseOut.bind(this);
@@ -13,10 +15,12 @@ class Noise extends React.Component {
 
   mouseOver() {
     this.setState({ color: styles.noisered });
+    this.setState({ color2: styles.noise2red });
   }
 
   mouseOut() {
     this.setState({ color: styles.noise });
+    this.setState({ color2: styles.noise2 });
   }
 
   render() {
@@ -32,10 +36,11 @@ class Noise extends React.Component {
     }
 
     return (
-      <div>
+      <div className={styles.noiseoverall}>
+        <FiBarChart />
         <span className={this.state.color} onMouseEnter= {this.mouseOver} onMouseOut={this.mouseOut}>
           Noise&nbsp;&#183;&nbsp;
-          <span id={styles.noise2}>{noise}</span>
+          <span className={this.state.color2}>{noise}</span>
         </span>
       </div>
     );

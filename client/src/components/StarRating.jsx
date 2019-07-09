@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './style/starrating.css';
 import StarRatingComponent from 'react-star-rating-component';
 
 class StarRating extends React.Component {
@@ -24,7 +25,7 @@ class StarRating extends React.Component {
   render() {
     const avgRating = this.props.rating[0] || {};
     return (
-      <div>
+      <div className={styles.staroverall}>
         <StarRatingComponent
           name="overallrate"
           // eslint-disable-next-line react/destructuring-assignment
@@ -38,8 +39,8 @@ class StarRating extends React.Component {
           // )}
           // renderStarIconHalf={() => <span className="fa fa-star-half-full" />}
         />
-        <span>{avgRating.avg_overall_rating}</span>
-        <span>based on recent ratings</span>
+        <span className={styles.startext}>{avgRating.avg_overall_rating}</span>
+        <span>&nbsp;&nbsp;based on recent ratings</span>
       </div>
     );
   }
