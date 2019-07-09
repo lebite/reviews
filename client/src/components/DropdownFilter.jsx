@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
@@ -44,7 +43,7 @@ class DropdownFilter extends React.Component {
 
   render() {
     const {
-      newest, highestrating, lowestrating, bordercolor,
+      newest, highestrating, lowestrating, bordercolor, dropdown,
     } = this.state;
 
     const {
@@ -54,7 +53,7 @@ class DropdownFilter extends React.Component {
     return (
       <div className={styles.form}>
         <div className={bordercolor} onMouseEnter={mouseEnter} onMouseOut={mouseOut} onClick={mouseClick} />
-        {this.state.dropdown
+        {{ dropdown }.dropdown
           ? (
             <div className={styles.optionwrapper}>
               <div className={newest} onMouseEnter={() => this.mouseEnterOption('newest')} onMouseOut={() => this.mouseOutOption('newest')}>
