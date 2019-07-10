@@ -29,8 +29,18 @@ class App extends React.Component {
       });
   }
 
-  handleSortedReivews(sortparam) {
-    axios.get('/80/reviews?sort=')
+  handleSortedReivews(sort) {
+    axios.get('/80/reviews', {
+      params: {
+        sort: sort
+      }
+    })
+    .then((review) => {
+      this.setState({ reviews: reviews.data});
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   render() {

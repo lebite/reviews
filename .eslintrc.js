@@ -28,7 +28,6 @@ module.exports = {
     "eslint-disable jsx-a11y/click-events-have-key-events",
     "eslint-disable jsx-a11y/mouse-events-have-key-events",
     "eslint-disable max-len",
-    "eslint-disable camelcase",
     "eslint-disable jsx-a11y/anchor-is-valid"
   },
 };

@@ -38,7 +38,7 @@ class DropdownFilter extends React.Component {
     this.setState({ [opt]: styles.option });
   }
 
-  clickSort() {
+  clickSort(word) {
 
   }
 
