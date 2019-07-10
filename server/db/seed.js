@@ -5,7 +5,7 @@ const reviews = [];
 const restaurants = [];
 
 for (let i = 1; i <= 100; i += 1) {
-  const numReviews = faker.random.number({ min: 1, max: 40 });
+  const numReviews = faker.random.number({ min: 1, max: 50 });
   const restaurantID = i;
   const restaurantTotalReviews = numReviews;
 
@@ -18,9 +18,9 @@ for (let i = 1; i <= 100; i += 1) {
   let sumRecommend = 0;
 
   for (let j = 1; j <= numReviews; j += 1) {
-    const userName = faker.internet.userName();
+    const userName = faker.fake('{{name.firstName}}{{name.lastName}}');
     const city = faker.address.city();
-    const totalReviews = faker.random.number(30);
+    const totalReviews = faker.random.number({ min: 1, max: 30 });
     const date = faker.date.past();
     const overallRating = faker.random.number({ min: 1, max: 5 });
     const foodRating = faker.random.number({ min: 1, max: 5 });

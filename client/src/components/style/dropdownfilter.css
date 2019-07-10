@@ -1,0 +1,74 @@
+.form {
+  width: 18rem;
+  margin: 0.5rem 0;
+  padding: 0;
+  display: block;
+}
+
+.formselect {
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  width: 100%;
+  height: 30px;
+  /* margin: 4px 0; */
+  border: 0;
+  border: 1px solid #d8d9db;
+  background: #fff url('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png') no-repeat;
+  background-size: 20px;
+  background-position:  right 10px center;
+  background-color: #f9f9f9;
+  padding-left: 24px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
+
+}
+
+.formselect2 {
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  width: 100%;
+  height: 30px;
+  /* margin: 4px 0; */
+  border: 0;
+  border: 2px solid #da3743;
+  background: #fff url('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png') no-repeat;
+  background-size: 20px;
+  background-position:  right 10px center;
+  background-color: #f9f9f9;
+  padding-left: 24px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
+}
+
+.optionwrapper {
+  display: block;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  position: absolute;
+  background-color: #fff;
+  width: 18rem;
+  border-top: 0 none;
+  font-size: 0.875rem;
+  border-radius: 2px;
+  border: 1px solid #d8d9db;
+  box-sizing: border-box;
+}
+.option {
+  padding: 0.5rem 0.25rem;
+  display: block;
+  background-color: #fff;
+}
+
+.option2 {
+  padding: 0.5rem 0.25rem;
+  display: block;
+  background-color: #f7f7f7;
+}

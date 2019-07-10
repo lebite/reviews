@@ -1,0 +1,12 @@
+.header_neighborhood {
+  color: #da3743;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header_neighborhood_underline {
+  color: #da3743;
+  text-decoration: none;
+  cursor: pointer;
+  text-decoration: underline;
+}

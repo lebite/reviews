@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS reviews (
   user_location VARCHAR(100),
   user_total_reviews INT,
   review_date DATE,
-  review_overall_rating INT,
+  review_overall_rating DECIMAL(2,1),
   review_food_rating INT,
   review_service_rating INT,
   review_ambience_rating INT,
@@ -25,15 +25,15 @@ CREATE TABLE IF NOT EXISTS reviews (
 CREATE TABLE IF NOT EXISTS restaurants (
   restaurant_id INT,
   restaurant_total_reviews INT,
-  avg_overall_rating INT,
-  avg_food_rating INT,
-  avg_service_rating INT,
-  avg_ambience_rating INT,
-  avg_value_rating INT,
+  avg_overall_rating DECIMAL(2,1),
+  avg_food_rating DECIMAL(2,1),
+  avg_service_rating DECIMAL(2,1),
+  avg_ambience_rating DECIMAL(2,1),
+  avg_value_rating DECIMAL(2,1),
   avg_noise_rating INT,
   avg_rec_rating INT,
   PRIMARY KEY (restaurant_id)
-)
+);
 
 
 

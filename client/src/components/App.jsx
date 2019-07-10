@@ -1,21 +1,41 @@
 import React from 'react';
-import Header from './Header.jsx';
+import axios from 'axios';
+import Summary from './Summary.jsx';
+import Reviews from './Reviews.jsx';
+import styles from './style/app.css';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      states: '',
+      reviews: [],
     };
+    this.handleReviews = this.handleReviews.bind(this);
+  }
+
+  componentDidMount() {
+    this.handleReviews();
+  }
+
+  handleReviews() {
+    axios.get('/80/reviews')
+      .then((reviews) => {
+        this.setState({ reviews: reviews.data });
+      })
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.log(error);
+      });
   }
 
   render() {
+    const { reviews } = this.state;
     return (
-      <div>
+      <div className={styles.master}>
         <div>
-          <Header />
+          <Summary reviews={reviews} />
+          <Reviews reviews={reviews} />
         </div>
-
       </div>
     );
   }
