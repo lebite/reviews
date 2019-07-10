@@ -1,0 +1,213 @@
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.left {
+
+}
+
+.right {
+  display: flex;
+  position: relative;
+  align-self: flex-start;
+}
+
+.report {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  color: #2d333f;
+}
+
+.reportText {
+  margin: 0 0 0 0.25rem;
+  font-weight: 500;
+  line-height: 1.43;
+  font-size: 0.875rem;
+  color: #6f737b;
+}
+
+.helpful {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  color: #2d333f;
+}
+
+.helpfulText {
+  margin: 0 0 0 0.25rem;
+  font-weight: 500;
+  line-height: 1.43;
+  font-size: 0.875rem;
+  color: #6f737b;
+}
+
+.reviewReport {
+  position: absolute;
+  background: #ffffff;
+  z-index: 1000;
+  border: 1px solid #e1e1e1;
+  border-radius: 2px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(51,51,51,.2);
+  bottom: 2.5rem;
+  right: -5.5rem;
+  max-width: 25rem;
+  display: block;
+}
+
+.reviewReportHeader {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  justify-content: flex-end;
+  background-color: #ffffff;
+  line-height: 2rem;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  text-align: center;
+  color: #2d333f;
+}
+
+.reviewReportHeaderText {
+  font-size: 1.125rem;
+  justify-content: center;
+  border-bottom: 1px solid #d8d9db;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  line-height: 2rem;
+  text-align: center;
+  color: #2d333f;
+}
+
+.reviewReportBody {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: auto;
+  display: block;
+}
+
+.reviewReportBodyText {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+  display: flex;
+  color: #2d333f;
+}
+
+.reviewReportForm {
+  width: 100%;
+  height: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  /* overflow: auto; */
+  color: inherit;
+  -webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  -webkit-appearance: textarea;
+  background-color: white;
+  -webkit-rtl-ordering: logical;
+  flex-direction: column;
+  resize: auto;
+  cursor: text;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  margin: 0em;
+  font: 400 11px system-ui;
+  border-width: 1px;
+  border-style: solid;
+  border-color: initial;
+  border-image: initial;
+}
+
+.reviewReportFormButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  color: #2d333f;
+}
+
+.submitButton {
+  padding: .75rem 1rem;
+  text-decoration: none;
+  background-color: #da3743;
+  color: #ffffff;
+  border: none;
+  font-size: 1rem;
+  line-height: 1.5;
+  width: 18rem;
+  font-weight: 500;
+  border-radius: 2px;
+  display: inline-block;
+  box-sizing: border-box;
+  margin-right: 1rem;
+  -webkit-appearance: button;
+  cursor: pointer;
+  text-transform: none;
+  overflow: visible;
+  -webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-indent: 0px;
+  text-shadow: none;
+  text-align: center;
+  align-items: flex-start;
+}
+
+.cancelButton {
+  margin-right: 0;
+  padding: calc(.75rem - 1px) calc(1rem - 1px);
+  border: 1px solid #d8d9db;
+  text-decoration: none;
+  font-size: 1rem;
+    line-height: 1.5;
+    width: 18rem;
+    font-weight: 500;
+    border-radius: 2px;
+    color: #2d333f;
+    display: inline-block;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    -webkit-appearance: button;
+    cursor: pointer;
+    text-transform: none;
+    overflow: visible;
+    font: inherit;
+    margin: 0;
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: center;
+    align-items: flex-start;
+}
+
+

@@ -4,9 +4,11 @@ import Avatar from 'react-avatar';
 import StarRatingComponent from 'react-star-rating-component';
 import PropTypes from 'prop-types';
 import styles from './style/indivReview.css';
+import HelpfulReport from './HelpfulReport.jsx';
 
 
-const IndivReview = ({ review }) => {
+const IndivReview = (props) => {
+  const { review, handleHelpfulCount } = props;
   const {
     reviewFoodRating,
     reviewServiceRating,
@@ -37,7 +39,7 @@ const IndivReview = ({ review }) => {
           <FiMessageSquare />
           { userTotalReviews }
           &nbsp;
-          {{ userTotalReviews } === 1 ? 'review' : 'reviews'}
+          {{ userTotalReviews }.userTotalReviews === 1 ? 'review' : 'reviews'}
         </span>
       </div>
       <div>
@@ -77,6 +79,9 @@ const IndivReview = ({ review }) => {
         <p>
           { reviewBody }
         </p>
+        <div>
+          <HelpfulReport review={review} handleHelpfulCount={handleHelpfulCount} />
+        </div>
       </div>
     </div>
   );

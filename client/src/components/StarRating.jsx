@@ -34,7 +34,7 @@ class StarRating extends React.Component {
 }
 
 StarRating.propTypes = {
-  rating: PropTypes.shape.isRequired,
+  rating: PropTypes.arrayOf.isRequired,
 };
 
 export default StarRating;
