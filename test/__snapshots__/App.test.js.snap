@@ -1,0 +1,441 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component renders reviews summary and individual reviews sections 1`] = `
+<div
+  className="master"
+>
+  <div>
+    <div
+      className="feed"
+    >
+      <div
+        className="feedlist"
+      >
+        What 
+         People are saying
+      </div>
+      <div
+        className="header_lower"
+      >
+        <div>
+          Overall ratings and reviews
+        </div>
+        <div
+          className="header_normal"
+        >
+          Reviews can only be made by diners who have eaten at this restaurant
+        </div>
+        <div>
+          <div
+            className="staroverall"
+          >
+            <div
+              className="dv-star-rating"
+              style={
+                Object {
+                  "display": "inline-block",
+                  "position": "relative",
+                }
+              }
+            >
+              <input
+                checked={false}
+                className="dv-star-rating-input"
+                id="overallrate_5"
+                name="overallrate"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "display": "none",
+                    "marginLeft": -9999,
+                    "position": "absolute",
+                  }
+                }
+                type="radio"
+                value={5}
+              />
+              <label
+                className="dv-star-rating-star dv-star-rating-empty-star"
+                htmlFor="overallrate_5"
+                onClick={[Function]}
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+                style={
+                  Object {
+                    "color": "#f6f6f6",
+                    "cursor": "pointer",
+                    "float": "right",
+                  }
+                }
+              >
+                <i
+                  style={
+                    Object {
+                      "fontStyle": "normal",
+                    }
+                  }
+                >
+                  ★
+                </i>
+              </label>
+              <input
+                checked={false}
+                className="dv-star-rating-input"
+                id="overallrate_4"
+                name="overallrate"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "display": "none",
+                    "marginLeft": -9999,
+                    "position": "absolute",
+                  }
+                }
+                type="radio"
+                value={4}
+              />
+              <label
+                className="dv-star-rating-star dv-star-rating-empty-star"
+                htmlFor="overallrate_4"
+                onClick={[Function]}
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+                style={
+                  Object {
+                    "color": "#f6f6f6",
+                    "cursor": "pointer",
+                    "float": "right",
+                  }
+                }
+              >
+                <i
+                  style={
+                    Object {
+                      "fontStyle": "normal",
+                    }
+                  }
+                >
+                  ★
+                </i>
+              </label>
+              <input
+                checked={false}
+                className="dv-star-rating-input"
+                id="overallrate_3"
+                name="overallrate"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "display": "none",
+                    "marginLeft": -9999,
+                    "position": "absolute",
+                  }
+                }
+                type="radio"
+                value={3}
+              />
+              <label
+                className="dv-star-rating-star dv-star-rating-full-star"
+                htmlFor="overallrate_3"
+                onClick={[Function]}
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+                style={
+                  Object {
+                    "color": "red",
+                    "cursor": "pointer",
+                    "float": "right",
+                  }
+                }
+              >
+                <i
+                  style={
+                    Object {
+                      "fontStyle": "normal",
+                    }
+                  }
+                >
+                  ★
+                </i>
+              </label>
+              <input
+                checked={false}
+                className="dv-star-rating-input"
+                id="overallrate_2"
+                name="overallrate"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "display": "none",
+                    "marginLeft": -9999,
+                    "position": "absolute",
+                  }
+                }
+                type="radio"
+                value={2}
+              />
+              <label
+                className="dv-star-rating-star dv-star-rating-full-star"
+                htmlFor="overallrate_2"
+                onClick={[Function]}
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+                style={
+                  Object {
+                    "color": "red",
+                    "cursor": "pointer",
+                    "float": "right",
+                  }
+                }
+              >
+                <i
+                  style={
+                    Object {
+                      "fontStyle": "normal",
+                    }
+                  }
+                >
+                  ★
+                </i>
+              </label>
+              <input
+                checked={false}
+                className="dv-star-rating-input"
+                id="overallrate_1"
+                name="overallrate"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "display": "none",
+                    "marginLeft": -9999,
+                    "position": "absolute",
+                  }
+                }
+                type="radio"
+                value={1}
+              />
+              <label
+                className="dv-star-rating-star dv-star-rating-full-star"
+                htmlFor="overallrate_1"
+                onClick={[Function]}
+                onMouseLeave={[Function]}
+                onMouseOver={[Function]}
+                style={
+                  Object {
+                    "color": "red",
+                    "cursor": "pointer",
+                    "float": "right",
+                  }
+                }
+              >
+                <i
+                  style={
+                    Object {
+                      "fontStyle": "normal",
+                    }
+                  }
+                >
+                  ★
+                </i>
+              </label>
+            </div>
+            <span
+              className="startext"
+            />
+            <span>
+                based on recent ratings
+            </span>
+          </div>
+        </div>
+        <div>
+          <div
+            className="overallrev"
+          >
+            <div
+              className="indiv"
+            >
+              <div
+                className="num"
+              />
+              <div
+                className="text"
+              >
+                Food
+              </div>
+            </div>
+            <div
+              className="indiv"
+            >
+              <div
+                className="num"
+              />
+              <div
+                className="text"
+              >
+                Service
+              </div>
+            </div>
+            <div
+              className="indiv"
+            >
+              <div
+                className="num"
+              />
+              <div
+                className="text"
+              >
+                Ambience
+              </div>
+            </div>
+            <div
+              className="indiv"
+            >
+              <div
+                className="num"
+              />
+              <div
+                className="text"
+              >
+                Value
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            className="noiseoverall"
+          >
+            <svg
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              style={
+                Object {
+                  "color": undefined,
+                }
+              }
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line
+                x1="12"
+                x2="12"
+                y1="20"
+                y2="10"
+              />
+              <line
+                x1="18"
+                x2="18"
+                y1="20"
+                y2="4"
+              />
+              <line
+                x1="6"
+                x2="6"
+                y1="20"
+                y2="16"
+              />
+            </svg>
+            <span
+              className="noise"
+              onMouseEnter={[Function]}
+              onMouseOut={[Function]}
+            >
+              Noise · 
+              <span
+                className="noise2"
+              >
+                
+              </span>
+            </span>
+          </div>
+        </div>
+        <div>
+          <div
+            className="noiseoverall"
+          >
+            <svg
+              fill="none"
+              height="1em"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              style={
+                Object {
+                  "color": undefined,
+                }
+              }
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"
+              />
+            </svg>
+            <span
+              className="noise"
+              onMouseEnter={[Function]}
+              onMouseOut={[Function]}
+            >
+               
+              % of people
+              <span
+                className="noise2"
+              >
+                 would recommend it to a friend
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="neighborhood_wrapper"
+      >
+        <a
+          className="header_neighborhood"
+          href="#"
+          onMouseEnter={[Function]}
+          onMouseOut={[Function]}
+        >
+          Best Restaurants in SOMA › 
+        </a>
+      </div>
+    </div>
+    <div>
+      <div
+        className="reviewToolbar"
+      >
+        <div
+          className="filters"
+        >
+          Sort by
+        </div>
+        <div
+          className="form"
+        >
+          <div
+            className="formselect"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseOut={[Function]}
+          />
+        </div>
+        <div
+          className="filters"
+        >
+          Filters
+        </div>
+      </div>
+      <div
+        className="reviewContent"
+      />
+    </div>
+  </div>
+</div>
+`;
