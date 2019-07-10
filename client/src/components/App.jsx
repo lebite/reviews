@@ -11,7 +11,7 @@ class App extends React.Component {
       reviews: [],
     };
     this.handleReviews = this.handleReviews.bind(this);
-    this.handleSortedReivews = this.handleSortedReivews.bind(this);
+    this.handleSortedReviews = this.handleSortedReviews.bind(this);
   }
 
   componentDidMount() {
@@ -24,18 +24,18 @@ class App extends React.Component {
         this.setState({ reviews: reviews.data });
       })
       .catch((error) => {
-        // eslint-disable-next-line no-console
         console.log(error);
       });
   }
 
-  handleSortedReivews(sort) {
+  handleSortedReviews(sort) {
+    console.log(sort)
     axios.get('/80/reviews', {
       params: {
         sort: sort
       }
     })
-    .then((review) => {
+    .then((reviews) => {
       this.setState({ reviews: reviews.data});
     })
     .catch((error) => {
@@ -49,7 +49,7 @@ class App extends React.Component {
       <div className={styles.master}>
         <div>
           <Summary reviews={reviews} />
-          <Reviews reviews={reviews} />
+          <Reviews reviews={reviews} handleSortedReviews = {this.handleSortedReviews}/>
         </div>
       </div>
     );

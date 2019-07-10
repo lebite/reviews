@@ -13,12 +13,12 @@ class Reviews extends React.Component {
   }
 
   render() {
-    const { reviews } = this.props;
+    const { reviews, handleSortedReviews } = this.props;
     return (
       <div>
         <div className={styles.reviewToolbar}>
           <div className={styles.filters}>Sort by</div>
-          <DropdownFilter />
+          <DropdownFilter handleSortedReviews={handleSortedReviews}/>
           <div className={styles.filters}>Filters</div>
           {/* <ButtonFilter /> */}
         </div>

@@ -39,7 +39,7 @@ class DropdownFilter extends React.Component {
   }
 
   clickSort(word) {
-
+    this.props.handleSortedReviews(word)
   }
 
   render() {
@@ -69,12 +69,12 @@ class DropdownFilter extends React.Component {
                 &nbsp;Newest
               </div>
 
-              <div className={highestrating} onMouseEnter={() => this.mouseEnterOption('highestrating')} onMouseOut={() => this.mouseOutOption('highestrating')}>
+              <div className={highestrating} onMouseEnter={() => this.mouseEnterOption('highestrating')} onMouseOut={() => this.mouseOutOption('highestrating')} onClick = {() => this.clickSort('highestrating')}>
                 <input type="radio" />
                 &nbsp;Highest Rating
               </div>
 
-              <div className={lowestrating} onMouseEnter={() => this.mouseEnterOption('lowestrating')} onMouseOut={() => this.mouseOutOption('lowestrating')}>
+              <div className={lowestrating} onMouseEnter={() => this.mouseEnterOption('lowestrating')} onMouseOut={() => this.mouseOutOption('lowestrating')} onClick = {() => this.clickSort('lowestrating')}>
                 <input type="radio" />
                  &nbsp;Lowest Rating
               </div>
