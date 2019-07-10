@@ -20,7 +20,6 @@ class App extends React.Component {
   }
 
   handleReviews() {
-    console.log(this.state.randRestID)
     axios.get(`/${this.state.randRestID}/reviews`)
       .then((reviews) => {
         this.setState({ reviews: reviews.data });
