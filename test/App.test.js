@@ -3,7 +3,6 @@ import render from 'react-test-renderer';
 import App from '../client/src/components/App';
 
 describe('App Component', () => {
-
   it('renders correctly', () => {
     const component = shallow(<App />);
     expect(component.exists('.master')).toBe(true);
