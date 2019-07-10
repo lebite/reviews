@@ -23,7 +23,7 @@ class Header extends React.Component {
       <div className={styles.feed}>
         <div className={styles.feedlist}>
           What&nbsp;
-          {numReviews.restaurant_total_reviews}
+          {numReviews.restaurantTotalReviews}
           &nbsp;People are saying
         </div>
         <div className={styles.header_lower}>

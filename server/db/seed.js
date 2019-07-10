@@ -59,9 +59,9 @@ for (let i = 1; i <= 100; i += 1) {
     avgValue, avgNoise, avgRec]);
 }
 
-const sqlreviewsreq = 'INSERT INTO reviews (restaurant_id, user_name, user_location, user_total_reviews, review_date, review_overall_rating, review_food_rating, review_service_rating, review_ambience_rating, review_value_rating, review_helpful_count, review_noise, review_recommend, review_body) VALUES ?';
+const sqlreviewsreq = 'INSERT INTO reviews (restaurantID, userName, userLocation, userTotalReviews, reviewDate, reviewOverallRating, reviewFoodRating, reviewServiceRating, reviewAmbienceRating, reviewValueRating, reviewHelpfulCount, reviewNoise, reviewRecommend, reviewBody) VALUES ?';
 
-const sqlrestreq = 'INSERT INTO restaurants (restaurant_id, restaurant_total_reviews, avg_overall_rating, avg_food_rating, avg_service_rating, avg_ambience_rating, avg_value_rating, avg_noise_rating, avg_rec_rating) VALUES ?';
+const sqlrestreq = 'INSERT INTO restaurants (restaurantID, restaurantTotalReviews, avgOverallRating, avgFoodRating, avgServiceRating, avgAmbienceRating, avgValueRating, avgNoiseRating, avgRecRating) VALUES ?';
 
 db.connection.query(sqlreviewsreq, [reviews], (err) => {
   if (err) {

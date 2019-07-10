@@ -24,7 +24,7 @@ class Reviews extends React.Component {
         </div>
         <div className={styles.reviewContent}>
           {{ reviews }.reviews.length > 0
-            ? { reviews }.reviews.map(each => <IndivReview key={each.review_id} review={each} />)
+            ? { reviews }.reviews.map(each => <IndivReview key={each.reviewID} review={each} />)
             : null
           }
         </div>
