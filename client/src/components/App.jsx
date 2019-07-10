@@ -11,6 +11,7 @@ class App extends React.Component {
       reviews: [],
     };
     this.handleReviews = this.handleReviews.bind(this);
+    this.handleSortedReivews = this.handleSortedReivews.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +27,10 @@ class App extends React.Component {
         // eslint-disable-next-line no-console
         console.log(error);
       });
+  }
+
+  handleSortedReivews(sortparam) {
+    axios.get('/80/reviews?sort=')
   }
 
   render() {

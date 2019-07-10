@@ -15,6 +15,7 @@ class DropdownFilter extends React.Component {
     this.mouseOut = this.mouseOut.bind(this);
     this.mouseClick = this.mouseClick.bind(this);
     this.mouseEnterOption = this.mouseEnterOption.bind(this);
+    this.clickSort = this.clickSort.bind(this);
   }
 
   mouseEnter() {
@@ -35,6 +36,10 @@ class DropdownFilter extends React.Component {
 
   mouseOutOption(opt) {
     this.setState({ [opt]: styles.option });
+  }
+
+  clickSort() {
+
   }
 
   render() {
@@ -58,7 +63,8 @@ class DropdownFilter extends React.Component {
         {{ dropdown }.dropdown
           ? (
             <div className={styles.optionwrapper}>
-              <div className={newest} onMouseEnter={() => this.mouseEnterOption('newest')} onMouseOut={() => this.mouseOutOption('newest')}>
+
+              <div className={newest} onMouseEnter={() => this.mouseEnterOption('newest')} onMouseOut={() => this.mouseOutOption('newest')} onClick = {() => this.clickSort('newest')}>
                 <input type="radio" />
                 &nbsp;Newest
               </div>
