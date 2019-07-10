@@ -7,13 +7,13 @@ class StarRating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rating_half_star: 3.5,
+      ratingHalfStar: 3.5,
     };
     // still need to work on this to get it rendering correctly
   }
 
   render() {
-    const { rating_half_star } = this.state;
+    const { ratingHalfStar } = this.state;
     const { rating } = this.props;
     const avgRating = { rating }.rating[0] || {};
 
@@ -21,12 +21,12 @@ class StarRating extends React.Component {
       <div className={styles.staroverall}>
         <StarRatingComponent
           name="overallrate"
-          value={rating_half_star}
+          value={ratingHalfStar}
           starCount={5}
           starColor="red"
           emptyStarColor="#f6f6f6"
         />
-        <span className={styles.startext}>{avgRating.avg_overall_rating}</span>
+        <span className={styles.startext}>{avgRating.avgOverallRating}</span>
         <span>&nbsp;&nbsp;based on recent ratings</span>
       </div>
     );

@@ -26,14 +26,14 @@ class Recommend extends React.Component {
 
   render() {
     const { recLevel } = this.props;
-    const { avg_rec_rating } = recLevel;
+    const { avgRecRating } = recLevel;
     const { rec, rec2 } = this.state;
     return (
       <div className={styles.noiseoverall}>
-        {{ avg_rec_rating }.avg_rec_rating > 50 ? <FiThumbsUp /> : <FiThumbsDown />}
+        {{ avgRecRating }.avgRecRating > 50 ? <FiThumbsUp /> : <FiThumbsDown />}
         <span className={rec} onMouseEnter={this.mouseOver} onMouseOut={this.mouseOut}>
           &nbsp;
-          {avg_rec_rating}
+          {avgRecRating}
           % of people
           <span className={rec2}>&nbsp;would recommend it to a friend</span>
         </span>
@@ -44,7 +44,7 @@ class Recommend extends React.Component {
 
 Recommend.propTypes = {
   recLevel: PropTypes.shape({
-    avg_rec_rating: PropTypes.number,
+    avgRecRating: PropTypes.number,
   }).isRequired,
 };
 

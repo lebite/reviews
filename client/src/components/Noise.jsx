@@ -26,17 +26,17 @@ class Noise extends React.Component {
 
   render() {
     const { noiseLevel } = this.props;
-    const { avg_noise_rating } = noiseLevel;
+    const { avgNoiseRating } = noiseLevel;
     const { color, color2 } = this.state;
 
     let noise = '';
-    if ({ avg_noise_rating }.avg_noise_rating === 1) {
+    if ({ avgNoiseRating }.avgNoiseRating === 1) {
       noise = 'Do Not Recall';
-    } else if ({ avg_noise_rating }.avg_noise_rating === 2) {
+    } else if ({ avgNoiseRating }.avgNoiseRating === 2) {
       noise = 'Quiet';
-    } else if ({ avg_noise_rating }.avg_noise_rating === 3) {
+    } else if ({ avgNoiseRating }.avgNoiseRating === 3) {
       noise = 'Moderate';
-    } else if ({ avg_noise_rating }.avg_noise_rating === 4) {
+    } else if ({ avgNoiseRating }.avgNoiseRating === 4) {
       noise = 'Energetic';
     }
 
@@ -54,7 +54,7 @@ class Noise extends React.Component {
 
 Noise.propTypes = {
   noiseLevel: PropTypes.shape({
-    avg_noise_rating: PropTypes.number,
+    avgNoiseRating: PropTypes.number,
   }).isRequired,
 };
 

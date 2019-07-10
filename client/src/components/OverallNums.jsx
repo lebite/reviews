@@ -4,28 +4,28 @@ import styles from './style/overallnums.css';
 
 const OverallNums = ({ nums }) => {
   const {
-    avg_food_rating,
-    avg_service_rating,
-    avg_ambience_rating,
-    avg_value_rating,
+    avgFoodRating,
+    avgServiceRating,
+    avgAmbienceRating,
+    avgValueRating,
   } = nums;
 
   return (
     <div className={styles.overallrev}>
       <div className={styles.indiv}>
-        <div className={styles.num}>{avg_food_rating}</div>
+        <div className={styles.num}>{avgFoodRating}</div>
         <div className={styles.text}>Food</div>
       </div>
       <div className={styles.indiv}>
-        <div className={styles.num}>{avg_service_rating}</div>
+        <div className={styles.num}>{avgServiceRating}</div>
         <div className={styles.text}>Service</div>
       </div>
       <div className={styles.indiv}>
-        <div className={styles.num}>{avg_ambience_rating}</div>
+        <div className={styles.num}>{avgAmbienceRating}</div>
         <div className={styles.text}>Ambience</div>
       </div>
       <div className={styles.indiv}>
-        <div className={styles.num}>{avg_value_rating}</div>
+        <div className={styles.num}>{avgValueRating}</div>
         <div className={styles.text}>Value</div>
       </div>
     </div>
@@ -34,10 +34,10 @@ const OverallNums = ({ nums }) => {
 
 OverallNums.propTypes = {
   nums: PropTypes.shape({
-    avg_food_rating: PropTypes.number,
-    avg_service_rating: PropTypes.number,
-    avg_ambience_rating: PropTypes.number,
-    avg_value_rating: PropTypes.number,
+    avgFoodRating: PropTypes.number,
+    avgServiceRating: PropTypes.number,
+    avgAmbienceRating: PropTypes.number,
+    avgValueRating: PropTypes.number,
   }).isRequired,
 };
 
