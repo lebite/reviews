@@ -9,19 +9,19 @@ class App extends React.Component {
     super();
     this.state = {
       reviews: [],
+      randRestID: Math.floor(Math.random() * 100) + 1,
     };
-    this.randRestID = '',
     this.handleReviews = this.handleReviews.bind(this);
     this.handleSortedReviews = this.handleSortedReviews.bind(this);
   }
 
   componentDidMount() {
-    this.randRestID = Math.floor(Math.random() * 100) + 1;
     this.handleReviews();
   }
 
   handleReviews() {
-    axios.get(`/${this.randRestID}/reviews`)
+    console.log(this.state.randRestID)
+    axios.get(`/${this.state.randRestID}/reviews`)
       .then((reviews) => {
         this.setState({ reviews: reviews.data });
       })
@@ -31,7 +31,7 @@ class App extends React.Component {
   }
 
   handleSortedReviews(sort) {
-    axios.get(`/${this.randRestID}/reviews`, {
+    axios.get(`/${this.state.randRestID}/reviews`, {
       params: {
         sort: sort,
       },
