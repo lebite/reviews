@@ -23,6 +23,10 @@ class ReviewsChart extends React.Component {
     this.setState({[num]: styles.indivRating});
   }
 
+  onClick(num) {
+
+  }
+
   render() {
     const widths = [0,0,0,0,0];
     let finwidth = '';
@@ -55,7 +59,7 @@ class ReviewsChart extends React.Component {
 
         <div className={styles.reviewUpdateParameter}>
           <span className={styles.reviewNumber}>5</span>
-          <div className={this.state.five} onMouseEnter={() => this.onMouseEnter('five')} onMouseOut={() => this.onMouseOut('five')}>
+          <div className={this.state.five} onMouseEnter={() => this.onMouseEnter('five')} onMouseOut={() => this.onMouseOut('five')} onClick={() => this.onClick('five')}>
             <span className={styles.indivRatingInside} style={{width: finwidth[4]}}></span>
           </div>
         </div>
