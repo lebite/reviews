@@ -35,6 +35,14 @@
   color: #6f737b;
 }
 
+.reportTextRed {
+  margin: 0 0 0 0.25rem;
+  font-weight: 500;
+  line-height: 1.43;
+  font-size: 0.875rem;
+  color: #da3743;
+}
+
 .helpful {
   display: flex;
   align-items: center;
@@ -43,14 +51,6 @@
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   color: #2d333f;
-}
-
-.helpfulText {
-  margin: 0 0 0 0.25rem;
-  font-weight: 500;
-  line-height: 1.43;
-  font-size: 0.875rem;
-  color: #6f737b;
 }
 
 .reviewReport {
