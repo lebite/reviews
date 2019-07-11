@@ -13,18 +13,18 @@ class Reviews extends React.Component {
   }
 
   render() {
-    const { reviews, handleSortedReviews } = this.props;
+    const { reviews, handleSortedReviews, handleHelpfulCount } = this.props;
     return (
       <div>
         <div className={styles.reviewToolbar}>
           <div className={styles.filters}>Sort by</div>
-          <DropdownFilter handleSortedReviews={handleSortedReviews}/>
+          <DropdownFilter handleSortedReviews={handleSortedReviews} />
           <div className={styles.filters}>Filters</div>
           {/* <ButtonFilter /> */}
         </div>
         <div className={styles.reviewContent}>
           {{ reviews }.reviews.length > 0
-            ? { reviews }.reviews.map(each => <IndivReview key={each.reviewID} review={each} />)
+            ? { reviews }.reviews.map(each => <IndivReview key={each.reviewID} review={each} handleHelpfulCount={handleHelpfulCount} />)
             : null
           }
         </div>
@@ -35,6 +35,8 @@ class Reviews extends React.Component {
 
 Reviews.propTypes = {
   reviews: PropTypes.arrayOf.isRequired,
+  handleSortedReviews: PropTypes.func.isRequired,
+  handleHelpfulCount: PropTypes.func.isRequired,
 };
 
 export default Reviews;

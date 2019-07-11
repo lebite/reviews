@@ -4,7 +4,7 @@ CREATE DATABASE reservlyreviews;
 USE reservlyreviews;
 
 CREATE TABLE IF NOT EXISTS reviews (
-  reviewID INT NOT NULL AUTO_INCREMENT,
+  INT NOT NULL AUTO_INCREMENT,
   restaurantID INT,
   userName VARCHAR(100),
   userLocation VARCHAR(100),

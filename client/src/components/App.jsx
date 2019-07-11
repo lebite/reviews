@@ -13,6 +13,7 @@ class App extends React.Component {
     };
     this.handleReviews = this.handleReviews.bind(this);
     this.handleSortedReviews = this.handleSortedReviews.bind(this);
+    this.handleHelpfulCount = this.handleHelpfulCount.bind(this);
   }
 
   componentDidMount() {
@@ -20,7 +21,8 @@ class App extends React.Component {
   }
 
   handleReviews() {
-    axios.get(`/${this.state.randRestID}/reviews`)
+    const { randRestID } = this.state;
+    axios.get(`/${randRestID}/reviews`)
       .then((reviews) => {
         this.setState({ reviews: reviews.data });
       })
@@ -30,17 +32,35 @@ class App extends React.Component {
   }
 
   handleSortedReviews(sort) {
-    axios.get(`/${this.state.randRestID}/reviews`, {
+    const { randRestID } = this.state;
+    axios.get(`/${randRestID}/reviews`, {
       params: {
-        sort: sort,
+        sort,
       },
     })
-    .then((reviews) => {
-      this.setState({ reviews: reviews.data });
+      .then((reviews) => {
+        this.setState({ reviews: reviews.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  handleHelpfulCount(param, id, revcount) {
+    const { randRestID } = this.state;
+    let count;
+    param === 'increase' ? count = revcount + 1 : count = revcount - 1;
+
+    axios.patch(`/${randRestID}/reviews`, {
+      id,
+      count,
     })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then(() => {
+        this.handleReviews();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
@@ -49,7 +69,7 @@ class App extends React.Component {
       <div className={styles.master}>
         <div>
           <Summary reviews={reviews} />
-          <Reviews reviews={reviews} handleSortedReviews = {this.handleSortedReviews}/>
+          <Reviews reviews={reviews} handleSortedReviews={this.handleSortedReviews} handleHelpfulCount={this.handleHelpfulCount} />
         </div>
       </div>
     );
