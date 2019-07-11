@@ -49,7 +49,7 @@ class App extends React.Component {
   handleHelpfulCount(param, id, revcount) {
     const { randRestID } = this.state;
     let count;
-    param === 'increase' ? count = revcount + 1 : revcount === 0 ? count = 0 : count = revcount - 1;
+    param === 'increase' ? count = revcount + 1 : count = revcount - 1;
 
     axios.patch(`/${randRestID}/reviews`, {
       id,
