@@ -1,0 +1,54 @@
+.container {
+  border-bottom: 1px solid #d8d9db;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  display: block;
+}
+.feed {
+
+}
+.whatpplsay {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.33;
+  color: #2d333f;
+  border-bottom: 1px solid #d8d9db;
+  padding-bottom: 1rem;
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+  text-size-adjust: 100%;
+  margin: 0 0 1rem;
+}
+
+.header_lower {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 2rem;
+}
+
+.text {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+  display: flex;
+}
+
+.header_normal {
+  font-size: 1rem;
+  font-weight: normal;
+  padding-top: 0.5rem;
+  display: block;
+}
+
+.neighborhood_wrapper {
+  padding-top: 0.5rem;
+}
+
+.graph {
+  padding: 2rem 0 0;
+  display: block;
+}
+

@@ -41,12 +41,14 @@ class Noise extends React.Component {
     }
 
     return (
-      <div className={styles.noiseoverall}>
-        <FiBarChart />
-        <span className={color} onMouseEnter={this.mouseOver} onMouseOut={this.mouseOut}>
-          Noise&nbsp;&#183;&nbsp;
-          <span className={color2}>{noise}</span>
-        </span>
+      <div className={styles.container}>
+        <div className={styles.noiseoverall}>
+          <FiBarChart />
+          <span className={color} onMouseEnter={this.mouseOver} onMouseOut={this.mouseOut}>
+            Noise&nbsp;&#183;&nbsp;
+            <span className={color2}>{noise}</span>
+          </span>
+        </div>
       </div>
     );
   }

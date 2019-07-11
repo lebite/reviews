@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StarRatingComponent from 'react-star-rating-component';
+import { IoIosStarHalf, IoIosStarOutline, IoIosStar } from 'react-icons/io'
 import styles from './style/starrating.css';
 
 class StarRating extends React.Component {
@@ -18,16 +19,35 @@ class StarRating extends React.Component {
     const avgRating = { rating }.rating[0] || {};
 
     return (
-      <div className={styles.staroverall}>
-        <StarRatingComponent
-          name="overallrate"
-          value={ratingHalfStar}
-          starCount={5}
-          starColor="red"
-          emptyStarColor="#f6f6f6"
-        />
-        <span className={styles.startext}>{avgRating.avgOverallRating}</span>
-        <span>&nbsp;&nbsp;based on recent ratings</span>
+      <div className={styles.starOverall}>
+        <div className={styles.starWrapper}>
+          {/* <StarRatingComponent
+            name="overallrate"
+            value={ratingHalfStar}
+            starCount={5}
+            starColor="red"
+            emptyStarColor="#f6f6f6"
+          /> */}
+          <icon className={styles.icon}>
+            <IoIosStar className={styles.star} />
+          </icon>
+          <icon className={styles.icon}>
+            <IoIosStar className={styles.star} />
+          </icon>
+          <icon className={styles.icon}>
+            <IoIosStar className={styles.star} />
+          </icon>
+          <icon className={styles.icon}>
+            <IoIosStar className={styles.star} />
+          </icon>
+          <icon className={styles.icon}>
+            <IoIosStar className={styles.star} />
+          </icon>
+        </div>
+        <div className={styles.textWrapper}>
+          <span className={styles.startext}>{avgRating.avgOverallRating}</span>
+          <span className={styles.startext}>&nbsp;&nbsp;based on recent ratings</span>
+        </div>
       </div>
     );
   }

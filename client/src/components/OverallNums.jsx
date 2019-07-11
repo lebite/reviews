@@ -16,15 +16,15 @@ const OverallNums = ({ nums }) => {
         <div className={styles.num}>{avgFoodRating}</div>
         <div className={styles.text}>Food</div>
       </div>
-      <div className={styles.indiv}>
+      <div className={styles.indivline}>
         <div className={styles.num}>{avgServiceRating}</div>
         <div className={styles.text}>Service</div>
       </div>
-      <div className={styles.indiv}>
+      <div className={styles.indivline}>
         <div className={styles.num}>{avgAmbienceRating}</div>
         <div className={styles.text}>Ambience</div>
       </div>
-      <div className={styles.indiv}>
+      <div className={styles.indivline}>
         <div className={styles.num}>{avgValueRating}</div>
         <div className={styles.text}>Value</div>
       </div>

@@ -29,14 +29,16 @@ class Recommend extends React.Component {
     const { avgRecRating } = recLevel;
     const { rec, rec2 } = this.state;
     return (
-      <div className={styles.noiseoverall}>
-        {{ avgRecRating }.avgRecRating > 50 ? <FiThumbsUp /> : <FiThumbsDown />}
-        <span className={rec} onMouseEnter={this.mouseOver} onMouseOut={this.mouseOut}>
-          &nbsp;
-          {avgRecRating}
-          % of people
-          <span className={rec2}>&nbsp;would recommend it to a friend</span>
-        </span>
+      <div className={styles.container}>
+        <div className={styles.noiseoverall}>
+          {{ avgRecRating }.avgRecRating > 50 ? <FiThumbsUp /> : <FiThumbsDown />}
+          <span className={rec} onMouseEnter={this.mouseOver} onMouseOut={this.mouseOut}>
+            &nbsp;
+            {avgRecRating}
+            % of people
+            <span className={rec2}>&nbsp;would recommend it to a friend</span>
+          </span>
+        </div>
       </div>
     );
   }

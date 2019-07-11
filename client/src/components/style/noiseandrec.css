@@ -1,6 +1,10 @@
-.noiseoverall {
+.container {
   padding-top: 1rem;
   max-width: 100%;
+  display: block;
+}
+
+.noiseoverall {
   display: flex;
   align-items: center;
 }
