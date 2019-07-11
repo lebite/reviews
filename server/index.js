@@ -24,7 +24,6 @@ app.get('/:restaurantID/reviews', (req, res) => {
     const sqlargs = req.params.restaurantID;
     db.connection.query(sqlreq, [sqlargs], (err, data) => {
       if (err) {
-        console.log(err);
         res.status(500).send(err);
       } else {
         res.status(200).send(data);
