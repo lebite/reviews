@@ -11,92 +11,109 @@ class ButtonFilter extends React.Component {
       thirdButton: false,
       fourthButton: false,
       fifthButton: false,
+      firstButtonStyle: [styles.label, styles.text],
+      secondButtonStyle: [styles.label, styles.text],
+      thirdButtonStyle: [styles.label, styles.text],
+      fourthButtonStyle: [styles.label, styles.text],
+      fifthButtonStyle: [styles.label, styles.text],
     };
     this.onChange = this.onChange.bind(this);
     this.onChangeStarRating = this.onChangeStarRating.bind(this);
+    this.mouseOver = this.mouseOver.bind(this);
+    this.mouseLeave = this.mouseLeave.bind(this);
   }
 
   onChange(e, keyword) {
     const buttonName = e.target.name;
-    if (buttonName === 'firstButton') {
-      this.setState(state => ({ firstButton: !state.firstButton }));
-      !this.state.firstButton ? this.props.handleSortedReviews(this.props.sortOption, keyword, this.props.stars) : this.props.handleSortedReviews(this.props.sortOption, null, this.props.stars);
-    } else if (buttonName === 'secondButton') {
-      this.setState(state => ({ secondButton: !state.secondButton }));
-      !this.state.secondButton ? this.props.handleSortedReviews(this.props.sortOption, keyword, this.props.stars) : this.props.handleSortedReviews(this.props.sortOption, null, this.props.stars);
-    } else if (buttonName === 'thirdButton') {
-      this.setState(state => ({ thirdButton: !state.thirdButton }));
-      !this.state.thirdButton ? this.props.handleSortedReviews(this.props.sortOption, keyword, this.props.stars) : this.props.handleSortedReviews(this.props.sortOption, null, this.props.stars);
-    } else if (buttonName === 'fourthButton') {
-      this.setState(state => ({ fourthButton: !state.fourthButton }));
-      !this.state.fourthButton ? this.props.handleSortedReviews(this.props.sortOption, keyword, this.props.stars) : this.props.handleSortedReviews(this.props.sortOption, null, this.props.stars);
-    } else if (buttonName === 'fifthButton') {
-      this.setState(state => ({ fifthButton: !state.fifthButton }));
-      !this.state.fifthButton ? this.props.handleSortedReviews(this.props.sortOption, keyword, this.props.stars) : this.props.handleSortedReviews(this.props.sortOption, null, this.props.stars);
+
+    this.setState(state => ({ [buttonName]: !state[buttonName] }));
+    if (!this.state[buttonName]) {
+      this.props.handleSortedReviews(this.props.sortOption, keyword, this.props.stars);
+    } else {
+      this.props.handleSortedReviews(this.props.sortOption, null, this.props.stars);
     }
   }
 
   onChangeStarRating() {
-    this.props.handleRatingButton(null)
+    const { handleRatingButton } = this.props;
+    { handleRatingButton(null); }
+  }
+
+  mouseOver(styleName) {
+    this.setState({ [styleName]: [styles.labelred, this.state[styleName][1]] });
+  }
+
+  mouseLeave(styleName) {
+    this.setState({ [styleName]: [styles.label, this.state[styleName][1]] });
+  }
+
+  mouseOverText(styleName) {
+    this.setState({ [styleName]: [this.state[styleName][0], styles.textred] });
+  }
+
+  mouseLeaveText(styleName) {
+    this.setState({ [styleName]: [this.state[styleName][0], styles.text] });
   }
 
   render() {
+    const { reviews, starRatingButton } = this.props;
+
     let wordArr = '';
-    if (this.props.reviews.length > 0) {
-      wordArr = this.props.reviews[0].keyWords.split(',');
+    if ({ reviews }.reviews.length > 0) {
+      wordArr = { reviews }.reviews[0].keyWords.split(',');
     }
 
-    const { starRatingButton } = this.props;
+    const arr = [{ name: 'firstButton', style: 'firstButtonStyle', text: 'Good for groups' }, { name: 'secondButton', style: 'secondButtonStyle', text: wordArr[0] }, { name: 'thirdButton', style: 'thirdButtonStyle', text: wordArr[1] }, { name: 'fourthButton', style: 'fourthButtonStyle', text: wordArr[2] }, { name: 'fifthButton', style: 'fifthButtonStyle', text: wordArr[3] }];
 
     return (
       <div className={styles.container}>
-        {{starRatingButton}.starRatingButton
-        ?
-        <span>
-        <label className={styles.label}>
-          <input name="starRating" className={styles.input} type="checkbox" checked onChange={this.onChangeStarRating}/>
-          <span>{starRatingButton}</span>
-        </label>
-      </span>
-      : null
-      }
-        <span>
-          <label className={styles.label}>
-            <input name="firstButton" className={styles.input} type="checkbox" />
-            <span>Good for groups</span>
-          </label>
-        </span>
+        {{ starRatingButton }.starRatingButton
+          ? (
+            <span>
+              <label className={styles.labelred}>
+                <input name="starRating" className={styles.input} type="checkbox" checked onChange={this.onChangeStarRating} />
+                <span>{starRatingButton}</span>
+              </label>
+            </span>
+          )
+          : null
+        }
 
-        <span>
-          <label className={styles.label}>
-            <input name="secondButton" className={styles.input} type="checkbox" onChange={e => this.onChange(e, wordArr[0])} checked={this.state.secondButton} />
-            <span>{wordArr[0]}</span>
-          </label>
-        </span>
-
-        <span>
-          <label className={styles.label}>
-            <input name="thirdButton" className={styles.input} type="checkbox" onClick={e => this.onChange(e, wordArr[1])} />
-            <span>{wordArr[1]}</span>
-          </label>
-        </span>
-
-        <span>
-          <label className={styles.label}>
-            <input name="fourthButton" className={styles.input} type="checkbox" onClick={e => this.onChange(e, wordArr[2])} />
-            <span>{wordArr[2]}</span>
-          </label>
-        </span>
-
-        <span>
-          <label className={styles.label}>
-            <input name="fifthButton" className={styles.input} type="checkbox" onClick={e => this.onChange(e, wordArr[3])} />
-            <span>{wordArr[3]}</span>
-          </label>
-        </span>
+        {arr.map(each => (
+          <span>
+            {this.state[each.name]
+              ? (
+                <label className={styles.labelred}>
+                  <input name={each.name} className={styles.input} type="checkbox" onChange={e => this.onChange(e, each.text)} checked />
+                  <span className={this.state[each.style][1]} onMouseEnter={() => this.mouseOverText(each.style)} onMouseLeave={() => {this.mouseLeaveText(each.style)}}>{each.text}</span>
+                </label>
+              )
+              : (
+                <label className={this.state[each.style][0]} onMouseOver={() => this.mouseOver(each.style)} onMouseLeave={() => this.mouseLeave(each.style)}>
+                  <input name={each.name} className={styles.input} type="checkbox" onChange={e => this.onChange(e, each.text)} checked={false} />
+                  <span className={this.state[each.style][1]} onMouseEnter={() => this.mouseOverText(each.style)} onMouseLeave={() => {this.mouseLeaveText(each.style)}}>{each.text}</span>
+                </label>
+              )
+              }
+          </span>
+        ))}
       </div>
-    )
+    );
   }
 }
+
+ButtonFilter.propTypes = {
+  reviews: PropTypes.arrayOf,
+  starRatingButton: PropTypes.string.isRequired,
+  handleSortedReviews: PropTypes.func.isRequired,
+  sortOption: PropTypes.string.isRequired,
+  stars: PropTypes.string,
+  handleRatingButton: PropTypes.func.isRequired,
+};
+
+ButtonFilter.defaultProps = {
+  reviews: undefined,
+  stars: null,
+};
 
 export default ButtonFilter;

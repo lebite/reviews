@@ -52,28 +52,25 @@ class App extends React.Component {
 
   handleSortedReviews(sort, keyword, stars) {
     if (sort !== null) {
-      this.setState({ sort: sort })
+      this.setState({ sort });
       this.sort = sort;
     }
-    console.log('this is sort', this.sort)
 
     if (keyword !== undefined) {
       this.keyword = keyword;
     }
-    console.log('this is keyword', this.keyword)
 
     if (stars !== undefined) {
-      this.setState({ stars: stars })
-      this.stars = stars
+      this.setState({ stars });
+      this.stars = stars;
     }
-    console.log('this is stars',this.stars)
 
     const { randRestID } = this.state;
     axios.get(`/${randRestID}/reviews`, {
       params: {
         sort: this.sort,
         keyword: this.keyword,
-        stars: this.stars
+        stars: this.stars,
       },
     })
       .then((reviews) => {
@@ -85,16 +82,14 @@ class App extends React.Component {
   }
 
   handleRatingButton(starRating) {
-    console.log('second click', starRating)
-    this.setState({starRatingButton: starRating});
+    this.setState({ starRatingButton: starRating });
     let numStars = '';
     if (starRating) {
-      numStars = starRating.slice(0,1);
+      numStars = starRating.slice(0, 1);
     } else {
       numStars = starRating;
     }
     this.handleSortedReviews(null, undefined, numStars);
-
   }
 
   handleHelpfulCount(param, id, revcount) {
@@ -107,7 +102,8 @@ class App extends React.Component {
       count,
     })
       .then(() => {
-        this.handleSortedReviews(this.state.sort);
+        const { sort } = this.state;
+        this.handleSortedReviews({ sort });
       })
       .catch((error) => {
         console.log(error);
@@ -116,12 +112,14 @@ class App extends React.Component {
 
 
   render() {
-    const { reviews, justReviews, sort, starRatingButton, stars } = this.state;
+    const {
+      reviews, justReviews, sort, starRatingButton, stars,
+    } = this.state;
     return (
       <div className={styles.master}>
         <div>
-          <Summary reviews={reviews} handleRatingButton={this.handleRatingButton}/>
-          <Reviews reviews={reviews} justReviews={justReviews} handleSortedReviews={this.handleSortedReviews} handleHelpfulCount={this.handleHelpfulCount} sortOption={sort} starRatingButton={starRatingButton} handleRatingButton={this.handleRatingButton} stars={stars}/>
+          <Summary reviews={reviews} handleRatingButton={this.handleRatingButton} />
+          <Reviews reviews={reviews} justReviews={justReviews} handleSortedReviews={this.handleSortedReviews} handleHelpfulCount={this.handleHelpfulCount} sortOption={sort} starRatingButton={starRatingButton} handleRatingButton={this.handleRatingButton} stars={stars} />
         </div>
       </div>
     );

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './style/dropdownfilter.css';
 
 class DropdownFilter extends React.Component {
@@ -40,8 +41,8 @@ class DropdownFilter extends React.Component {
   }
 
   clickSort(word) {
-    this.setState({ wordShown: word })
-    this.props.handleSortedReviews(word, undefined, this.props.stars)
+    this.setState({ wordShown: word });
+    this.props.handleSortedReviews(word, undefined, this.props.stars);
     this.setState(state => ({ dropdown: !state.dropdown }));
   }
 
@@ -63,24 +64,24 @@ class DropdownFilter extends React.Component {
 
     return (
       <div className={styles.form}>
-        <div className={bordercolor} onMouseEnter={mouseEnter} onMouseOut={mouseOut} onClick={mouseClick} >
+        <div className={bordercolor} onMouseEnter={mouseEnter} onMouseOut={mouseOut} onClick={mouseClick}>
           <span className={styles.selected}>{wordShown}</span>
         </div>
         {{ dropdown }.dropdown
           ? (
             <div className={styles.optionwrapper}>
 
-              <div className={newest} onMouseEnter={() => this.mouseEnterOption('Newest')} onMouseOut={() => this.mouseOutOption('Newest')} onClick = {() => this.clickSort('Newest')}>
+              <div className={newest} onMouseEnter={() => this.mouseEnterOption('Newest')} onMouseOut={() => this.mouseOutOption('Newest')} onClick={() => this.clickSort('Newest')}>
                 <input type="radio" />
                 &nbsp;Newest
               </div>
 
-              <div className={highestrating} onMouseEnter={() => this.mouseEnterOption('Highest Rating')} onMouseOut={() => this.mouseOutOption('Highest Rating')} onClick = {() => this.clickSort('Highest Rating')}>
+              <div className={highestrating} onMouseEnter={() => this.mouseEnterOption('Highest Rating')} onMouseOut={() => this.mouseOutOption('Highest Rating')} onClick={() => this.clickSort('Highest Rating')}>
                 <input type="radio" />
                 &nbsp;Highest Rating
               </div>
 
-              <div className={lowestrating} onMouseEnter={() => this.mouseEnterOption('Lowest Rating')} onMouseOut={() => this.mouseOutOption('Lowest Rating')} onClick = {() => this.clickSort('Lowest Rating')}>
+              <div className={lowestrating} onMouseEnter={() => this.mouseEnterOption('Lowest Rating')} onMouseOut={() => this.mouseOutOption('Lowest Rating')} onClick={() => this.clickSort('Lowest Rating')}>
                 <input type="radio" />
                  &nbsp;Lowest Rating
               </div>
@@ -92,5 +93,14 @@ class DropdownFilter extends React.Component {
     );
   }
 }
+
+DropdownFilter.propTypes = {
+  stars: PropTypes.string,
+  handleSortedReviews: PropTypes.func.isRequired,
+};
+
+DropdownFilter.defaultProps = {
+  stars: null,
+};
 
 export default DropdownFilter;

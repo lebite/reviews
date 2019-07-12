@@ -6,7 +6,6 @@
 }
 
 .input {
-  /* display: none; */
   box-sizing: border-box;
   padding: 0;
   line-height: normal;
@@ -34,4 +33,35 @@
   font-size: 1rem;
   font-weight: 500;
   border-radius: .125rem;
+}
+
+.labelred {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  border: 2px solid #da3743;
+  padding: calc(.5rem - 1px);
+  background: none;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: .125rem;
+}
+
+.text {
+  margin: 0 0 0 0.25rem;
+  font-weight: 500;
+  line-height: 1.43;
+  font-size: 0.875rem;
+  color: #6f737b;
+}
+
+.textred {
+  margin: 0 0 0 0.25rem;
+  font-weight: 500;
+  line-height: 1.43;
+  font-size: 0.875rem;
+  color: #da3743
 }

@@ -42,13 +42,12 @@ class Summary extends React.Component {
               <Recommend recLevel={numReviews} />
             </div>
             <div className={styles.graph}>
-              <ReviewsChart reviews={reviews} handleRatingButton={handleRatingButton}/>
+              <ReviewsChart reviews={reviews} handleRatingButton={handleRatingButton} />
             </div>
           </div>
           <div className={styles.neighborhood_wrapper}>
             <Neighborhood />
           </div>
-
 
 
         </div>
@@ -58,7 +57,12 @@ class Summary extends React.Component {
 }
 
 Summary.propTypes = {
-  reviews: PropTypes.arrayOf.isRequired,
+  reviews: PropTypes.arrayOf,
+  handleRatingButton: PropTypes.func.isRequired,
+};
+
+Summary.defaultProps = {
+  reviews: null,
 };
 
 export default Summary;

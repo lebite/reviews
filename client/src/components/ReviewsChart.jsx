@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './style/reviewschart.css';
 
 class ReviewsChart extends React.Component {
@@ -10,96 +11,73 @@ class ReviewsChart extends React.Component {
       three: styles.indivRating,
       four: styles.indivRating,
       five: styles.indivRating,
-    }
+    };
     this.onMouseEnter = this.onMouseEnter.bind(this);
     this.onMouseOut = this.onMouseOut.bind(this);
     this.onClick = this.onClick.bind(this);
   }
 
   onMouseEnter(num) {
-    this.setState({[num]: styles.hover});
+    this.setState({ [num]: styles.hover });
   }
 
   onMouseOut(num) {
-    this.setState({[num]: styles.indivRating});
+    this.setState({ [num]: styles.indivRating });
   }
 
   onClick(rating) {
-    this.props.handleRatingButton(rating)
+    const { handleRatingButton } = this.props;
+    { handleRatingButton(rating); }
   }
 
   render() {
-    const widths = [0,0,0,0,0];
+    const { reviews } = this.props;
+    const widths = [0, 0, 0, 0, 0];
     let finwidth = '';
 
-    if(this.props.reviews.length>0) {
-      for (var i = 0; i<this.props.reviews.length; i++) {
-        var rate = Math.floor(this.props.reviews[i].reviewOverallRating)
+    if ({ reviews }.reviews.length > 0) {
+      for (let i = 0; i < { reviews }.reviews.length; i += 1) {
+        const rate = Math.floor({ reviews }.reviews[i].reviewOverallRating);
         if (rate === 1) {
           widths[0] += 1;
-        } else if ( rate === 2 ) {
+        } else if (rate === 2) {
           widths[1] += 1;
-        } else if ( rate === 3 ) {
+        } else if (rate === 3) {
           widths[2] += 1;
-        } else if ( rate === 4 ) {
+        } else if (rate === 4) {
           widths[3] += 1;
-        } else if ( rate === 5 ) {
+        } else if (rate === 5) {
           widths[4] += 1;
         }
       }
       finwidth = widths.map((num) => {
-        let val = Math.ceil(num / this.props.reviews.length * 100);
-        return val+'%';
-      })
+        const val = Math.ceil(num / { reviews }.reviews.length * 100);
+        return `${val}%`;
+      });
     } else {
-      finwidth = ['0%','0%','0%','0%','0%']
+      finwidth = ['0%', '0%', '0%', '0%', '0%'];
     }
+
+    const arr = [{ style: finwidth[4], num: 'five', actnum: 5 }, { style: finwidth[3], num: 'four', actnum: 4 }, { style: finwidth[2], num: 'three', actnum: 3 }, { style: finwidth[1], num: 'two', actnum: 2 }, { style: finwidth[0], num: 'one', actnum: 1 }];
 
     return (
       <div className={styles.container}>
-
-        <div className={styles.reviewUpdateParameter}>
-          <span className={styles.reviewNumber}>5</span>
-          <div className={this.state.five} onMouseEnter={() => this.onMouseEnter('five')} onMouseOut={() => this.onMouseOut('five')} onClick={() => this.onClick('5 stars')}>
-            <span className={styles.indivRatingInside} style={{width: finwidth[4]}}></span>
+        {arr.map(each => (
+          <div className={styles.reviewUpdateParameter}>
+            <span className={styles.reviewNumber}>{each.actnum}</span>
+            <div className={this.state[each.num]} onMouseEnter={() => this.onMouseEnter(each.num)} onMouseOut={() => this.onMouseOut(each.num)} onClick={() => this.onClick(`${each.actnum} stars`)}>
+              <span className={styles.indivRatingInside} style={{ width: each.style }} />
+            </div>
           </div>
-        </div>
-
-        <div className={styles.reviewUpdateParameter}>
-          <span className={styles.reviewNumber}>4</span>
-          <div className={this.state.four} onMouseEnter={() => this.onMouseEnter('four')} onMouseOut={() => this.onMouseOut('four')} onClick={() => this.onClick('4 stars')}>
-            <span className={styles.indivRatingInside} style={{width: finwidth[3]}}></span>
-          </div>
-        </div>
-
-        <div className={styles.reviewUpdateParameter}>
-          <span className={styles.reviewNumber}>3</span>
-          <div className={this.state.three} onMouseEnter={() => this.onMouseEnter('three')} onMouseOut={() => this.onMouseOut('three')}
-          onClick={() => this.onClick('3 stars')}>
-            <span className={styles.indivRatingInside} style={{width: finwidth[2]}}></span>
-          </div>
-        </div>
-
-        <div className={styles.reviewUpdateParameter}>
-          <span className={styles.reviewNumber}>2</span>
-          <div className={this.state.two} onMouseEnter={() => this.onMouseEnter('two')} onMouseOut={() => this.onMouseOut('two')}
-          onClick={() => this.onClick('2 stars')}>
-            <span className={styles.indivRatingInside} style={{width: finwidth[1]}}></span>
-          </div>
-        </div>
-
-        <div className={styles.reviewUpdateParameter}>
-          <span className={styles.reviewNumber}>1</span>
-          <div className={this.state.one} onMouseEnter={() => this.onMouseEnter('one')} onMouseOut={() => this.onMouseOut('one')}
-          onClick={() => this.onClick('1 star')}>
-            <span className={styles.indivRatingInside} style={{width: finwidth[0]}}></span>
-          </div>
-        </div>
-
+        ))}
       </div>
     );
   }
+}
 
+ReviewsChart.propTypes = {
+  reviews: PropTypes.arrayOf.isRequired,
+  handleRatingButton: PropTypes.func.isRequired,
 };
 
 export default ReviewsChart;
