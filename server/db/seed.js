@@ -16,6 +16,8 @@ for (let i = 1; i <= 100; i += 1) {
   let sumValue = 0;
   let sumNoise = 0;
   let sumRecommend = 0;
+  const keyWords = faker.fake('{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}}');
+  const neighborhood = faker.lorem.word();
 
   for (let j = 1; j <= numReviews; j += 1) {
     const userName = faker.fake('{{name.firstName}}{{name.lastName}}');
@@ -54,14 +56,15 @@ for (let i = 1; i <= 100; i += 1) {
   const avgNoise = Math.round(sumNoise / numReviews * 10) / 10;
   const avgRec = (sumRecommend / numReviews) * 100;
 
+
   restaurants.push([restaurantID, restaurantTotalReviews,
     avgOverall, avgFood, avgService, avgAmbience,
-    avgValue, avgNoise, avgRec]);
+    avgValue, avgNoise, avgRec, keyWords, neighborhood]);
 }
 
 const sqlreviewsreq = 'INSERT INTO reviews (restaurantID, userName, userLocation, userTotalReviews, reviewDate, reviewOverallRating, reviewFoodRating, reviewServiceRating, reviewAmbienceRating, reviewValueRating, reviewHelpfulCount, reviewNoise, reviewRecommend, reviewBody) VALUES ?';
 
-const sqlrestreq = 'INSERT INTO restaurants (restaurantID, restaurantTotalReviews, avgOverallRating, avgFoodRating, avgServiceRating, avgAmbienceRating, avgValueRating, avgNoiseRating, avgRecRating) VALUES ?';
+const sqlrestreq = 'INSERT INTO restaurants (restaurantID, restaurantTotalReviews, avgOverallRating, avgFoodRating, avgServiceRating, avgAmbienceRating, avgValueRating, avgNoiseRating, avgRecRating, keyWords, neighborhood) VALUES ?';
 
 db.connection.query(sqlreviewsreq, [reviews], (err) => {
   if (err) {

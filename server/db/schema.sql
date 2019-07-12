@@ -4,13 +4,13 @@ CREATE DATABASE reservlyreviews;
 USE reservlyreviews;
 
 CREATE TABLE IF NOT EXISTS reviews (
-  INT NOT NULL AUTO_INCREMENT,
+  reviewID INT NOT NULL AUTO_INCREMENT,
   restaurantID INT,
   userName VARCHAR(100),
   userLocation VARCHAR(100),
   userTotalReviews INT,
   reviewDate DATE,
-  reviewOverallRating DECIMAL(2,1),
+  reviewOverallRating INT,
   reviewFoodRating INT,
   reviewServiceRating INT,
   reviewAmbienceRating INT,
@@ -25,13 +25,15 @@ CREATE TABLE IF NOT EXISTS reviews (
 CREATE TABLE IF NOT EXISTS restaurants (
   restaurantID INT,
   restaurantTotalReviews INT,
-  avgOverallRating DECIMAL(2,1),
+  avgOverallRating DECIMAL(2,1) zerofill,
   avgFoodRating DECIMAL(2,1),
   avgServiceRating DECIMAL(2,1),
   avgAmbienceRating DECIMAL(2,1),
   avgValueRating DECIMAL(2,1),
   avgNoiseRating INT,
   avgRecRating INT,
+  keyWords VARCHAR(300),
+  neighborhood VARCHAR(50),
   PRIMARY KEY (restaurantID)
 );
 

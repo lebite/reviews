@@ -1,6 +1,10 @@
-.noiseoverall {
+.container {
   padding-top: 1rem;
   max-width: 100%;
+  display: block;
+}
+
+.noiseoverall {
   display: flex;
   align-items: center;
 }
@@ -13,26 +17,11 @@
   color: #6f737b;
 }
 
-.noisered {
-  margin: 0 0 0 0.25rem;
-  font-weight: 500;
-  line-height: 1.43;
-  font-size: 0.875rem;
-  color: red;
+.noise:hover {
+  color: #da3743;
 }
 
-.noise2 {
-  margin: 0 0 0 0.25rem;
+#normal {
   font-weight: normal;
-  line-height: 1.43;
-  font-size: 0.875rem;
-  color: #6f737b;
 }
 
-.noise2red {
-  margin: 0 0 0 0.25rem;
-  font-weight: normal;
-  line-height: 1.43;
-  font-size: 0.875rem;
-  color: red;
-}

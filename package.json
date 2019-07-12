@@ -30,7 +30,6 @@
     "react-avatar": "^3.6.0",
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
-    "react-star-rating-component": "^1.4.1",
     "react-test-renderer": "^16.8.6",
     "request": "^2.81.0"
   },

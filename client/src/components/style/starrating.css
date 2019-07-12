@@ -1,4 +1,4 @@
-.staroverall {
+.starOverall {
   padding-top: 0.5rem;
   padding-bottom: 1rem;
   position: relative;
@@ -9,14 +9,87 @@
   color: #2d333f;
   font-weight: 500;
   line-height: 1.43;
-  flex-wrap: nowrap;
-  display:flex;
+  /* flex-wrap: nowrap; */
 }
-.startext {
+
+.starWrapper {
+  width: calc(16px * 5 + 0.25rem * 5);
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  color: #2d333f;
+  font-weight: 500;
+  line-height: 1.43;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.textWrapper {
   font-size: 0.875rem;
   line-height: 1.43;
   margin: 0 0.5rem 0 0;
   font-weight: 500;
   display: flex;
   align-items: center;
+}
+
+.startext {
+  font-size: 0.875rem;
+  line-height: 1.43;
+  margin: 0 0.25rem;
+  font-weight: 500;
+  color: #2d333f;
+}
+
+.icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 0.25rem;
+  font-size: 0.875rem;
+  color: #2d333f;
+  font-weight: 500;
+  line-height: 1.43;
+}
+
+.halfStyle {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  color: #d8d9db;
+  overflow: hidden;
+  white-space: pre;
+  margin-right: 0.25rem;
+}
+
+.halfStyle:before {
+  display: block;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  content: attr(data-content);
+  overflow: hidden;
+  color: #da3743;
+}
+
+.fullStyleRed {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  color: #da3743;
+  overflow: hidden;
+  white-space: pre;
+  margin-right: 0.25rem;
+}
+
+.fullStyleGrey {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  color: #d8d9db;
+  overflow: hidden;
+  white-space: pre;
+  margin-right: 0.25rem;
 }

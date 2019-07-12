@@ -9,21 +9,34 @@
   display: flex;
   flex-direction: column;
   list-style: none;
-
   padding: 0 0.5rem;
   position: relative;
   text-align: center;
   justify-content: space-evenly;
+  /* border-left: 1px solid #d8d9db; */
+}
+
+.indivline {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0 0.5rem;
+  position: relative;
+  text-align: center;
+  justify-content: space-evenly;
+  border-left: 1px solid #d8d9db;
 }
 
 
-.num{
+.num {
   margin: 0;
   padding: 0;
-  /* border-left: 1px solid #d8d9db; */
   font-style: normal;
   font-weight: 500;
   line-height: 1.33;
+  display: block;
+  list-style: none;
+  text-align: center;
 }
 
 .text {
@@ -33,4 +46,7 @@
   font-weight: normal;
   text-transform: capitalize;
   white-space: nowrap;
+  display: block;
+  list-style: none;
+  text-align: center;
 }

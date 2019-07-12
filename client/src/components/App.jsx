@@ -10,10 +10,18 @@ class App extends React.Component {
     this.state = {
       reviews: [],
       randRestID: Math.floor(Math.random() * 100) + 1,
+      justReviews: [],
+      starRatingButton: null,
+      sort: 'newest',
+      stars: undefined,
     };
+    this.sort = 'newest';
+    this.keyword = '';
+    this.stars = undefined;
     this.handleReviews = this.handleReviews.bind(this);
     this.handleSortedReviews = this.handleSortedReviews.bind(this);
     this.handleHelpfulCount = this.handleHelpfulCount.bind(this);
+    this.handleRatingButton = this.handleRatingButton.bind(this);
   }
 
   componentDidMount() {
@@ -25,25 +33,63 @@ class App extends React.Component {
     axios.get(`/${randRestID}/reviews`)
       .then((reviews) => {
         this.setState({ reviews: reviews.data });
+        axios.get(`/${randRestID}/reviews`, {
+          params: {
+            sort: 'newest',
+          },
+        })
+          .then((indivRev) => {
+            this.setState({ justReviews: indivRev.data });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         console.log(error);
       });
   }
 
-  handleSortedReviews(sort) {
+  handleSortedReviews(sort, keyword, stars) {
+    if (sort !== null) {
+      this.setState({ sort });
+      this.sort = sort;
+    }
+
+    if (keyword !== undefined) {
+      this.keyword = keyword;
+    }
+
+    if (stars !== undefined) {
+      this.setState({ stars });
+      this.stars = stars;
+    }
+
     const { randRestID } = this.state;
     axios.get(`/${randRestID}/reviews`, {
       params: {
-        sort,
+        sort: this.sort,
+        keyword: this.keyword,
+        stars: this.stars,
       },
     })
       .then((reviews) => {
-        this.setState({ reviews: reviews.data });
+        this.setState({ justReviews: reviews.data });
       })
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  handleRatingButton(starRating) {
+    this.setState({ starRatingButton: starRating });
+    let numStars = '';
+    if (starRating) {
+      numStars = starRating.slice(0, 1);
+    } else {
+      numStars = starRating;
+    }
+    this.handleSortedReviews(null, undefined, numStars);
   }
 
   handleHelpfulCount(param, id, revcount) {
@@ -56,20 +102,24 @@ class App extends React.Component {
       count,
     })
       .then(() => {
-        this.handleReviews();
+        const { sort } = this.state;
+        this.handleSortedReviews({ sort });
       })
       .catch((error) => {
         console.log(error);
       });
   }
 
+
   render() {
-    const { reviews } = this.state;
+    const {
+      reviews, justReviews, sort, starRatingButton, stars,
+    } = this.state;
     return (
       <div className={styles.master}>
         <div>
-          <Summary reviews={reviews} />
-          <Reviews reviews={reviews} handleSortedReviews={this.handleSortedReviews} handleHelpfulCount={this.handleHelpfulCount} />
+          <Summary reviews={reviews} handleRatingButton={this.handleRatingButton} />
+          <Reviews reviews={reviews} justReviews={justReviews} handleSortedReviews={this.handleSortedReviews} handleHelpfulCount={this.handleHelpfulCount} sortOption={sort} starRatingButton={starRatingButton} handleRatingButton={this.handleRatingButton} stars={stars} />
         </div>
       </div>
     );

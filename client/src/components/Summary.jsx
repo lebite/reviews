@@ -4,11 +4,11 @@ import StarRating from './StarRating.jsx';
 import Noise from './Noise.jsx';
 import Recommend from './Recommend.jsx';
 import OverallNums from './OverallNums.jsx';
-import Neighborhood from './Neighborhood.jsx';
-import styles from './style/header.css';
+import ReviewsChart from './ReviewsChart.jsx';
+import styles from './style/summary.css';
 
 
-class Header extends React.Component {
+class Summary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,46 +16,54 @@ class Header extends React.Component {
   }
 
   render() {
-    const { reviews } = this.props;
+    const { reviews, handleRatingButton } = this.props;
     const numReviews = { reviews }.reviews[0] || {};
 
     return (
-      <div className={styles.feed}>
-        <div className={styles.feedlist}>
-          What&nbsp;
-          {numReviews.restaurantTotalReviews}
-          &nbsp;People are saying
-        </div>
-        <div className={styles.header_lower}>
-          <div>
-            Overall ratings and reviews
+      <div>
+        <div className={styles.container}>
+          <div className={styles.whatpplsay}>
+            What&nbsp;
+            {numReviews.restaurantTotalReviews}
+            &nbsp;People are saying
           </div>
-          <div className={styles.header_normal}>
-            Reviews can only be made by diners who have eaten at this restaurant
+          <div className={styles.header_lower}>
+            <div>
+              <div className={styles.text}>
+                Overall ratings and reviews
+              </div>
+              <div className={styles.header_normal}>
+                Reviews can only be made by diners who have eaten at this restaurant
+              </div>
+              <StarRating rating={reviews} />
+              <OverallNums nums={numReviews} />
+              <Noise noiseLevel={numReviews} />
+              <Recommend recLevel={numReviews} />
+            </div>
+            <div className={styles.graph}>
+              <ReviewsChart reviews={reviews} handleRatingButton={handleRatingButton} />
+            </div>
           </div>
-          <div>
-            <StarRating rating={reviews} />
+          <div className={styles.neighborhood_wrapper}>
+            <a href="#" className={styles.header_neighborhood}>
+              Best Restaurants in&nbsp;
+              {numReviews.neighborhood}
+              &nbsp;›
+            </a>
           </div>
-          <div>
-            <OverallNums nums={numReviews} />
-          </div>
-          <div>
-            <Noise noiseLevel={numReviews} />
-          </div>
-          <div>
-            <Recommend recLevel={numReviews} />
-          </div>
-        </div>
-        <div className={styles.neighborhood_wrapper}>
-          <Neighborhood />
         </div>
       </div>
     );
   }
 }
 
-Header.propTypes = {
-  reviews: PropTypes.arrayOf.isRequired,
+Summary.propTypes = {
+  reviews: PropTypes.arrayOf,
+  handleRatingButton: PropTypes.func.isRequired,
 };
 
-export default Header;
+Summary.defaultProps = {
+  reviews: null,
+};
+
+export default Summary;

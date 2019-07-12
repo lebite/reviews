@@ -10,22 +10,10 @@ class HelpfulReport extends React.Component {
     this.state = {
       showReport: false,
       increasedCount: false,
-      report: styles.reportText,
-      helpful: styles.reportText,
     };
     this.toggleShowReport = this.toggleShowReport.bind(this);
     this.increaseCount = this.increaseCount.bind(this);
     this.changeCount = this.changeCount.bind(this);
-    this.onMouseEnter = this.onMouseEnter.bind(this);
-    this.onMouseOut = this.onMouseOut.bind(this);
-  }
-
-  onMouseEnter(param) {
-    this.setState({ [param]: styles.reportTextRed });
-  }
-
-  onMouseOut(param) {
-    this.setState({ [param]: styles.reportText });
   }
 
   toggleShowReport() {
@@ -49,9 +37,7 @@ class HelpfulReport extends React.Component {
   }
 
   render() {
-    const {
-      showReport, increasedCount, report, helpful,
-    } = this.state;
+    const { showReport, increasedCount } = this.state;
     const { review } = this.props;
     const { reviewHelpfulCount } = review;
 
@@ -63,7 +49,7 @@ class HelpfulReport extends React.Component {
             <div>
               <FiFlag />
             </div>
-            <div className={report} onClick={this.toggleShowReport} onMouseEnter={() => this.onMouseEnter('report')} onMouseOut={() => this.onMouseOut('report')}>
+            <div className={styles.reportText} onClick={this.toggleShowReport}>
               Report
             </div>
           </div>
@@ -80,7 +66,7 @@ class HelpfulReport extends React.Component {
                 </div>
               )}
 
-            <div className={helpful} onClick={this.increaseCount} onMouseEnter={() => this.onMouseEnter('helpful')} onMouseOut={() => this.onMouseOut('helpful')}>
+            <div className={styles.reportText} onClick={this.increaseCount}>
               Helpful (
               {reviewHelpfulCount}
               )
