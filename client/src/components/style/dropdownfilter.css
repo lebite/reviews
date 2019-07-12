@@ -10,8 +10,6 @@
   box-sizing: border-box;
   width: 100%;
   height: 30px;
-  /* margin: 4px 0; */
-  border: 0;
   border: 1px solid #d8d9db;
   background: #fff url('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png') no-repeat;
   background-size: 20px;
@@ -19,12 +17,11 @@
   background-color: #f9f9f9;
   padding-left: 24px;
   cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -webkit-border-radius: 2px;
-     -moz-border-radius: 2px;
-          border-radius: 2px;
-
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0.25rem;
+  border-radius: 2px;
 }
 
 .formselect2 {
@@ -33,7 +30,6 @@
   width: 100%;
   height: 30px;
   /* margin: 4px 0; */
-  border: 0;
   border: 2px solid #da3743;
   background: #fff url('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png') no-repeat;
   background-size: 20px;
@@ -41,11 +37,11 @@
   background-color: #f9f9f9;
   padding-left: 24px;
   cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -webkit-border-radius: 2px;
-     -moz-border-radius: 2px;
-          border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px calc(0.25rem - 1px);
+  border-radius: 2px;
 }
 
 .optionwrapper {
@@ -71,4 +67,13 @@
   padding: 0.5rem 0.25rem;
   display: block;
   background-color: #f7f7f7;
+}
+
+.selected {
+  margin: 0 0 0 0.25rem;
+  font-weight: 500;
+  line-height: 1.43;
+  font-size: 0.875rem;
+  color: #6f737b;
+  cursor: pointer;
 }

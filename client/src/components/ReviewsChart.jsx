@@ -13,6 +13,7 @@ class ReviewsChart extends React.Component {
     }
     this.onMouseEnter = this.onMouseEnter.bind(this);
     this.onMouseOut = this.onMouseOut.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   onMouseEnter(num) {
@@ -23,8 +24,8 @@ class ReviewsChart extends React.Component {
     this.setState({[num]: styles.indivRating});
   }
 
-  onClick(num) {
-
+  onClick(rating) {
+    this.props.handleRatingButton(rating)
   }
 
   render() {
@@ -59,35 +60,38 @@ class ReviewsChart extends React.Component {
 
         <div className={styles.reviewUpdateParameter}>
           <span className={styles.reviewNumber}>5</span>
-          <div className={this.state.five} onMouseEnter={() => this.onMouseEnter('five')} onMouseOut={() => this.onMouseOut('five')} onClick={() => this.onClick('five')}>
+          <div className={this.state.five} onMouseEnter={() => this.onMouseEnter('five')} onMouseOut={() => this.onMouseOut('five')} onClick={() => this.onClick('5 stars')}>
             <span className={styles.indivRatingInside} style={{width: finwidth[4]}}></span>
           </div>
         </div>
 
         <div className={styles.reviewUpdateParameter}>
           <span className={styles.reviewNumber}>4</span>
-          <div className={this.state.four} onMouseEnter={() => this.onMouseEnter('four')} onMouseOut={() => this.onMouseOut('four')}>
+          <div className={this.state.four} onMouseEnter={() => this.onMouseEnter('four')} onMouseOut={() => this.onMouseOut('four')} onClick={() => this.onClick('4 stars')}>
             <span className={styles.indivRatingInside} style={{width: finwidth[3]}}></span>
           </div>
         </div>
 
         <div className={styles.reviewUpdateParameter}>
           <span className={styles.reviewNumber}>3</span>
-          <div className={this.state.three} onMouseEnter={() => this.onMouseEnter('three')} onMouseOut={() => this.onMouseOut('three')}>
+          <div className={this.state.three} onMouseEnter={() => this.onMouseEnter('three')} onMouseOut={() => this.onMouseOut('three')}
+          onClick={() => this.onClick('3 stars')}>
             <span className={styles.indivRatingInside} style={{width: finwidth[2]}}></span>
           </div>
         </div>
 
         <div className={styles.reviewUpdateParameter}>
           <span className={styles.reviewNumber}>2</span>
-          <div className={this.state.two} onMouseEnter={() => this.onMouseEnter('two')} onMouseOut={() => this.onMouseOut('two')}>
+          <div className={this.state.two} onMouseEnter={() => this.onMouseEnter('two')} onMouseOut={() => this.onMouseOut('two')}
+          onClick={() => this.onClick('2 stars')}>
             <span className={styles.indivRatingInside} style={{width: finwidth[1]}}></span>
           </div>
         </div>
 
         <div className={styles.reviewUpdateParameter}>
           <span className={styles.reviewNumber}>1</span>
-          <div className={this.state.one} onMouseEnter={() => this.onMouseEnter('one')} onMouseOut={() => this.onMouseOut('one')}>
+          <div className={this.state.one} onMouseEnter={() => this.onMouseEnter('one')} onMouseOut={() => this.onMouseOut('one')}
+          onClick={() => this.onClick('1 star')}>
             <span className={styles.indivRatingInside} style={{width: finwidth[0]}}></span>
           </div>
         </div>

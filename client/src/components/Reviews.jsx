@@ -14,18 +14,18 @@ class Reviews extends React.Component {
   }
 
   render() {
-    const { reviews, handleSortedReviews, handleHelpfulCount } = this.props;
+    const { reviews, justReviews, handleSortedReviews, handleHelpfulCount, sortOption, starRatingButton, handleRatingButton, stars } = this.props;
     return (
       <div>
         <div className={styles.reviewToolbar}>
           <div className={styles.filters}>Sort by</div>
-          <DropdownFilter handleSortedReviews={handleSortedReviews} />
+          <DropdownFilter handleSortedReviews={handleSortedReviews} stars={stars}/>
           <div className={styles.filters}>Filters</div>
-          <ButtonFilter reviews={reviews} />
+          <ButtonFilter reviews={reviews} handleSortedReviews={handleSortedReviews} sortOption={sortOption} starRatingButton={starRatingButton} handleRatingButton={handleRatingButton} stars={stars}/>
         </div>
         <div className={styles.reviewContent}>
-          {{ reviews }.reviews.length > 0
-            ? { reviews }.reviews.map(each => <IndivReview key={each.reviewID} review={each} handleHelpfulCount={handleHelpfulCount} />)
+          {{ justReviews }.justReviews.length > 0
+            ? { justReviews }.justReviews.map(each => <IndivReview key={each.reviewID} review={each} handleHelpfulCount={handleHelpfulCount} />)
             : null
           }
         </div>
@@ -36,8 +36,10 @@ class Reviews extends React.Component {
 
 Reviews.propTypes = {
   reviews: PropTypes.arrayOf.isRequired,
+  justReviews: PropTypes.arrayOf.isRequired,
   handleSortedReviews: PropTypes.func.isRequired,
   handleHelpfulCount: PropTypes.func.isRequired,
+  sortOption: PropTypes.string.isRequired,
 };
 
 export default Reviews;

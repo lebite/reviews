@@ -17,7 +17,7 @@ class Summary extends React.Component {
   }
 
   render() {
-    const { reviews } = this.props;
+    const { reviews, handleRatingButton } = this.props;
     const numReviews = { reviews }.reviews[0] || {};
 
     return (
@@ -42,7 +42,7 @@ class Summary extends React.Component {
               <Recommend recLevel={numReviews} />
             </div>
             <div className={styles.graph}>
-              <ReviewsChart reviews={reviews} />
+              <ReviewsChart reviews={reviews} handleRatingButton={handleRatingButton}/>
             </div>
           </div>
           <div className={styles.neighborhood_wrapper}>

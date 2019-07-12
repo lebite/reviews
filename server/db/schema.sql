@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS reviews (
   userLocation VARCHAR(100),
   userTotalReviews INT,
   reviewDate DATE,
-  reviewOverallRating DECIMAL(2,1),
+  reviewOverallRating INT,
   reviewFoodRating INT,
   reviewServiceRating INT,
   reviewAmbienceRating INT,
