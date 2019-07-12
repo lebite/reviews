@@ -14,7 +14,7 @@
   background: #fff url('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png') no-repeat;
   background-size: 20px;
   background-position:  right 10px center;
-  background-color: #f9f9f9;
+  background-color: #fff;
   padding-left: 24px;
   cursor: pointer;
   display: flex;
@@ -24,24 +24,9 @@
   border-radius: 2px;
 }
 
-.formselect2 {
-  font-size: 0.875rem;
-  box-sizing: border-box;
-  width: 100%;
-  height: 30px;
-  /* margin: 4px 0; */
+.formselect:hover {
   border: 2px solid #da3743;
-  background: #fff url('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png') no-repeat;
-  background-size: 20px;
-  background-position:  right 10px center;
-  background-color: #f9f9f9;
-  padding-left: 24px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 5px calc(0.25rem - 1px);
-  border-radius: 2px;
 }
 
 .optionwrapper {
@@ -61,12 +46,15 @@
   padding: 0.5rem 0.25rem;
   display: block;
   background-color: #fff;
+  font-size: 0.875rem;
 }
 
-.option2 {
+.option:hover {
   padding: 0.5rem 0.25rem;
   display: block;
   background-color: #f7f7f7;
+  color: #da3743;
+  cursor: pointer;
 }
 
 .selected {

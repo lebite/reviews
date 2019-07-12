@@ -4,7 +4,6 @@ import StarRating from './StarRating.jsx';
 import Noise from './Noise.jsx';
 import Recommend from './Recommend.jsx';
 import OverallNums from './OverallNums.jsx';
-import Neighborhood from './Neighborhood.jsx';
 import ReviewsChart from './ReviewsChart.jsx';
 import styles from './style/summary.css';
 
@@ -46,10 +45,12 @@ class Summary extends React.Component {
             </div>
           </div>
           <div className={styles.neighborhood_wrapper}>
-            <Neighborhood />
+            <a href="#" className={styles.header_neighborhood}>
+              Best Restaurants in&nbsp;
+              {numReviews.neighborhood}
+              &nbsp;›
+            </a>
           </div>
-
-
         </div>
       </div>
     );

@@ -1,7 +1,6 @@
 import React from 'react';
 import { FiMessageSquare } from 'react-icons/fi';
 import Avatar from 'react-avatar';
-import StarRatingComponent from 'react-star-rating-component';
 import PropTypes from 'prop-types';
 import styles from './style/indivReview.css';
 import HelpfulReport from './HelpfulReport.jsx';
@@ -22,7 +21,6 @@ class IndivReview extends React.Component {
       reviewFoodRating,
       reviewServiceRating,
       reviewAmbienceRating,
-      reviewValueRating,
       userName,
       userLocation,
       userTotalReviews,
@@ -33,10 +31,19 @@ class IndivReview extends React.Component {
 
     const { color } = this.state;
 
-    const rating = Math.ceil(({ reviewFoodRating }.reviewFoodRating
-      + { reviewServiceRating }.reviewServiceRating
-      + { reviewAmbienceRating }.reviewAmbienceRating
-      + { reviewValueRating }.reviewValueRating) / 4);
+    const starRates = { reviewOverallRating }.reviewOverallRating;
+
+    const arr = [];
+    const arrrem = [];
+    const emptystars = 5 - starRates;
+    const totnumstars = starRates;
+
+    for (let i = 0; i < totnumstars; i += 1) {
+      arr.push(0);
+    }
+    for (let j = 0; j < emptystars; j += 1) {
+      arrrem.push(0);
+    }
 
     return (
       <div className={styles.reviewBody}>
@@ -53,13 +60,18 @@ class IndivReview extends React.Component {
         </div>
         <div>
           <div className={styles.reviewRating}>
-            <StarRatingComponent
-              name="individualrating"
-              value={rating}
-              starCount={5}
-              starColor="red"
-              emptyStarColor="#f6f6f6"
-            />
+            <div className={styles.stars}>
+              {arr.map(() => (
+                <icon className={styles.icon}>
+                  <span className={styles.fullStyleRed} data-content="&#9733;">&#9733;</span>
+                </icon>
+              ))}
+              {arrrem.map(() => (
+                <icon className={styles.icon}>
+                  <span className={styles.fullStyleGrey} data-content="&#9733;">&#9733;</span>
+                </icon>
+              ))}
+            </div>
             &nbsp;&#183;&nbsp;
             <span className={styles.dineDate}>
               Dined on&nbsp;

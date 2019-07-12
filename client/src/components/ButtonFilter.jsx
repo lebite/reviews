@@ -11,16 +11,9 @@ class ButtonFilter extends React.Component {
       thirdButton: false,
       fourthButton: false,
       fifthButton: false,
-      firstButtonStyle: [styles.label, styles.text],
-      secondButtonStyle: [styles.label, styles.text],
-      thirdButtonStyle: [styles.label, styles.text],
-      fourthButtonStyle: [styles.label, styles.text],
-      fifthButtonStyle: [styles.label, styles.text],
     };
     this.onChange = this.onChange.bind(this);
     this.onChangeStarRating = this.onChangeStarRating.bind(this);
-    this.mouseOver = this.mouseOver.bind(this);
-    this.mouseLeave = this.mouseLeave.bind(this);
   }
 
   onChange(e, keyword) {
@@ -39,22 +32,6 @@ class ButtonFilter extends React.Component {
     { handleRatingButton(null); }
   }
 
-  mouseOver(styleName) {
-    this.setState({ [styleName]: [styles.labelred, this.state[styleName][1]] });
-  }
-
-  mouseLeave(styleName) {
-    this.setState({ [styleName]: [styles.label, this.state[styleName][1]] });
-  }
-
-  mouseOverText(styleName) {
-    this.setState({ [styleName]: [this.state[styleName][0], styles.textred] });
-  }
-
-  mouseLeaveText(styleName) {
-    this.setState({ [styleName]: [this.state[styleName][0], styles.text] });
-  }
-
   render() {
     const { reviews, starRatingButton } = this.props;
 
@@ -63,7 +40,7 @@ class ButtonFilter extends React.Component {
       wordArr = { reviews }.reviews[0].keyWords.split(',');
     }
 
-    const arr = [{ name: 'firstButton', style: 'firstButtonStyle', text: 'Good for groups' }, { name: 'secondButton', style: 'secondButtonStyle', text: wordArr[0] }, { name: 'thirdButton', style: 'thirdButtonStyle', text: wordArr[1] }, { name: 'fourthButton', style: 'fourthButtonStyle', text: wordArr[2] }, { name: 'fifthButton', style: 'fifthButtonStyle', text: wordArr[3] }];
+    const arr = [{ name: 'firstButton', text: 'Good for groups' }, { name: 'secondButton', text: wordArr[0] }, { name: 'thirdButton', text: wordArr[1] }, { name: 'fourthButton', text: wordArr[2] }, { name: 'fifthButton', text: wordArr[3] }];
 
     return (
       <div className={styles.container}>
@@ -85,13 +62,13 @@ class ButtonFilter extends React.Component {
               ? (
                 <label className={styles.labelred}>
                   <input name={each.name} className={styles.input} type="checkbox" onChange={e => this.onChange(e, each.text)} checked />
-                  <span className={this.state[each.style][1]} onMouseEnter={() => this.mouseOverText(each.style)} onMouseLeave={() => {this.mouseLeaveText(each.style)}}>{each.text}</span>
+                  <span className={styles.text}>{each.text}</span>
                 </label>
               )
               : (
-                <label className={this.state[each.style][0]} onMouseOver={() => this.mouseOver(each.style)} onMouseLeave={() => this.mouseLeave(each.style)}>
+                <label className={styles.label}>
                   <input name={each.name} className={styles.input} type="checkbox" onChange={e => this.onChange(e, each.text)} checked={false} />
-                  <span className={this.state[each.style][1]} onMouseEnter={() => this.mouseOverText(each.style)} onMouseLeave={() => {this.mouseLeaveText(each.style)}}>{each.text}</span>
+                  <span className={styles.text}>{each.text}</span>
                 </label>
               )
               }

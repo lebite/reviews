@@ -5,29 +5,12 @@ import styles from './style/reviewschart.css';
 class ReviewsChart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      one: styles.indivRating,
-      two: styles.indivRating,
-      three: styles.indivRating,
-      four: styles.indivRating,
-      five: styles.indivRating,
-    };
-    this.onMouseEnter = this.onMouseEnter.bind(this);
-    this.onMouseOut = this.onMouseOut.bind(this);
     this.onClick = this.onClick.bind(this);
   }
 
-  onMouseEnter(num) {
-    this.setState({ [num]: styles.hover });
-  }
-
-  onMouseOut(num) {
-    this.setState({ [num]: styles.indivRating });
-  }
-
-  onClick(rating) {
+  onClick(param) {
     const { handleRatingButton } = this.props;
-    { handleRatingButton(rating); }
+    { handleRatingButton(param); }
   }
 
   render() {
@@ -65,7 +48,7 @@ class ReviewsChart extends React.Component {
         {arr.map(each => (
           <div className={styles.reviewUpdateParameter}>
             <span className={styles.reviewNumber}>{each.actnum}</span>
-            <div className={this.state[each.num]} onMouseEnter={() => this.onMouseEnter(each.num)} onMouseOut={() => this.onMouseOut(each.num)} onClick={() => this.onClick(`${each.actnum} stars`)}>
+            <div className={styles.indivRating} onClick={() => this.onClick(`${each.actnum} stars`)}>
               <span className={styles.indivRatingInside} style={{ width: each.style }} />
             </div>
           </div>

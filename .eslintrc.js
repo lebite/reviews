@@ -29,5 +29,6 @@ module.exports = {
     "eslint-disable jsx-a11y/mouse-events-have-key-events",
     "eslint-disable max-len",
     "eslint-disable jsx-a11y/anchor-is-valid"
+    "eslint-disable no-lone-blocks"
   },
 };

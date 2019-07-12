@@ -9,7 +9,7 @@
   color: #2d333f;
   font-weight: 500;
   line-height: 1.43;
-  flex-wrap: nowrap;
+  /* flex-wrap: nowrap; */
 }
 
 .starWrapper {
@@ -52,9 +52,44 @@
   line-height: 1.43;
 }
 
-.star {
+.halfStyle {
+  position: relative;
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  font-size: 16px;
+  color: #d8d9db;
+  overflow: hidden;
+  white-space: pre;
+  margin-right: 0.25rem;
+}
+
+.halfStyle:before {
+  display: block;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  content: attr(data-content);
+  overflow: hidden;
+  color: #da3743;
+}
+
+.fullStyleRed {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  color: #da3743;
+  overflow: hidden;
+  white-space: pre;
+  margin-right: 0.25rem;
+}
+
+.fullStyleGrey {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  color: #d8d9db;
+  overflow: hidden;
+  white-space: pre;
   margin-right: 0.25rem;
 }

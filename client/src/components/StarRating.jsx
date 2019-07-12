@@ -1,57 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import StarRatingComponent from 'react-star-rating-component';
-import { IoIosStarHalf, IoIosStarOutline, IoIosStar } from 'react-icons/io'
 import styles from './style/starrating.css';
 
-class StarRating extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ratingHalfStar: 3.5,
-    };
-    // still need to work on this to get it rendering correctly
+const StarRating = (props) => {
+  const { rating } = props;
+  const avgRating = { rating }.rating[0] || {};
+  const text = parseFloat(avgRating.avgOverallRating).toFixed(1);
+
+  const starRates = Math.round(avgRating.avgOverallRating * 2) / 2;
+
+  const arr = [];
+  const arrrem = [];
+  let halfstar = false;
+  const emptystars = 5 - Math.ceil(starRates);
+  let totnumstars = starRates;
+
+  if ((starRates - Math.floor(starRates)) !== 0) {
+    halfstar = true;
+    totnumstars = starRates - 0.5;
   }
 
-  render() {
-    const { ratingHalfStar } = this.state;
-    const { rating } = this.props;
-    const avgRating = { rating }.rating[0] || {};
+  for (let i = 0; i < totnumstars; i += 1) {
+    arr.push(0);
+  }
+  for (let j = 0; j < emptystars; j += 1) {
+    arrrem.push(0);
+  }
 
-    return (
-      <div className={styles.starOverall}>
-        <div className={styles.starWrapper}>
-          {/* <StarRatingComponent
-            name="overallrate"
-            value={ratingHalfStar}
-            starCount={5}
-            starColor="red"
-            emptyStarColor="#f6f6f6"
-          /> */}
+  return (
+    <div className={styles.starOverall}>
+      <div className={styles.starWrapper}>
+        {arr.map(() => (
           <icon className={styles.icon}>
-            <IoIosStar className={styles.star} />
+            <span className={styles.fullStyleRed} data-content="&#9733;">&#9733;</span>
           </icon>
+        ))}
+
+        { halfstar
+          ? (
+            <icon className={styles.icon}>
+              <span className={styles.halfStyle} data-content="&#9733;">&#9733;</span>
+            </icon>
+          )
+          : null
+        }
+
+        {arrrem.map(() => (
           <icon className={styles.icon}>
-            <IoIosStar className={styles.star} />
+            <span className={styles.fullStyleGrey} data-content="&#9733;">&#9733;</span>
           </icon>
-          <icon className={styles.icon}>
-            <IoIosStar className={styles.star} />
-          </icon>
-          <icon className={styles.icon}>
-            <IoIosStar className={styles.star} />
-          </icon>
-          <icon className={styles.icon}>
-            <IoIosStar className={styles.star} />
-          </icon>
-        </div>
-        <div className={styles.textWrapper}>
-          <span className={styles.startext}>{avgRating.avgOverallRating}</span>
-          <span className={styles.startext}>&nbsp;&nbsp;based on recent ratings</span>
-        </div>
+        ))}
+
       </div>
-    );
-  }
-}
+      <div className={styles.textWrapper}>
+        <span className={styles.startext}>{text}</span>
+        <span className={styles.startext}>&nbsp;&nbsp;based on recent ratings</span>
+      </div>
+    </div>
+  );
+};
 
 StarRating.propTypes = {
   rating: PropTypes.arrayOf.isRequired,

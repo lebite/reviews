@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS reviews (
 CREATE TABLE IF NOT EXISTS restaurants (
   restaurantID INT,
   restaurantTotalReviews INT,
-  avgOverallRating DECIMAL(2,1),
+  avgOverallRating DECIMAL(2,1) zerofill,
   avgFoodRating DECIMAL(2,1),
   avgServiceRating DECIMAL(2,1),
   avgAmbienceRating DECIMAL(2,1),
@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS restaurants (
   avgNoiseRating INT,
   avgRecRating INT,
   keyWords VARCHAR(300),
+  neighborhood VARCHAR(50),
   PRIMARY KEY (restaurantID)
 );
 
