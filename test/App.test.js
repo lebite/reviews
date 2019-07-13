@@ -75,7 +75,7 @@ describe('Summary Component', () => {
 
 })
 
-describe('Star Rating Component', () => {
+describe('StarRating Component', () => {
   let props = {rating: [{
     avgOverallRating: 3.5,
   }]}
@@ -93,4 +93,30 @@ describe('Star Rating Component', () => {
     expect(wrapper.find('.fullStyleGrey')).toHaveLength(1)
   })
 
+})
+
+describe('OverallNums Component', () => {
+  const props = {nums: {
+    avgFoodRating: 4,
+    avgServiceRating: 3,
+    avgAmbienceRating: 2,
+    avgValueRating: 1
+  }};
+  const wrapper = shallow(<OverallNums {...props} />);
+
+  it('renders the correct length', () => {
+    expect(wrapper.find('.num')).toHaveLength(4);
+    expect(wrapper.find('.num').first().text()).toMatch('4');
+  })
+})
+
+describe('Noise Component', () => {
+  const props = {noiseLevel: {
+    avgNoiseRating:4,
+  }};
+  const wrapper = shallow(<Noise {...props} />);
+
+  it('renders the correct noise level', () => {
+    expect(wrapper.find('#normal').text()).toMatch('Energetic');
+  })
 })

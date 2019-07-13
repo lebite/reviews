@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { FiBarChart } from 'react-icons/fi';
 import styles from './style/noiseandrec.css';
 
-const Noise = (props) => {
-  const { noiseLevel } = props;
+const Noise = ({ noiseLevel}) => {
   const { avgNoiseRating } = noiseLevel;
 
   let noise = '';
