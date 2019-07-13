@@ -19,12 +19,13 @@ class ButtonFilter extends React.Component {
   onChange(e, keyword) {
     const buttonName = e.target.name;
 
-    this.setState(state => ({ [buttonName]: !state[buttonName] }));
-    if (!this.state[buttonName]) {
-      this.props.handleSortedReviews(this.props.sortOption, keyword, this.props.stars);
-    } else {
-      this.props.handleSortedReviews(this.props.sortOption, null, this.props.stars);
-    }
+    this.setState(state => ({ [buttonName]: !state[buttonName] }), () => {
+      if (this.state[buttonName]) {
+        this.props.handleSortedReviews(this.props.sortOption, keyword, this.props.stars);
+      } else {
+        this.props.handleSortedReviews(this.props.sortOption, null, this.props.stars);
+      }
+    });
   }
 
   onChangeStarRating() {

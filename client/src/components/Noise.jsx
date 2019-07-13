@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import { FiBarChart } from 'react-icons/fi';
 import styles from './style/noiseandrec.css';
 
-const Noise = ({ noiseLevel}) => {
+const Noise = ({ noiseLevel }) => {
   const { avgNoiseRating } = noiseLevel;
 
   let noise = '';
-  if ({ avgNoiseRating }.avgNoiseRating === 1) {
+  if (avgNoiseRating === 1) {
     noise = 'Do Not Recall';
-  } else if ({ avgNoiseRating }.avgNoiseRating === 2) {
+  } else if (avgNoiseRating === 2) {
     noise = 'Quiet';
-  } else if ({ avgNoiseRating }.avgNoiseRating === 3) {
+  } else if (avgNoiseRating === 3) {
     noise = 'Moderate';
-  } else if ({ avgNoiseRating }.avgNoiseRating === 4) {
+  } else if (avgNoiseRating === 4) {
     noise = 'Energetic';
   }
 

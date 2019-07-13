@@ -12,7 +12,7 @@ class App extends React.Component {
       randRestID: Math.floor(Math.random() * 100) + 1,
       justReviews: [],
       starRatingButton: null,
-      sort: 'newest',
+      sort: 'Newest',
       stars: undefined,
     };
     this.sort = 'newest';
@@ -55,15 +55,18 @@ class App extends React.Component {
       this.setState({ sort });
       this.sort = sort;
     }
+    console.log(this.sort)
 
     if (keyword !== undefined) {
       this.keyword = keyword;
     }
+    console.log(this.keyword)
 
     if (stars !== undefined) {
       this.setState({ stars });
       this.stars = stars;
     }
+    console.log(this.stars)
 
     const { randRestID } = this.state;
     axios.get(`/${randRestID}/reviews`, {
@@ -82,6 +85,7 @@ class App extends React.Component {
   }
 
   handleRatingButton(starRating) {
+    console.log('this is star rating', starRating )
     this.setState({ starRatingButton: starRating });
     let numStars = '';
     if (starRating) {
@@ -118,7 +122,7 @@ class App extends React.Component {
     return (
       <div className={styles.master}>
         <div>
-          <Summary reviews={reviews} handleRatingButton={this.handleRatingButton}/>
+          <Summary reviews={reviews} handleRatingButton={this.handleRatingButton} />
           <Reviews reviews={reviews} justReviews={justReviews} handleSortedReviews={this.handleSortedReviews} handleHelpfulCount={this.handleHelpfulCount} sortOption={sort} starRatingButton={starRatingButton} handleRatingButton={this.handleRatingButton} stars={stars} />
         </div>
       </div>

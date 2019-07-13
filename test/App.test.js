@@ -112,11 +112,22 @@ describe('OverallNums Component', () => {
 
 describe('Noise Component', () => {
   const props = {noiseLevel: {
-    avgNoiseRating:4,
+    avgNoiseRating: 4,
   }};
   const wrapper = shallow(<Noise {...props} />);
 
   it('renders the correct noise level', () => {
     expect(wrapper.find('#normal').text()).toMatch('Energetic');
+  })
+})
+
+describe('Recommend Component', () => {
+  const props = {recLevel: {
+    avgRecRating: 30,
+  }}
+  const wrapper = shallow(<Recommend {...props} />);
+  it('renders the correct icon', () => {
+
+    expect(wrapper.find('.noise').text()).toMatch('30');
   })
 })

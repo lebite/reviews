@@ -31,11 +31,24 @@ class Reviews extends React.Component {
           <div className={styles.filters}>Sort by</div>
           <DropdownFilter handleSortedReviews={handleSortedReviews} stars={stars} />
           <div className={styles.filters}>Filters</div>
-          <ButtonFilter reviews={reviews} handleSortedReviews={handleSortedReviews} sortOption={sortOption} starRatingButton={starRatingButton} handleRatingButton={handleRatingButton} stars={stars} />
+          <ButtonFilter
+            reviews={reviews}
+            handleSortedReviews={handleSortedReviews}
+            sortOption={sortOption}
+            starRatingButton={starRatingButton}
+            handleRatingButton={handleRatingButton}
+            stars={stars}
+          />
         </div>
         <div className={styles.reviewContent}>
-          {{ justReviews }.justReviews.length > 0
-            ? { justReviews }.justReviews.map(each => <IndivReview key={each.reviewID} review={each} handleHelpfulCount={handleHelpfulCount} />)
+          {justReviews.length > 0
+            ? justReviews.map(each => (
+              <IndivReview
+                key={each.reviewID}
+                review={each}
+                handleHelpfulCount={handleHelpfulCount}
+              />
+            ))
             : null
           }
         </div>
