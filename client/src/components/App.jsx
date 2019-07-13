@@ -118,7 +118,7 @@ class App extends React.Component {
     return (
       <div className={styles.master}>
         <div>
-          <Summary reviews={reviews} handleRatingButton={this.handleRatingButton} />
+          <Summary reviews={reviews} handleRatingButton={this.handleRatingButton}/>
           <Reviews reviews={reviews} justReviews={justReviews} handleSortedReviews={this.handleSortedReviews} handleHelpfulCount={this.handleHelpfulCount} sortOption={sort} starRatingButton={starRatingButton} handleRatingButton={this.handleRatingButton} stars={stars} />
         </div>
       </div>

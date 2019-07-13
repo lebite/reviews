@@ -45,12 +45,12 @@ class Reviews extends React.Component {
 }
 
 Reviews.propTypes = {
-  reviews: PropTypes.arrayOf.isRequired,
-  justReviews: PropTypes.arrayOf.isRequired,
+  reviews: PropTypes.array,
+  justReviews: PropTypes.array,
   handleSortedReviews: PropTypes.func.isRequired,
   handleHelpfulCount: PropTypes.func.isRequired,
   sortOption: PropTypes.string.isRequired,
-  starRatingButton: PropTypes.string.isRequired,
+  starRatingButton: PropTypes.string,
   handleRatingButton: PropTypes.func.isRequired,
   stars: PropTypes.string,
 };

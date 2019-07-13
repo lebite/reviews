@@ -58,12 +58,8 @@ class Summary extends React.Component {
 }
 
 Summary.propTypes = {
-  reviews: PropTypes.arrayOf,
-  handleRatingButton: PropTypes.func.isRequired,
-};
-
-Summary.defaultProps = {
-  reviews: null,
+  reviews: PropTypes.array,
+  handleRatingButton: PropTypes.func,
 };
 
 export default Summary;

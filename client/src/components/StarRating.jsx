@@ -30,8 +30,8 @@ const StarRating = (props) => {
   return (
     <div className={styles.starOverall}>
       <div className={styles.starWrapper}>
-        {arr.map(() => (
-          <icon className={styles.icon}>
+        {arr.map((each, index) => (
+          <icon key={index} className={styles.icon}>
             <span className={styles.fullStyleRed} data-content="&#9733;">&#9733;</span>
           </icon>
         ))}
@@ -45,8 +45,8 @@ const StarRating = (props) => {
           : null
         }
 
-        {arrrem.map(() => (
-          <icon className={styles.icon}>
+        {arrrem.map((each, index) => (
+          <icon key={index} className={styles.icon}>
             <span className={styles.fullStyleGrey} data-content="&#9733;">&#9733;</span>
           </icon>
         ))}
@@ -61,7 +61,7 @@ const StarRating = (props) => {
 };
 
 StarRating.propTypes = {
-  rating: PropTypes.arrayOf.isRequired,
+  rating: PropTypes.array,
 };
 
 export default StarRating;

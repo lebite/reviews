@@ -59,8 +59,8 @@ class ReviewsChart extends React.Component {
 }
 
 ReviewsChart.propTypes = {
-  reviews: PropTypes.arrayOf.isRequired,
-  handleRatingButton: PropTypes.func.isRequired,
+  reviews: PropTypes.array,
+  handleRatingButton: PropTypes.func,
 };
 
 export default ReviewsChart;
