@@ -60,7 +60,7 @@ class DropdownFilter extends React.Component {
 
 DropdownFilter.propTypes = {
   stars: PropTypes.string,
-  handleSortedReviews: PropTypes.func.isRequired,
+  handleSortedReviews: PropTypes.func,
 };
 
 DropdownFilter.defaultProps = {

@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { FiThumbsUp, FiThumbsDown } from 'react-icons/fi';
 import styles from './style/noiseandrec.css';
 
-const Recommend = (props) => {
-  const { recLevel } = props;
+const Recommend = ({ recLevel }) => {
   const { avgRecRating } = recLevel;
 
   return (
     <div className={styles.container}>
       <div className={styles.noiseoverall}>
-        {{ avgRecRating }.avgRecRating > 50 ? <FiThumbsUp /> : <FiThumbsDown />}
+        {avgRecRating > 50 ? <FiThumbsUp /> : <FiThumbsDown />}
         <span className={styles.noise}>
           &nbsp;
           {avgRecRating}

@@ -17,7 +17,7 @@ class Summary extends React.Component {
 
   render() {
     const { reviews, handleRatingButton } = this.props;
-    const numReviews = { reviews }.reviews[0] || {};
+    const numReviews = reviews[0] || {};
 
     return (
       <div>
@@ -25,7 +25,8 @@ class Summary extends React.Component {
           <div className={styles.whatpplsay}>
             What&nbsp;
             {numReviews.restaurantTotalReviews}
-            &nbsp;People are saying
+            &nbsp;
+            {numReviews.restaurantTotalReviews > 1 ? 'People are saying' : 'Person is saying'}
           </div>
           <div className={styles.header_lower}>
             <div>
@@ -46,7 +47,8 @@ class Summary extends React.Component {
           </div>
           <div className={styles.neighborhood_wrapper}>
             <a href="#" className={styles.header_neighborhood}>
-              Best Restaurants in&nbsp;
+              Best Restaurants in
+              {' '}
               {numReviews.neighborhood}
               &nbsp;›
             </a>
@@ -58,12 +60,8 @@ class Summary extends React.Component {
 }
 
 Summary.propTypes = {
-  reviews: PropTypes.arrayOf,
-  handleRatingButton: PropTypes.func.isRequired,
-};
-
-Summary.defaultProps = {
-  reviews: null,
+  reviews: PropTypes.array,
+  handleRatingButton: PropTypes.func,
 };
 
 export default Summary;

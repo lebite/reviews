@@ -10,7 +10,7 @@ class ReviewsChart extends React.Component {
 
   onClick(param) {
     const { handleRatingButton } = this.props;
-    { handleRatingButton(param); }
+    handleRatingButton(param);
   }
 
   render() {
@@ -18,9 +18,9 @@ class ReviewsChart extends React.Component {
     const widths = [0, 0, 0, 0, 0];
     let finwidth = '';
 
-    if ({ reviews }.reviews.length > 0) {
-      for (let i = 0; i < { reviews }.reviews.length; i += 1) {
-        const rate = Math.floor({ reviews }.reviews[i].reviewOverallRating);
+    if (reviews.length > 0) {
+      for (let i = 0; i < reviews.length; i += 1) {
+        const rate = Math.floor(reviews[i].reviewOverallRating);
         if (rate === 1) {
           widths[0] += 1;
         } else if (rate === 2) {
@@ -34,7 +34,7 @@ class ReviewsChart extends React.Component {
         }
       }
       finwidth = widths.map((num) => {
-        const val = Math.ceil(num / { reviews }.reviews.length * 100);
+        const val = Math.ceil(num / reviews.length * 100);
         return `${val}%`;
       });
     } else {
@@ -59,8 +59,8 @@ class ReviewsChart extends React.Component {
 }
 
 ReviewsChart.propTypes = {
-  reviews: PropTypes.arrayOf.isRequired,
-  handleRatingButton: PropTypes.func.isRequired,
+  reviews: PropTypes.array,
+  handleRatingButton: PropTypes.func,
 };
 
 export default ReviewsChart;
