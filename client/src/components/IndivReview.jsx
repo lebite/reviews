@@ -103,14 +103,14 @@ class IndivReview extends React.Component {
             <div className={styles.reviewRating}>
               <div className={styles.stars}>
                 {arr.map((aech, index) => (
-                  <icon className={styles.icon} key={index}>
+                  <span className={styles.icon} key={index}>
                     <span className={styles.fullStyleRed} data-content="&#9733;">&#9733;</span>
-                  </icon>
+                  </span>
                 ))}
                 {arrrem.map((each, index) => (
-                  <icon className={styles.icon} key={index}>
+                  <span className={styles.icon} key={index}>
                     <span className={styles.fullStyleGrey} data-content="&#9733;">&#9733;</span>
-                  </icon>
+                  </span>
                 ))}
               </div>
               &nbsp;&#183;&nbsp;

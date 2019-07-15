@@ -60,6 +60,7 @@ app.get('/:restaurantID/reviews', (req, res) => {
     sqlreq = 'SELECT reviews.* FROM reviews WHERE restaurantID=? AND reviewOverallRating LIKE ?';
     sqlargs = [req.params.restaurantID, `%${req.query.stars}%`];
   } else {
+    console.log('we got here')
     sqlreq = 'SELECT reviews.*, restaurants.* FROM reviews, restaurants WHERE reviews.restaurantID=restaurants.restaurantID AND reviews.restaurantID=? ORDER BY reviews.reviewDate DESC';
     sqlargs = [req.params.restaurantID];
   }

@@ -45,8 +45,8 @@ class ReviewsChart extends React.Component {
 
     return (
       <div className={styles.container}>
-        {arr.map(each => (
-          <div className={styles.reviewUpdateParameter}>
+        {arr.map((each, index) => (
+          <div key={index} className={styles.reviewUpdateParameter}>
             <span className={styles.reviewNumber}>{each.actnum}</span>
             <div className={styles.indivRating} onClick={() => this.onClick(`${each.actnum} stars`)}>
               <span className={styles.indivRatingInside} style={{ width: each.style }} />

@@ -23,12 +23,13 @@ module.exports = {
     'react',
   ],
   rules: {
-    // "eslint-disable import/extensions",
-    // "eslint-disable jsx-a11y/no-static-element-interactions",
-    // "eslint-disable jsx-a11y/click-events-have-key-events",
-    // "eslint-disable jsx-a11y/mouse-events-have-key-events",
-    // "eslint-disable max-len",
-    // "eslint-disable jsx-a11y/anchor-is-valid"
-    // "eslint-disable no-lone-blocks"
+    "eslint-disable import/extensions",
+    "eslint-disable jsx-a11y/no-static-element-interactions",
+    "eslint-disable jsx-a11y/click-events-have-key-events",
+    "eslint-disable jsx-a11y/mouse-events-have-key-events",
+    "eslint-disable max-len",
+    "eslint-disable jsx-a11y/anchor-is-valid",
+    "eslint-disable no-lone-blocks",
+    "eslint-disable-next-line react/forbid-prop-types",
   },
 };

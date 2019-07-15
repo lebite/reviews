@@ -57,8 +57,8 @@ class ButtonFilter extends React.Component {
           : null
         }
 
-        {arr.map(each => (
-          <span>
+        {arr.map((each, index) => (
+          <span key={index}>
             {this.state[each.name]
               ? (
                 <label className={styles.labelred}>
@@ -81,8 +81,8 @@ class ButtonFilter extends React.Component {
 }
 
 ButtonFilter.propTypes = {
-  reviews: PropTypes.arrayOf,
-  starRatingButton: PropTypes.string.isRequired,
+  reviews: PropTypes.any,
+  starRatingButton: PropTypes.string,
   handleSortedReviews: PropTypes.func.isRequired,
   sortOption: PropTypes.string.isRequired,
   stars: PropTypes.string,

@@ -31,24 +31,24 @@ const StarRating = (props) => {
     <div className={styles.starOverall}>
       <div className={styles.starWrapper}>
         {arr.map((each, index) => (
-          <icon key={index} className={styles.icon}>
+          <span key={index} className={styles.icon}>
             <span className={styles.fullStyleRed} data-content="&#9733;">&#9733;</span>
-          </icon>
+          </span>
         ))}
 
         { halfstar
           ? (
-            <icon className={styles.icon}>
+            <span className={styles.icon}>
               <span className={styles.halfStyle} data-content="&#9733;">&#9733;</span>
-            </icon>
+            </span>
           )
           : null
         }
 
         {arrrem.map((each, index) => (
-          <icon key={index} className={styles.icon}>
+          <span key={index} className={styles.icon}>
             <span className={styles.fullStyleGrey} data-content="&#9733;">&#9733;</span>
-          </icon>
+          </span>
         ))}
 
       </div>

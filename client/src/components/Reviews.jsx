@@ -11,20 +11,27 @@ class Reviews extends React.Component {
     super(props);
     this.state = {
       startNumReview: 0,
-      maxNumReviews: 10,
+      maxNumReviews: 5,
+      totalNumReviews:'',
     };
     this.shiftUpReviews = this.shiftUpReviews.bind(this);
     this.shiftDownReviews = this.shiftDownReviews.bind(this);
   }
 
 
-  shiftUpReviews() {
-    this.setState(state => ({ startNumReview: state.startNumReview + state.maxNumReviews }));
+  shiftUpReviews(maxReviews) {
+    console.log(maxReviews)
+    const num = this.state.startNumReview + this.state.maxNumReviews;
+    if (num < maxReviews) {
+      this.setState(state => ({ startNumReview: state.startNumReview + state.maxNumReviews }));
+    }
     // this.setState(state => ({ endNumReview: state.endNumReview + state.maxNumReviews }));
   }
 
   shiftDownReviews() {
-    this.setState(state => ({ startNumReview: state.startNumReview - state.maxNumReviews }));
+    if (this.state.startNumReview > 0) {
+      this.setState(state => ({ startNumReview: state.startNumReview - state.maxNumReviews }));
+    }
     // this.setState(state => ({ endNumReview: state.endNumReview - state.maxNumReviews }));
   }
 
@@ -37,6 +44,7 @@ class Reviews extends React.Component {
       sortOption,
       starRatingButton,
       handleRatingButton,
+      restaurantTotalReviews,
       stars,
     } = this.props;
 
@@ -80,18 +88,15 @@ class Reviews extends React.Component {
 }
 
 Reviews.propTypes = {
-  reviews: PropTypes.arrayOf.isRequired,
-  justReviews: PropTypes.arrayOf().isRequired,
+  reviews: PropTypes.any,
+  justReviews: PropTypes.any,
   handleSortedReviews: PropTypes.func.isRequired,
   handleHelpfulCount: PropTypes.func.isRequired,
   sortOption: PropTypes.string.isRequired,
-  starRatingButton: PropTypes.string.isRequired,
+  starRatingButton: PropTypes.string,
   handleRatingButton: PropTypes.func.isRequired,
+  restaurantTotalReviews: PropTypes.any,
   stars: PropTypes.string,
-};
-
-Reviews.defaultProps = {
-  stars: null,
 };
 
 export default Reviews;

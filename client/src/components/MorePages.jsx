@@ -18,6 +18,7 @@ class MorePages extends React.Component {
       shiftDownReviews,
     } = this.props;
 
+
     let totReviews = '';
     if (reviews.length > 0) {
       const { restaurantTotalReviews } = reviews[0];
@@ -48,7 +49,7 @@ class MorePages extends React.Component {
         </div>
 
         <div className={styles.buttonContainer}>
-          <div className={styles.button} onClick={shiftUpReviews}>
+          <div className={styles.button} onClick={() => shiftUpReviews(totReviews)}>
             <span className={styles.text}>&gt;</span>
           </div>
         </div>
@@ -58,7 +59,7 @@ class MorePages extends React.Component {
 }
 
 MorePages.propTypes = {
-  reviews: PropTypes.arrayOf.isRequired,
+  reviews: PropTypes.any,
   maxNumReviews: PropTypes.number.isRequired,
   shiftUpReviews: PropTypes.func.isRequired,
   shiftDownReviews: PropTypes.func.isRequired,

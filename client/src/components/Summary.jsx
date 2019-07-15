@@ -60,8 +60,8 @@ class Summary extends React.Component {
 }
 
 Summary.propTypes = {
-  reviews: PropTypes.array,
-  handleRatingButton: PropTypes.func,
+  reviews: PropTypes.any,
+  handleRatingButton: PropTypes.any,
 };
 
 export default Summary;
