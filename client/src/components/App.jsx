@@ -55,7 +55,7 @@ class App extends React.Component {
       this.setState({ sort });
       this.sort = sort;
     }
-    console.log(this.sort)
+    console.log(this.sort);
 
     if (keyword !== undefined) {
       this.keyword = keyword;
@@ -85,7 +85,6 @@ class App extends React.Component {
   }
 
   handleRatingButton(starRating) {
-    console.log('this is star rating', starRating )
     this.setState({ starRatingButton: starRating });
     let numStars = '';
     if (starRating) {
