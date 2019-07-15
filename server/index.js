@@ -49,14 +49,14 @@ app.get('/:restaurantID/reviews', (req, res) => {
     } else if (req.query.keyword) {
       sqlreq = 'SELECT reviews.* FROM reviews WHERE reviews.restaurantID=? AND reviewBody LIKE ? ORDER BY reviews.reviewDate DESC';
       sqlargs = [req.params.restaurantID, `%${req.query.keyword}%`]
-    }else {
+    } else {
       sqlreq = 'SELECT reviews.* FROM reviews WHERE reviews.restaurantID=? ORDER BY reviews.reviewDate DESC';
       sqlargs = [req.params.restaurantID];
     }
   } else if (req.query.keyword) {
     sqlreq = 'SELECT reviews.* FROM reviews WHERE restaurantID=? AND reviewBody LIKE ?';
     sqlargs = [req.params.restaurantID, `%${req.query.keyword}%`];
-  }  else if (req.query.stars) {
+  } else if (req.query.stars) {
     sqlreq = 'SELECT reviews.* FROM reviews WHERE restaurantID=? AND reviewOverallRating LIKE ?';
     sqlargs = [req.params.restaurantID, `%${req.query.stars}%`];
   } else {
