@@ -39,14 +39,15 @@ class MorePages extends React.Component {
             <span className={styles.text}>&lt;</span>
           </div>
         </div>
-
-        <div className={styles.buttonContainer}>
+        {arr.length <= 3
+        ? <div className={styles.buttonContainer}>
           {arr.map((each, index) => (
             <div key={index} className={styles.button}>
               <span className={styles.text}>{each}</span>
             </div>
           ))}
         </div>
+        : null }
 
         <div className={styles.buttonContainer}>
           <div className={styles.button} onClick={() => shiftUpReviews(totReviews)}>

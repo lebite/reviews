@@ -30,10 +30,10 @@ class App extends React.Component {
 
   handleReviews() {
     const { randRestID } = this.state;
-    axios.get(`/${randRestID}/reviews`)
+    axios.get(`http://localhost:3004/${randRestID}/reviews`)
       .then((reviews) => {
         this.setState({ reviews: reviews.data });
-        axios.get(`/${randRestID}/reviews`, {
+        axios.get(`http://localhost:3004/${randRestID}/reviews`, {
           params: {
             sort: 'newest',
           },
@@ -69,7 +69,7 @@ class App extends React.Component {
     console.log(this.stars)
 
     const { randRestID } = this.state;
-    axios.get(`/${randRestID}/reviews`, {
+    axios.get(`http://localhost:3004/${randRestID}/reviews`, {
       params: {
         sort: this.sort,
         keyword: this.keyword,
@@ -100,7 +100,7 @@ class App extends React.Component {
     let count;
     param === 'increase' ? count = revcount + 1 : count = revcount - 1;
 
-    axios.patch(`/${randRestID}/reviews`, {
+    axios.patch(`http://localhost:3004/${randRestID}/reviews`, {
       id,
       count,
     })
