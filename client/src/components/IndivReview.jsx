@@ -42,9 +42,9 @@ class IndivReview extends React.Component {
     const { review, handleHelpfulCount } = this.props;
     const { reviewID, reviewHelpfulCount } = review;
     if (!increasedCount) {
-      handleHelpfulCount('increase', { reviewID }.reviewID, { reviewHelpfulCount }.reviewHelpfulCount);
+      handleHelpfulCount('increase', reviewID, reviewHelpfulCount);
     } else {
-      handleHelpfulCount('decrease', { reviewID }.reviewID, { reviewHelpfulCount }.reviewHelpfulCount);
+      handleHelpfulCount('decrease', reviewID, reviewHelpfulCount);
     }
   }
 
