@@ -39,7 +39,7 @@ class Reviews extends React.Component {
   shiftNumberReviews(pageNum) {
     let num = 0;
     typeof pageNum === 'object' ? num = pageNum.each : num = pageNum
-    const start = num * this.state.maxNumReviews - this.state.maxNumReviews + 1
+    const start = num * this.state.maxNumReviews - this.state.maxNumReviews
     this.setState({ startNumReview: start })
   }
 
@@ -76,7 +76,7 @@ class Reviews extends React.Component {
         </div>
         <div className={styles.reviewContent}>
           {justReviews.length > 0
-            ? justReviews.slice(startNumReview, startNumReview + maxNumReviews).map(each => (
+            ? justReviews.slice(startNumReview, startNumReview + maxNumReviews - 1).map(each => (
               <IndivReview
                 key={each.reviewID}
                 review={each}

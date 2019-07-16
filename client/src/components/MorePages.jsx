@@ -7,7 +7,14 @@ class MorePages extends React.Component {
     super(props);
     this.state = {
       length: 0,
+      showDots: true,
     };
+  }
+
+  changeDots(num) {
+    const { shiftNumberReviews } = this.props
+    this.setState(state => ({ showDots: !state.showDots}))
+    shiftNumberReviews(num)
   }
 
   render() {
@@ -18,6 +25,8 @@ class MorePages extends React.Component {
       shiftDownReviews,
       shiftNumberReviews,
     } = this.props;
+
+    const { showDots } = this.state;
 
 
     let totReviews = '';
@@ -55,19 +64,24 @@ class MorePages extends React.Component {
             </div>
           ))}
         </div>
-        : <div className={styles.buttonContainer}>
-        {arr2.map((each, index) => (
-            <div key={index} className={styles.button} onClick={() => shiftNumberReviews({each})}>
-              <span className={styles.text}>{each}</span>
-            </div>
-          ))}
+        : arr.length === 4 ? <div className={styles.buttonContainer}>
+          <div className={styles.button} onClick={() => shiftNumberReviews(1)}>
+            <span className={styles.text}>1</span>
+          </div>
+          <div className={styles.button} onClick={() => this.changeDots(2)}>
+            <span className={styles.text}>2</span>
+          </div>
+          <div className={styles.button} onClick={() => this.changeDots(3)}>
+            <span className={styles.text}>3</span>
+          </div>
           <div className={styles.dotWrapper}>
             <span>⋯</span>
           </div>
           <div className={styles.button} onClick={() => shiftNumberReviews(4)}>
             <span className={styles.text}>4</span>
           </div>
-        </div> }
+        </div>
+        : null }
 
         <div className={styles.buttonContainer}>
           <div className={styles.button} onClick={() => shiftUpReviews(totReviews)}>
