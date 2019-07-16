@@ -41,7 +41,7 @@ class IndivReview extends React.Component {
     const { increasedCount } = this.state;
     const { review, handleHelpfulCount } = this.props;
     const { reviewID, reviewHelpfulCount } = review;
-    if (!{ increasedCount }.increasedCount) {
+    if (!increasedCount) {
       handleHelpfulCount('increase', { reviewID }.reviewID, { reviewHelpfulCount }.reviewHelpfulCount);
     } else {
       handleHelpfulCount('decrease', { reviewID }.reviewID, { reviewHelpfulCount }.reviewHelpfulCount);
@@ -180,7 +180,7 @@ class IndivReview extends React.Component {
                   </div>
                 </div>
                 <div className={styles.helpful}>
-                  {{ increasedCount }.increasedCount
+                  {increasedCount
                     ? (
                       <div style={{ color: 'red' }}>
                         <FaRegCaretSquareUp />
@@ -198,7 +198,7 @@ class IndivReview extends React.Component {
                     )
                   </div>
                 </div>
-                {{ showReport }.showReport
+                {showReport
                   ? (
                     <div className={styles.reviewReport}>
                       <div className={styles.reviewReportHeader}>

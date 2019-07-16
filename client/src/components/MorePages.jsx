@@ -16,6 +16,7 @@ class MorePages extends React.Component {
       maxNumReviews,
       shiftUpReviews,
       shiftDownReviews,
+      shiftNumberReviews,
     } = this.props;
 
 
@@ -31,6 +32,13 @@ class MorePages extends React.Component {
       arr.push(i);
     }
 
+    const arr2=[];
+    for (let j = 1; j <= 3; j += 1) {
+      arr2.push(j);
+    }
+    // arr2.push('...')
+    // arr2.push(numButtons)
+
     return (
 
       <div className={styles.container}>
@@ -42,12 +50,24 @@ class MorePages extends React.Component {
         {arr.length <= 3
         ? <div className={styles.buttonContainer}>
           {arr.map((each, index) => (
-            <div key={index} className={styles.button}>
+            <div key={index} className={styles.button} onClick={() => shiftNumberReviews({each})}>
               <span className={styles.text}>{each}</span>
             </div>
           ))}
         </div>
-        : null }
+        : <div className={styles.buttonContainer}>
+        {arr2.map((each, index) => (
+            <div key={index} className={styles.button} onClick={() => shiftNumberReviews({each})}>
+              <span className={styles.text}>{each}</span>
+            </div>
+          ))}
+          <div className={styles.dotWrapper}>
+            <span>⋯</span>
+          </div>
+          <div className={styles.button} onClick={() => shiftNumberReviews(4)}>
+            <span className={styles.text}>4</span>
+          </div>
+        </div> }
 
         <div className={styles.buttonContainer}>
           <div className={styles.button} onClick={() => shiftUpReviews(totReviews)}>

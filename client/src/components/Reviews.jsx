@@ -11,11 +11,12 @@ class Reviews extends React.Component {
     super(props);
     this.state = {
       startNumReview: 0,
-      maxNumReviews: 5,
+      maxNumReviews: 10,
       totalNumReviews:'',
     };
     this.shiftUpReviews = this.shiftUpReviews.bind(this);
     this.shiftDownReviews = this.shiftDownReviews.bind(this);
+    this.shiftNumberReviews = this.shiftNumberReviews.bind(this);
   }
 
 
@@ -35,6 +36,13 @@ class Reviews extends React.Component {
     // this.setState(state => ({ endNumReview: state.endNumReview - state.maxNumReviews }));
   }
 
+  shiftNumberReviews(pageNum) {
+    let num = 0;
+    typeof pageNum === 'object' ? num = pageNum.each : num = pageNum
+    const start = num * this.state.maxNumReviews - this.state.maxNumReviews + 1
+    this.setState({ startNumReview: start })
+  }
+
   render() {
     const {
       reviews,
@@ -49,7 +57,7 @@ class Reviews extends React.Component {
     } = this.props;
 
     // const { restaurantTotalReviews } = reviews;
-    const { startNumReview, maxNumReviews } = this.state;
+    const { startNumReview, maxNumReviews, totalNumReviews } = this.state;
 
     return (
       <div>
@@ -79,8 +87,8 @@ class Reviews extends React.Component {
           }
         </div>
         {/* { reviews.restaurantTotalReviews > maxNumReviews ? */}
-        <MorePages reviews={reviews} maxNumReviews={maxNumReviews} shiftUpReviews={this.shiftUpReviews} shiftDownReviews={this.shiftDownReviews} />
-          {/* : nul .l} */}
+        <MorePages reviews={reviews} maxNumReviews={maxNumReviews} shiftUpReviews={this.shiftUpReviews} shiftDownReviews={this.shiftDownReviews} shiftNumberReviews={this.shiftNumberReviews}/>
+          {/* : null} */}
 
       </div>
     );

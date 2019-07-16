@@ -34,3 +34,14 @@
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
+
+.dotWrapper {
+  cursor: default;
+  display: inline-flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  height: 2rem;
+  min-width: 2rem;
+}

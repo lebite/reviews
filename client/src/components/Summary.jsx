@@ -17,6 +17,7 @@ class Summary extends React.Component {
 
   render() {
     const { reviews, handleRatingButton } = this.props;
+    // console.log(reviews)
     const numReviews = reviews[0] || {};
 
     return (

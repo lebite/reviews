@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-var cors = require('cors')
 
 const app = express();
 const port = 3004;
@@ -8,7 +7,6 @@ const port = 3004;
 const db = require('./db/index.js');
 
 app.use(express.json());
-app.use(cors())
 
 app.get('/:restaurantID/reviews', (req, res) => {
   let sqlreq = '';
@@ -62,7 +60,6 @@ app.get('/:restaurantID/reviews', (req, res) => {
     sqlreq = 'SELECT reviews.* FROM reviews WHERE restaurantID=? AND reviewOverallRating LIKE ?';
     sqlargs = [req.params.restaurantID, `%${req.query.stars}%`];
   } else {
-    console.log('we got here')
     sqlreq = 'SELECT reviews.*, restaurants.* FROM reviews, restaurants WHERE reviews.restaurantID=restaurants.restaurantID AND reviews.restaurantID=? ORDER BY reviews.reviewDate DESC';
     sqlargs = [req.params.restaurantID];
   }
