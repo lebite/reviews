@@ -4,8 +4,8 @@ const db = require('./index.js');
 const reviews = [];
 const restaurants = [];
 
-for (let i = 1; i <= 100; i += 1) {
-  const numReviews = faker.random.number({ min: 1, max: 50 });
+for (let i = 0; i < 99; i += 1) {
+  const numReviews = faker.random.number({ min: 15, max: 65 });
   const restaurantID = i;
   const restaurantTotalReviews = numReviews;
 
@@ -75,6 +75,7 @@ db.connection.query(sqlreviewsreq, [reviews], (err) => {
         console.log(err2);
       } else {
         console.log('success writing to db');
+        db.connection.end()
       }
     });
   }

@@ -31,7 +31,7 @@ class DropdownFilter extends React.Component {
         <div className={styles.formselect} onClick={this.mouseClick}>
           <span className={styles.selected}>{wordShown}</span>
         </div>
-        {{ dropdown }.dropdown
+        {dropdown
           ? (
             <div className={styles.optionwrapper}>
 

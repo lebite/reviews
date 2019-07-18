@@ -11,7 +11,7 @@ class Reviews extends React.Component {
     super(props);
     this.state = {
       startNumReview: 0,
-      maxNumReviews: 10,
+      maxNumReviews: 40,
       totalNumReviews:'',
     };
     this.shiftUpReviews = this.shiftUpReviews.bind(this);

@@ -9,7 +9,7 @@ class App extends React.Component {
     super();
     this.state = {
       reviews: [],
-      randRestID: Math.floor(Math.random() * 100) + 1,
+      randRestID: Math.floor(Math.random() * 100),
       justReviews: [],
       starRatingButton: null,
       sort: 'Newest',
