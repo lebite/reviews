@@ -1,4 +1,5 @@
 const express = require('express');
+const expressStaticGzip = require('express-static-gzip');
 const path = require('path');
 
 const app = express();
@@ -7,6 +8,20 @@ const port = 3004;
 const db = require('./db/index.js');
 
 app.use(express.json());
+
+// app.use(express.static(path.join(__dirname, '../client/dist')));
+// app.use('/:restaurantID', express.static(path.join(__dirname, '../client/dist')));
+
+app.use('/', expressStaticGzip(path.join(__dirname, '../client/dist'), {
+  enableBrotli: true,
+  orderPreference: ['br', 'gz']
+ }));
+
+ app.use('/:restaurantID', expressStaticGzip(path.join(__dirname, '../client/dist'), {
+  enableBrotli: true,
+  orderPreference: ['br', 'gz']
+ }));
+
 
 app.get('/:restaurantID/reviews', (req, res) => {
   let sqlreq = '';
@@ -85,7 +100,5 @@ app.patch('/:restaurantID/reviews', (req, res) => {
     }
   });
 });
-
-app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.listen(port, () => { console.log(`Listening on port ${port}`); });

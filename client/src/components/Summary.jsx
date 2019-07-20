@@ -16,8 +16,7 @@ class Summary extends React.Component {
   }
 
   render() {
-    const { reviews, handleRatingButton } = this.props;
-    // console.log(reviews)
+    const { reviews, handleRatingButton, changezerotf } = this.props;
     const numReviews = reviews[0] || {};
 
     return (
@@ -43,7 +42,7 @@ class Summary extends React.Component {
               <Recommend recLevel={numReviews} />
             </div>
             <div className={styles.graph}>
-              <ReviewsChart reviews={reviews} handleRatingButton={handleRatingButton} />
+              <ReviewsChart reviews={reviews} handleRatingButton={handleRatingButton} changezerotf={changezerotf}/>
             </div>
           </div>
           <div className={styles.neighborhood_wrapper}>

@@ -11,36 +11,59 @@ class Reviews extends React.Component {
     super(props);
     this.state = {
       startNumReview: 0,
-      maxNumReviews: 40,
+      maxNumReviews: 15,
       totalNumReviews:'',
     };
     this.shiftUpReviews = this.shiftUpReviews.bind(this);
     this.shiftDownReviews = this.shiftDownReviews.bind(this);
     this.shiftNumberReviews = this.shiftNumberReviews.bind(this);
+    this.resetZero = this.resetZero.bind(this);
   }
 
 
   shiftUpReviews(maxReviews) {
-    console.log(maxReviews)
     const num = this.state.startNumReview + this.state.maxNumReviews;
     if (num < maxReviews) {
       this.setState(state => ({ startNumReview: state.startNumReview + state.maxNumReviews }));
     }
-    // this.setState(state => ({ endNumReview: state.endNumReview + state.maxNumReviews }));
+    var element = document.getElementById("gohere");
+    element.scrollIntoView({
+      block: "start",
+      behavior: "smooth"
+    });
   }
 
   shiftDownReviews() {
     if (this.state.startNumReview > 0) {
       this.setState(state => ({ startNumReview: state.startNumReview - state.maxNumReviews }));
     }
-    // this.setState(state => ({ endNumReview: state.endNumReview - state.maxNumReviews }));
+    var element = document.getElementById("gohere");
+    element.scrollIntoView({
+      block: "start",
+      behavior: "smooth"
+    });
   }
 
   shiftNumberReviews(pageNum) {
     let num = 0;
     typeof pageNum === 'object' ? num = pageNum.each : num = pageNum
     const start = num * this.state.maxNumReviews - this.state.maxNumReviews
-    this.setState({ startNumReview: start })
+    this.setState({ startNumReview: start });
+    var element = document.getElementById("gohere");
+    element.scrollIntoView({
+      block: "start",
+      behavior: "smooth"
+    });
+  }
+
+  resetZero() {
+    this.setState({ startNumReview: 0 })
+  }
+
+  componentWillReceiveProps() {
+    if (this.props.zerotf) {
+      this.resetZero();
+    }
   }
 
   render() {
@@ -54,16 +77,16 @@ class Reviews extends React.Component {
       handleRatingButton,
       restaurantTotalReviews,
       stars,
+      searchLength,
     } = this.props;
 
-    // const { restaurantTotalReviews } = reviews;
     const { startNumReview, maxNumReviews, totalNumReviews } = this.state;
 
     return (
-      <div>
+      <div id="gohere">
         <div className={styles.reviewToolbar}>
           <div className={styles.filters}>Sort by</div>
-          <DropdownFilter handleSortedReviews={handleSortedReviews} stars={stars} />
+          <DropdownFilter handleSortedReviews={handleSortedReviews} stars={stars} resetZero={this.resetZero}/>
           <div className={styles.filters}>Filters</div>
           <ButtonFilter
             reviews={reviews}
@@ -72,6 +95,8 @@ class Reviews extends React.Component {
             starRatingButton={starRatingButton}
             handleRatingButton={handleRatingButton}
             stars={stars}
+            resetZero={this.resetZero}
+            searchLength={searchLength}
           />
         </div>
         <div className={styles.reviewContent}>
@@ -86,9 +111,7 @@ class Reviews extends React.Component {
             : null
           }
         </div>
-        {/* { reviews.restaurantTotalReviews > maxNumReviews ? */}
-        <MorePages reviews={reviews} maxNumReviews={maxNumReviews} shiftUpReviews={this.shiftUpReviews} shiftDownReviews={this.shiftDownReviews} shiftNumberReviews={this.shiftNumberReviews}/>
-          {/* : null} */}
+        <MorePages reviews={reviews} maxNumReviews={maxNumReviews} shiftUpReviews={this.shiftUpReviews} shiftDownReviews={this.shiftDownReviews} shiftNumberReviews={this.shiftNumberReviews} searchLength={searchLength}/>
 
       </div>
     );

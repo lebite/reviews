@@ -9,8 +9,9 @@ class ReviewsChart extends React.Component {
   }
 
   onClick(param) {
-    const { handleRatingButton } = this.props;
+    const { handleRatingButton, changezerotf } = this.props;
     handleRatingButton(param);
+    changezerotf();
   }
 
   render() {

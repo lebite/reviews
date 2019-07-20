@@ -21,6 +21,7 @@ class DropdownFilter extends React.Component {
     this.setState({ wordShown: word });
     this.props.handleSortedReviews(word, undefined, this.props.stars);
     this.setState(state => ({ dropdown: !state.dropdown }));
+    this.props.resetZero();
   }
 
   render() {

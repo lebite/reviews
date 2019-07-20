@@ -7,13 +7,17 @@ import styles from './style/app.css';
 class App extends React.Component {
   constructor() {
     super();
+    let id = location.pathname.slice(1);
+    id = (id !== '') ? parseInt(id) : Math.floor(Math.random() * 100);
     this.state = {
       reviews: [],
-      randRestID: Math.floor(Math.random() * 100),
+      randRestID: id,
       justReviews: [],
       starRatingButton: null,
       sort: 'Newest',
       stars: undefined,
+      searchLength: 0,
+      zerotf: false,
     };
     this.sort = 'newest';
     this.keyword = '';
@@ -22,6 +26,7 @@ class App extends React.Component {
     this.handleSortedReviews = this.handleSortedReviews.bind(this);
     this.handleHelpfulCount = this.handleHelpfulCount.bind(this);
     this.handleRatingButton = this.handleRatingButton.bind(this);
+    this.changezerotf = this.changezerotf.bind(this);
   }
 
   componentDidMount() {
@@ -40,6 +45,7 @@ class App extends React.Component {
         })
           .then((indivRev) => {
             this.setState({ justReviews: indivRev.data });
+            this.setState({ searchLength: indivRev.data[0].restaurantTotalReviews })
           })
           .catch((error) => {
             console.log(error);
@@ -55,18 +61,15 @@ class App extends React.Component {
       this.setState({ sort });
       this.sort = sort;
     }
-    console.log(this.sort);
 
     if (keyword !== undefined) {
       this.keyword = keyword;
     }
-    console.log(this.keyword)
 
     if (stars !== undefined) {
       this.setState({ stars });
       this.stars = stars;
     }
-    console.log(this.stars)
 
     const { randRestID } = this.state;
     axios.get(`/${randRestID}/reviews`, {
@@ -78,6 +81,7 @@ class App extends React.Component {
     })
       .then((reviews) => {
         this.setState({ justReviews: reviews.data });
+        this.setState({ searchLength: reviews.data.length })
       })
       .catch((error) => {
         console.log(error);
@@ -113,16 +117,20 @@ class App extends React.Component {
       });
   }
 
+  changezerotf () {
+    this.setState(state => ({ zerotf: !state.zerotf}))
+  }
+
 
   render() {
     const {
-      reviews, justReviews, sort, starRatingButton, stars,
+      reviews, justReviews, sort, starRatingButton, stars, searchLength, zerotf
     } = this.state;
     return (
       <div className={styles.master}>
         <div>
-          <Summary reviews={reviews} handleRatingButton={this.handleRatingButton} />
-          <Reviews reviews={reviews} justReviews={justReviews} handleSortedReviews={this.handleSortedReviews} handleHelpfulCount={this.handleHelpfulCount} sortOption={sort} starRatingButton={starRatingButton} handleRatingButton={this.handleRatingButton} stars={stars} />
+          <Summary reviews={reviews} handleRatingButton={this.handleRatingButton} changezerotf={this.changezerotf}/>
+          <Reviews reviews={reviews} justReviews={justReviews} handleSortedReviews={this.handleSortedReviews} handleHelpfulCount={this.handleHelpfulCount} sortOption={sort} starRatingButton={starRatingButton} handleRatingButton={this.handleRatingButton} stars={stars} searchLength={searchLength} zerotf={zerotf}/>
         </div>
       </div>
     );

@@ -9,15 +9,14 @@ class MorePages extends React.Component {
       length: 0,
       showBegDots: false,
       showEndDots: true,
-      longArr: {beg: [1,2,3], mid: [], end: []}
-
+      longArr: {beg: [1,2,3], mid: [], end: []},
+      dots: {beg: true, end: false},
     };
     this.changeDots = this.changeDots.bind(this);
     this.changeDotsLong = this.changeDotsLong.bind(this);
+    this.handleScrollToElement = this.handleScrollToElement.bind(this);
   }
-  // componentDidUpdate() {
-  //   this.setState({ longArr: [[1,2,3],[],[this.props.reviews[0] ? this.props.reviews[0].restaurantTotalReviews / this.props.maxNumReviews : 5]]})
-  // }
+
   changeDots(num) {
     const { shiftNumberReviews } = this.props
     if ( num === 1) {
@@ -31,14 +30,38 @@ class MorePages extends React.Component {
       this.setState( state => ({ showEndDots : false}))
     }
     shiftNumberReviews(num)
+    this.handleScrollToElement();
   }
 
   changeDotsLong(num, length) {
+    const { shiftNumberReviews } = this.props
     if ( num === 1 || num === 2 ) {
-      this.setState({ longArr: [[1,2,3],[],[length]] });
+      this.setState({ longArr: {beg: [1,2,3], mid: [], end: [length]} });
+      this.setState({ dots: {beg: true, end: false }})
     } else if ( num === 3 ) {
-      this.setState({ beg: [1,2,3,4]})
+      this.setState({ longArr: {beg: [1,2,3,4], mid: [], end: [length]} });
+      this.setState({ dots: {beg: true, end: false }})
+    } else if ( num === length || num === length - 1) {
+      this.setState({ longArr: {beg: [1], mid: [], end: [length-2, length-1, length]} });
+      this.setState({ dots: {beg: true, end: false }})
+    } else if ( num === length - 2 ) {
+      this.setState({ longArr: {beg: [1], mid: [], end: [length-3, length-2, length-1, length]} });
+      this.setState({ dots: {beg: true, end: false }})
+    } else {
+      this.setState({ longArr: {beg: [1], mid: [num-1, num, num+1], end: [length]} });
+      this.setState({ dots: {beg: true, end: true }})
     }
+    shiftNumberReviews(num)
+    this.handleScrollToElement();
+  }
+
+  handleScrollToElement() {
+    // const tesNode = ReactDOM.findDOMNode(this.refs.test)
+    var element = document.getElementById("gohere");
+    element.scrollIntoView({
+      block: "start",
+      behavior: "smooth"
+    });
   }
 
   render() {
@@ -48,14 +71,15 @@ class MorePages extends React.Component {
       shiftUpReviews,
       shiftDownReviews,
       shiftNumberReviews,
+      searchLength
     } = this.props;
 
-    const { showBegDots, showEndDots, longArr } = this.state;
+    const { showBegDots, showEndDots, longArr, dots } = this.state;
 
     let totReviews = '';
-    if (reviews.length > 0) {
-      const { restaurantTotalReviews } = reviews[0];
-      totReviews = restaurantTotalReviews;
+
+    if (searchLength) {
+      totReviews = searchLength
     }
 
     const numButtons = Math.ceil(totReviews / maxNumReviews);
@@ -68,8 +92,6 @@ class MorePages extends React.Component {
     for (let j = 1; j <= 3; j += 1) {
       arr2.push(j);
     }
-    // arr2.push('...')
-    // arr2.push(numButtons)
 
     return (
 
@@ -79,7 +101,7 @@ class MorePages extends React.Component {
             <span className={styles.text}>&lt;</span>
           </div>
         </div>
-        {arr.length <= 3
+         {arr.length <= 3
         ? <div className={styles.buttonContainer}>
           {arr.map((each, index) => (
             <div key={index} className={styles.button} onClick={() => shiftNumberReviews({each})}>
@@ -112,28 +134,40 @@ class MorePages extends React.Component {
           </div>
         </div>
         : arr.length >= 5
-        ? <div className={styles.buttonContainer}>
+        ?
+        <div className={styles.buttonContainer2}>
             <div>
-              {[1,2,3,'...',7].map((each, index) => (
-                <div key={index} className={styles.button} onClick={() => this.changeDotsLong({each}, arr.length)}>
+              {longArr.beg.map((each, index) => (
+                <div key={index} className={styles.button} onClick={() => this.changeDotsLong(each, arr.length)}>
+                  <a href="#gohere" style={{display: 'block'}}></a>
                   <span className={styles.text}>{each}</span>
                 </div>
               ))}
             </div>
-            {/* <div>
+            {dots.beg ? <div className={styles.dotWrapper}><span>⋯</span></div> : null}
+            <div>
               {longArr.mid.map((each, index) => (
-                <div key={index} className={styles.button} onClick={() => this.changeDotsLong({each}, arr.length)}>
+                <div key={index} className={styles.button} onClick={() => this.changeDotsLong(each, arr.length)}>
+                  <a href="#gohere" style={{display: 'block'}}></a>
                   <span className={styles.text}>{each}</span>
                 </div>
               ))}
-            </div> */}
-            {/* <div>
-              {(longArr.end.length === 0 ? arr.length : longArr.end).map((each, index) => (
-                <div key={index} className={styles.button} onClick={() => this.changeDotsLong({each}, arr.length)}>
+            </div>
+            {dots.end ? <div className={styles.dotWrapper}><span>⋯</span></div> : null}
+            <div>
+              {longArr.end.length > 0
+              ? longArr.end.map((each, index) => (
+                <div key={index} className={styles.button} onClick={() => this.changeDotsLong(each, arr.length)}>
                   <span className={styles.text}>{each}</span>
                 </div>
-              ))}
-            </div> */}
+              ))
+              : [arr.length].map((each, index) => (
+                <div key={index} className={styles.button} onClick={() => this.changeDotsLong(each, arr.length)}>
+                  <span className={styles.text}>{each}</span>
+                </div>
+              ))
+              }
+            </div>
         </div>
         : null }
 
