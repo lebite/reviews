@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Restaurant Reviews module
 
 What are your service's inputs and outputs (API Spec)?
@@ -79,3 +80,6 @@ What are your service's inputs and outputs (API Spec)?
 ### Data Schema:
 I chose to use MySQL for my database because it is easily scalable. MongoDB is the better choice if we are scaling horizontally (e.g. more review options), but since our topics are pretty well defined, MySQL is a better choice.
 
+=======
+# reviews
+>>>>>>> 38931e339d691b89b1609104a0d77d0c5e80056f
