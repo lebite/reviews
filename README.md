@@ -1,15 +1,19 @@
-<<<<<<< HEAD
 # Restaurant Reviews module
 
 What are your service's inputs and outputs (API Spec)?
 
-`GET /:restaurantID/reviews`
+ ## APIs
+| HTTP Method  | Endpoint               | Description
+| -----------  | ---------------------- | -------------
+| GET          | /:restaurantID/reviews | If restaurant ID exists, fetch all reviews.
+| GET          | /:restaurantID/reviews?filter=[stars] | Fetch reviews based on star rating.
+| GET          | /:restaurantID/reviews?sort=[newest, highest rating, lowest rating] | Fetch sorted reviews based on rating
+| GET          | /:restaurantID/reviews?filter=[keywords] | Fetch reviews based on keywords.
+| POST         | /:restaurantID/reviews/ | Creates a new POST review record in database. Responds with 201 Created
+| PUT          | /:restaurantID/reviews/<reviewId> | Performs complete override of review record. reviews not included will be left blank. Use with caution.
+| PATCH        | /:restaurantID/reviews/<reviewId>/:reviewField | Where <:reviewField> can be : 'reviewFoodRating', 'reviewBody', or 'reviewServiceRating'
+| DELETE       | /:restaurantID/reviews/<reviewId>| Delete review record with provided reviewID
 
-`GET /:restaurantID/reviews?filter=[stars]`
-
-`GET /:restaurantID/reviews?sort=[newest, highest rating, lowest rating]`
-
-`GET /:restaurantID/reviews?filter=[keywords]`
 
 
 **Input**: `restaurantID` identifies which restaurant to get reviews from
@@ -80,6 +84,3 @@ What are your service's inputs and outputs (API Spec)?
 ### Data Schema:
 I chose to use MySQL for my database because it is easily scalable. MongoDB is the better choice if we are scaling horizontally (e.g. more review options), but since our topics are pretty well defined, MySQL is a better choice.
 
-=======
-# reviews
->>>>>>> 38931e339d691b89b1609104a0d77d0c5e80056f
