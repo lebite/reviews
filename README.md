@@ -10,9 +10,9 @@ What are your service's inputs and outputs (API Spec)?
 | GET          | /:restaurantID/reviews?sort=[newest, highest rating, lowest rating] | Fetch sorted reviews based on rating
 | GET          | /:restaurantID/reviews?filter=[keywords] | Fetch reviews based on keywords.
 | POST         | /:restaurantID/reviews/ | Creates a new POST review record in database. Responds with 201 Created
-| PUT          | /:restaurantID/reviews/<reviewId> | Performs complete override of review record. reviews not included will be left blank. Use with caution.
-| PATCH        | /:restaurantID/reviews/<reviewId>/:reviewField | Where <:reviewField> can be : 'reviewFoodRating', 'reviewBody', or 'reviewServiceRating'
-| DELETE       | /:restaurantID/reviews/<reviewId>| Delete review record with provided reviewID
+| PUT          | /:restaurantID/reviews/[reviewId] | Performs complete override of review record. reviews not included will be left blank. Use with caution.
+| PATCH        | /:restaurantID/reviews/[reviewId]/:reviewField | Where <:reviewField> can be : 'reviewFoodRating', 'reviewBody', or 'reviewServiceRating'
+| DELETE       | /:restaurantID/reviews/[reviewId]| Delete review record with provided reviewID
 
 
 
