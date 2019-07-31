@@ -1,32 +1,38 @@
 const faker = require('faker');
 const fs = require('fs');
 
-let reviewsWriter = fs.createWriteStream('./restaurantReviews.csv', { flags: 'a'});
+let reviewsWriter = fs.createWriteStream('./restaurantReviews.csv');
 const reviewsColumns = "restaurantid,username,userlocation,usertotalreviews,reviewdate,reviewoverallrating,reviewfoodrating,reviewservicerating,reviewambiencerating,reviewvaluerating,reviewhelpfulcount,reviewnoise,reviewrecommend,reviewbody";
 // reviewsWriter.write(`${reviewsColumns},`);
 
 let restaurantInfoWriter = fs.createWriteStream('./restaurantInfo.csv');
 const restaurantInfoColumns = "restaurantid,neighborhood,avgoverallrating,avgfoodrating,avgservicerating,avgambiencerating,avgvaluerating,avgnoiserating,avgrecrating,keywords";
 
+const printProgress = (progress) => {
+  process.stdout.clearLine();
+  process.stdout.cursorTo(0);
+  process.stdout.write(progress + ' records left to create');
+}
 
 const dataGen = (limit) => {
   console.log('MISSION START');
   var totalReviews = [];
-  var currentRowCount = 1000;
+  var currentRowCount = 100000;
 
   var drainRestaurant;
   var drainReviews;
 
+  // while(limit > 0 && drainRestaurant)
   for (let i = 0; i < limit; i += 1) {
 
       if (i === currentRowCount) {
-        // printProgress(limit - currentRowCount);
-        currentRowCount += 1000;
-        console.log(`CURRENT ROW COUNT : ${currentRowCount}`);
+        printProgress(limit - currentRowCount);
+        currentRowCount += 100000;
+        // console.log(`CURRENT ROW COUNT : ${currentRowCount}`);
       };
 
       var restaurant = {};
-      const numReviews = faker.random.number({ min: 15, max: 65 });
+      let numReviews = faker.random.number({ min: 15, max: 65 });
 
       restaurant.restaurantID = i;
       restaurant.keyWords = faker.fake('{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}}');
@@ -42,44 +48,52 @@ const dataGen = (limit) => {
       let sumNoise = 0;
       let sumRecommend = 0;
 
+      writeReviews();
 
-    for (let j = 1; j <= numReviews; j += 1) {
+      function writeReviews() {
+        drainReviews = true;
+        while ( numReviews > 0  && drainReviews) {
+          numReviews--;
 
-      var reviewObj = {};
-      reviewObj.restaurantID = restaurant.restaurantID;
-      reviewObj.userName = faker.fake('{{name.firstName}}{{name.lastName}}');
-      reviewObj.city = faker.address.city();
-      reviewObj.userTotalReviews = faker.random.number({ min: 1, max: 30 });
-      // reviewObj.date = faker.date.past();
-      // PLEASE FIX THE DATE WITH MOMENT TIMESTAMP
-      reviewObj.date = '2019-07-29';
-      reviewObj.overallRating = faker.random.number({ min: 1, max: 5 });
-      reviewObj.foodRating = faker.random.number({ min: 1, max: 5 });
-      reviewObj.serviceRating = faker.random.number({ min: 1, max: 5 });
-      reviewObj.ambienceRating = faker.random.number({ min: 1, max: 5 });
-      reviewObj.valueRating = faker.random.number({ min: 1, max: 5 });
-      reviewObj.helpfulCount = faker.random.number({ min: 0, max: 20 });
-      reviewObj.noise = faker.random.number({ min: 1, max: 4 });
-      reviewObj.recommend = faker.random.boolean();
-      reviewObj.body = faker.lorem.paragraph();
+          var reviewObj = {};
+          reviewObj.restaurantID = restaurant.restaurantID;
+          reviewObj.userName = faker.fake('{{name.firstName}}{{name.lastName}}');
+          reviewObj.city = faker.address.city();
+          reviewObj.userTotalReviews = faker.random.number({ min: 1, max: 30 });
+          // reviewObj.date = faker.date.past();
+          // PLEASE FIX THE DATE WITH MOMENT TIMESTAMP
+          reviewObj.date = '2019-07-29';
+          reviewObj.overallRating = faker.random.number({ min: 1, max: 5 });
+          reviewObj.foodRating = faker.random.number({ min: 1, max: 5 });
+          reviewObj.serviceRating = faker.random.number({ min: 1, max: 5 });
+          reviewObj.ambienceRating = faker.random.number({ min: 1, max: 5 });
+          reviewObj.valueRating = faker.random.number({ min: 1, max: 5 });
+          reviewObj.helpfulCount = faker.random.number({ min: 0, max: 20 });
+          reviewObj.noise = faker.random.number({ min: 1, max: 4 });
+          reviewObj.recommend = faker.random.boolean();
+          reviewObj.body = faker.lorem.paragraph();
 
-      sumOverall += reviewObj.overallRating;
-      sumFood += reviewObj.foodRating;
-      sumService += reviewObj.serviceRating;
-      sumAmbience += reviewObj.ambienceRating;
-      sumValue += reviewObj.valueRating;
-      sumNoise += reviewObj.noise;
-      reviewObj.recommend ? sumRecommend += 1 : sumRecommend;
+          sumOverall += reviewObj.overallRating;
+          sumFood += reviewObj.foodRating;
+          sumService += reviewObj.serviceRating;
+          sumAmbience += reviewObj.ambienceRating;
+          sumValue += reviewObj.valueRating;
+          sumNoise += reviewObj.noise;
+          reviewObj.recommend ? sumRecommend += 1 : sumRecommend;
 
-      drainReviews = reviewsWriter.write(`${reviewObj.restaurantID},${reviewObj.date},${reviewObj.ambienceRating},${reviewObj.body},${reviewObj.foodRating},${reviewObj.helpfulCount},${reviewObj.noise},${reviewObj.overallRating},${reviewObj.recommend},${reviewObj.serviceRating},${reviewObj.valueRating},${reviewObj.city},${reviewObj.userName},${reviewObj.userTotalReviews}\n`, 'utf8');
+          if (numReviews === 0) {
+            reviewsWriter.write(`${reviewObj.restaurantID},${reviewObj.date},${reviewObj.ambienceRating},${reviewObj.body},${reviewObj.foodRating},${reviewObj.helpfulCount},${reviewObj.noise},${reviewObj.overallRating},${reviewObj.recommend},${reviewObj.serviceRating},${reviewObj.valueRating},${reviewObj.city},${reviewObj.userName},${reviewObj.userTotalReviews}\n`, 'utf8');
+          } else {
+            drainReviews = reviewsWriter.write(`${reviewObj.restaurantID},${reviewObj.date},${reviewObj.ambienceRating},${reviewObj.body},${reviewObj.foodRating},${reviewObj.helpfulCount},${reviewObj.noise},${reviewObj.overallRating},${reviewObj.recommend},${reviewObj.serviceRating},${reviewObj.valueRating},${reviewObj.city},${reviewObj.userName},${reviewObj.userTotalReviews}\n`, 'utf8');
+          }
 
 
+        } // end of while for loop
 
-      if (drainReviews === false) {
-        reviewsWriter.once('drain', () => {console.log(`RESTAURANT_REVIEWS_WRITER: DRAINED , i value is : ${i}`)});
-      };
-
-    } // end of review for loop
+        if (numReviews > 0) {
+          reviewsWriter.once('drain', writeReviews);
+        }
+      }
 
       restaurant.avgOverall = Math.round(sumOverall / numReviews * 10) / 10;
       restaurant.avgFood = Math.round(sumFood / numReviews * 10) / 10;
@@ -95,21 +109,19 @@ const dataGen = (limit) => {
         restaurantInfoWriter.once('drain', () => {console.log(`RESTAURANT_INFO_WRITER: DRAINED , i value ${i}`)});
       }
     } //end of house for loop
+
+    console.log('SEED COMPLETED');
 }
 
 
 
-dataGen(20);
+dataGen(10000000);
 
 
 
 
 
-const printProgress = (progress) => {
-  process.stdout.clearLine();
-  process.stdout.cursorTo(0);
-  process.stdout.write(progress + ' records left to create');
-}
+
 
 
 
