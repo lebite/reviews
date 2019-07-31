@@ -32,7 +32,7 @@ CREATE TABLE restaurant_reviews (
     reviewNoise INT,
     reviewRecommend boolean,
     reviewBody text,
-    PRIMARY KEY(restaurantID)
+    PRIMARY KEY(restaurantID, reviewDate)
 );
 
 
