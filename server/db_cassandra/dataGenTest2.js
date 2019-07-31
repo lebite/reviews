@@ -14,19 +14,19 @@ const printProgress = (progress) => {
   process.stdout.write(progress + ' records left to create');
 }
 
-const dataGen = (limit) => {
+const dataGen = (limit, i = 1) => {
   console.log('MISSION START');
+  var startLimit = limit;
   var totalReviews = [];
   var currentRowCount = 100000;
 
-  var drainRestaurant;
+  var drainRestaurant = true;
   var drainReviews;
 
-  // while(limit > 0 && drainRestaurant)
-  for (let i = 0; i < limit; i += 1) {
-
+  while(limit > 0 && drainRestaurant) {
+      limit--;
       if (i === currentRowCount) {
-        printProgress(limit - currentRowCount);
+        printProgress(startLimit - currentRowCount);
         currentRowCount += 100000;
         // console.log(`CURRENT ROW COUNT : ${currentRowCount}`);
       };
@@ -103,12 +103,21 @@ const dataGen = (limit) => {
       restaurant.avgNoise = Math.round(sumNoise / numReviews * 10) / 10;
       restaurant.avgRec = (sumRecommend / numReviews) * 100;
 
-      drainRestaurant = restaurantInfoWriter.write(`${restaurant.restaurantID},${restaurant.avgAmbience},${restaurant.avgFood},${restaurant.avgNoise},${restaurant.avgOverall},${restaurant.avgRec},${restaurant.avgService},${restaurant.avgValue},"${restaurant.keyWords}",${restaurant.neighborhood}\n`, 'utf8');
-
-      if (drainRestaurant === false) {
-        restaurantInfoWriter.once('drain', () => {console.log(`RESTAURANT_INFO_WRITER: DRAINED , i value ${i}`)});
+      if (limit === 0) {
+        restaurantInfoWriter.write(`${restaurant.restaurantID},${restaurant.avgAmbience},${restaurant.avgFood},${restaurant.avgNoise},${restaurant.avgOverall},${restaurant.avgRec},${restaurant.avgService},${restaurant.avgValue},"${restaurant.keyWords}",${restaurant.neighborhood}\n`, 'utf8');
+      } else {
+        drainRestaurant = restaurantInfoWriter.write(`${restaurant.restaurantID},${restaurant.avgAmbience},${restaurant.avgFood},${restaurant.avgNoise},${restaurant.avgOverall},${restaurant.avgRec},${restaurant.avgService},${restaurant.avgValue},"${restaurant.keyWords}",${restaurant.neighborhood}\n`, 'utf8');
       }
-    } //end of house for loop
+
+      // if (drainRestaurant === false) {
+      //   restaurantInfoWriter.once('drain', () => {console.log(`RESTAURANT_INFO_WRITER: DRAINED , i value ${i}`)});
+      // }
+    } //end of house while loop
+    //YOU WILL REACH THIS LINE ONCE THE LOOP BREAKS
+    if (limit > 0) {
+      console.log(`RESTAURANT OUTERLOOP BROKE , CURRENT LIMIT IS ${limit}, CURRENT RESTID IS ${i}`);
+      restaurantInfoWriter.once('drain', () => {dataGen(limit, i)});
+    }
 
     console.log('SEED COMPLETED');
 }
