@@ -14,8 +14,7 @@ const printProgress = (progress) => {
   process.stdout.write(progress + ' records left to create');
 }
 
-const dataGen = (limit, i = 1) => {
-  console.log('MISSION START');
+const dataGen = (limit, i = 0) => {
   var startLimit = limit;
   var totalReviews = [];
   var currentRowCount = 100000;
@@ -25,6 +24,7 @@ const dataGen = (limit, i = 1) => {
 
   while(limit > 0 && drainRestaurant) {
       limit--;
+      i++;
       if (i === currentRowCount) {
         printProgress(startLimit - currentRowCount);
         currentRowCount += 100000;
@@ -39,7 +39,6 @@ const dataGen = (limit, i = 1) => {
       restaurant.neighborhood = faker.lorem.word();
       restaurant.restaurantTotalReviews = numReviews;
 
-
       let sumOverall = 0;
       let sumFood = 0;
       let sumService = 0;
@@ -48,13 +47,10 @@ const dataGen = (limit, i = 1) => {
       let sumNoise = 0;
       let sumRecommend = 0;
 
-      writeReviews();
 
-      function writeReviews() {
-        drainReviews = true;
-        while ( numReviews > 0  && drainReviews) {
-          numReviews--;
+        let totalReviews = numReviews;
 
+        for (var j = 0; j < totalReviews; j++) {
           var reviewObj = {};
           reviewObj.restaurantID = restaurant.restaurantID;
           reviewObj.userName = faker.fake('{{name.firstName}}{{name.lastName}}');
@@ -76,24 +72,18 @@ const dataGen = (limit, i = 1) => {
           sumOverall += reviewObj.overallRating;
           sumFood += reviewObj.foodRating;
           sumService += reviewObj.serviceRating;
+
           sumAmbience += reviewObj.ambienceRating;
           sumValue += reviewObj.valueRating;
           sumNoise += reviewObj.noise;
           reviewObj.recommend ? sumRecommend += 1 : sumRecommend;
 
-          if (numReviews === 0) {
-            reviewsWriter.write(`${reviewObj.restaurantID},${reviewObj.date},${reviewObj.ambienceRating},${reviewObj.body},${reviewObj.foodRating},${reviewObj.helpfulCount},${reviewObj.noise},${reviewObj.overallRating},${reviewObj.recommend},${reviewObj.serviceRating},${reviewObj.valueRating},${reviewObj.city},${reviewObj.userName},${reviewObj.userTotalReviews}\n`, 'utf8');
-          } else {
-            drainReviews = reviewsWriter.write(`${reviewObj.restaurantID},${reviewObj.date},${reviewObj.ambienceRating},${reviewObj.body},${reviewObj.foodRating},${reviewObj.helpfulCount},${reviewObj.noise},${reviewObj.overallRating},${reviewObj.recommend},${reviewObj.serviceRating},${reviewObj.valueRating},${reviewObj.city},${reviewObj.userName},${reviewObj.userTotalReviews}\n`, 'utf8');
-          }
+          reviewsWriter.write(`${reviewObj.restaurantID},${reviewObj.date},${reviewObj.ambienceRating},${reviewObj.body},${reviewObj.foodRating},${reviewObj.helpfulCount},${reviewObj.noise},${reviewObj.overallRating},${reviewObj.recommend},${reviewObj.serviceRating},${reviewObj.valueRating},${reviewObj.city},${reviewObj.userName},${reviewObj.userTotalReviews}\n`, 'utf8');
+        } // end of for loop
 
-
-        } // end of while for loop
-
-        if (numReviews > 0) {
-          reviewsWriter.once('drain', writeReviews);
-        }
-      }
+        // if (totalReviews > 0) {
+        //   reviewsWriter.once('drain', writeReviews);
+        // }
 
       restaurant.avgOverall = Math.round(sumOverall / numReviews * 10) / 10;
       restaurant.avgFood = Math.round(sumFood / numReviews * 10) / 10;
@@ -106,37 +96,25 @@ const dataGen = (limit, i = 1) => {
       if (limit === 0) {
         restaurantInfoWriter.write(`${restaurant.restaurantID},${restaurant.avgAmbience},${restaurant.avgFood},${restaurant.avgNoise},${restaurant.avgOverall},${restaurant.avgRec},${restaurant.avgService},${restaurant.avgValue},"${restaurant.keyWords}",${restaurant.neighborhood}\n`, 'utf8');
       } else {
+        if (limit % 20000 === 0) console.log(`RESTAURANT OUTERLOOP BROlKE , CURRENT LIMIT IS ${limit}, CURRENT RESTAURANT_ID IS ${i}`);
         drainRestaurant = restaurantInfoWriter.write(`${restaurant.restaurantID},${restaurant.avgAmbience},${restaurant.avgFood},${restaurant.avgNoise},${restaurant.avgOverall},${restaurant.avgRec},${restaurant.avgService},${restaurant.avgValue},"${restaurant.keyWords}",${restaurant.neighborhood}\n`, 'utf8');
       }
 
-      // if (drainRestaurant === false) {
-      //   restaurantInfoWriter.once('drain', () => {console.log(`RESTAURANT_INFO_WRITER: DRAINED , i value ${i}`)});
-      // }
     } //end of house while loop
-    //YOU WILL REACH THIS LINE ONCE THE LOOP BREAKS
-    if (limit > 0) {
-      console.log(`RESTAURANT OUTERLOOP BROKE , CURRENT LIMIT IS ${limit}, CURRENT RESTID IS ${i}`);
-      restaurantInfoWriter.once('drain', () => {dataGen(limit, i)});
-    }
 
-    console.log('SEED COMPLETED');
+    if (limit > 0) {
+      restaurantInfoWriter.once('drain', ()=>{dataGen(limit, i)});
+    }
 }
 
-
-
-dataGen(10000000);
-
-
-
-
-
+dataGen(200000);
 
 
 
 
 
 // function writeOneMillionTimes(writer, data, encoding, callback) {
-  //     let i = 1000000;
+//     let i = 1000000;
 //     write();
 //     function write() {
 //       let ok = true;
