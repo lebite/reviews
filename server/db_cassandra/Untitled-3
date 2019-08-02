@@ -1,0 +1,7 @@
+
+
+//THE CSV FILE IS CATERED TOWARDS
+restaurant_reviews;
+//IN ORDEER TO USE THE SAME CSV FILE FOR THE REVIEWS_BY_RATING FILE, YOU MUST USE THE BELOW COMMAND
+
+copy reviews_by_rating (restaurantid,reviewdate,username,reviewambiencerating,reviewbody,reviewfoodrating,reviewhelpfulcount,reviewid,reviewnoise,reviewoverallrating,reviewrecommend,reviewservicerating,reviewvaluerating,userlocation,usertotalreviews) from 'restaurantReviews.csv';

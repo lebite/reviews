@@ -1,5 +1,6 @@
 const faker = require('faker');
 const fs = require('fs');
+const UUID = require('cassandra-driver').types.Uuid;
 
 let reviewsWriter = fs.createWriteStream('./restaurantReviews.csv');
 const reviewsColumns = "restaurantid,username,userlocation,usertotalreviews,reviewdate,reviewoverallrating,reviewfoodrating,reviewservicerating,reviewambiencerating,reviewvaluerating,reviewhelpfulcount,reviewnoise,reviewrecommend,reviewbody";
@@ -22,6 +23,8 @@ const dataGen = (limit, i = 0) => {
   var drainRestaurant = true;
   var drainReviews;
 
+  let reviewID = 0;
+
   while(limit > 0 && drainRestaurant) {
       limit--;
       i++;
@@ -32,7 +35,7 @@ const dataGen = (limit, i = 0) => {
       };
 
       var restaurant = {};
-      let numReviews = faker.random.number({ min: 15, max: 65 });
+      let numReviews = faker.random.number({ min: 15, max: 25 });
 
       restaurant.restaurantID = i;
       restaurant.keyWords = faker.fake('{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}}');
@@ -51,7 +54,9 @@ const dataGen = (limit, i = 0) => {
         let totalReviews = numReviews;
 
         for (var j = 0; j < totalReviews; j++) {
+          reviewID++;
           var reviewObj = {};
+          reviewObj.reviewID = UUID.random();
           reviewObj.restaurantID = restaurant.restaurantID;
           reviewObj.userName = faker.fake('{{name.firstName}}{{name.lastName}}');
           reviewObj.city = faker.address.city();
@@ -78,7 +83,8 @@ const dataGen = (limit, i = 0) => {
           sumNoise += reviewObj.noise;
           reviewObj.recommend ? sumRecommend += 1 : sumRecommend;
 
-          reviewsWriter.write(`${reviewObj.restaurantID},${reviewObj.date},${reviewObj.ambienceRating},${reviewObj.body},${reviewObj.foodRating},${reviewObj.helpfulCount},${reviewObj.noise},${reviewObj.overallRating},${reviewObj.recommend},${reviewObj.serviceRating},${reviewObj.valueRating},${reviewObj.city},${reviewObj.userName},${reviewObj.userTotalReviews}\n`, 'utf8');
+          //written to cater restaurant_reviews table, use this same csv file to copy to ratings_by_review table and tell it this exact column order.
+          reviewsWriter.write(`${reviewObj.restaurantID},${reviewObj.date},${reviewObj.userName},${reviewObj.ambienceRating},${reviewObj.body},${reviewObj.foodRating},${reviewObj.helpfulCount},${reviewObj.reviewID},${reviewObj.noise},${reviewObj.overallRating},${reviewObj.recommend},${reviewObj.serviceRating},${reviewObj.valueRating},${reviewObj.city}, ${reviewObj.userTotalReviews}\n`, 'utf8');
         } // end of for loop
 
         // if (totalReviews > 0) {
@@ -107,34 +113,4 @@ const dataGen = (limit, i = 0) => {
     }
 }
 
-dataGen(200000);
-
-
-
-
-
-// function writeOneMillionTimes(writer, data, encoding, callback) {
-//     let i = 1000000;
-//     write();
-//     function write() {
-//       let ok = true;
-//       do {
-//         i--;
-//         if (i === 0) {
-//           // last time!
-//           writer.write(data, encoding, callback);
-
-//         } else {
-//           // see if we should continue, or wait
-//           // don't pass the callback, because we're not done yet.
-//           ok = writer.write(data(), encoding);
-//           otherOk = writer2.write(data(), encoding);
-//         }
-//       } while (i > 0 && ok);
-//       if (i > 0) {
-//         // had to stop early!
-//         // write some more once it drains
-//         writer.once('drain', write);
-//       }
-//     }
-//   }
+dataGen(20);
