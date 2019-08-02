@@ -84,7 +84,7 @@ const dataGen = (limit, i = 0) => {
           reviewObj.recommend ? sumRecommend += 1 : sumRecommend;
 
           //written to cater restaurant_reviews table, use this same csv file to copy to ratings_by_review table and tell it this exact column order.
-          reviewsWriter.write(`${reviewObj.restaurantID},${reviewObj.date},${reviewObj.userName},${reviewObj.ambienceRating},${reviewObj.body},${reviewObj.foodRating},${reviewObj.helpfulCount},${reviewObj.reviewID},${reviewObj.noise},${reviewObj.overallRating},${reviewObj.recommend},${reviewObj.serviceRating},${reviewObj.valueRating},${reviewObj.city}, ${reviewObj.userTotalReviews}\n`, 'utf8');
+          reviewsWriter.write(`${reviewObj.restaurantID},${reviewObj.date},${reviewObj.userName},${reviewObj.reviewID},${reviewObj.ambienceRating},${reviewObj.body},${reviewObj.foodRating},${reviewObj.helpfulCount},${reviewObj.noise},${reviewObj.overallRating},${reviewObj.recommend},${reviewObj.serviceRating},${reviewObj.valueRating},${reviewObj.city}, ${reviewObj.userTotalReviews}\n`, 'utf8');
         } // end of for loop
 
         // if (totalReviews > 0) {
