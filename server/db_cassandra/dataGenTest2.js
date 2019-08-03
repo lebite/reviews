@@ -9,11 +9,6 @@ const reviewsColumns = "restaurantid,username,userlocation,usertotalreviews,revi
 let restaurantInfoWriter = fs.createWriteStream('./restaurantInfo.csv');
 const restaurantInfoColumns = "restaurantid,neighborhood,avgoverallrating,avgfoodrating,avgservicerating,avgambiencerating,avgvaluerating,avgnoiserating,avgrecrating,keywords";
 
-const printProgress = (progress) => {
-  process.stdout.clearLine();
-  process.stdout.cursorTo(0);
-  process.stdout.write(progress + ' records left to create');
-}
 
 const dataGen = (limit, i = 0) => {
   var startLimit = limit;
@@ -23,19 +18,26 @@ const dataGen = (limit, i = 0) => {
   var drainRestaurant = true;
   var drainReviews;
 
+  let numReviews;
   let reviewID = 0;
+  if (limit < 200000) {
+    numReviews = 3
+  } else {
+    numReviews = 1;
+  }
+  // let numReviews = 3;
 
   while(limit > 0 && drainRestaurant) {
       limit--;
       i++;
-      if (i === currentRowCount) {
-        printProgress(startLimit - currentRowCount);
-        currentRowCount += 100000;
-        // console.log(`CURRENT ROW COUNT : ${currentRowCount}`);
-      };
+      // if (i === currentRowCount) {
+      //   printProgress(startLimit - currentRowCount);
+      //   currentRowCount += 100000;
+      //   // console.log(`CURRENT ROW COUNT : ${currentRowCount}`);
+      // };
 
       var restaurant = {};
-      let numReviews = faker.random.number({ min: 15, max: 16 });
+      // let numReviews = faker.random.number({ min: 1, max: 6 });
 
       restaurant.restaurantID = i;
       restaurant.keyWords = faker.fake('{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}}');
@@ -102,7 +104,7 @@ const dataGen = (limit, i = 0) => {
       if (limit === 0) {
         restaurantInfoWriter.write(`${restaurant.restaurantID},${restaurant.avgAmbience},${restaurant.avgFood},${restaurant.avgNoise},${restaurant.avgOverall},${restaurant.avgRec},${restaurant.avgService},${restaurant.avgValue},"${restaurant.keyWords}",${restaurant.neighborhood}\n`, 'utf8');
       } else {
-        if (limit % 20000 === 0) console.log(`RESTAURANT OUTERLOOP BROlKE , CURRENT LIMIT IS ${limit}, CURRENT RESTAURANT_ID IS ${i}`);
+        if (limit % 20000 === 0) console.log(`RESTAURANT OUTERLOOP , CURRENT LIMIT IS ${limit}, CURRENT RESTAURANT_ID IS ${i}`);
         drainRestaurant = restaurantInfoWriter.write(`${restaurant.restaurantID},${restaurant.avgAmbience},${restaurant.avgFood},${restaurant.avgNoise},${restaurant.avgOverall},${restaurant.avgRec},${restaurant.avgService},${restaurant.avgValue},"${restaurant.keyWords}",${restaurant.neighborhood}\n`, 'utf8');
       }
 
