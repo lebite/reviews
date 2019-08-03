@@ -35,7 +35,7 @@ const dataGen = (limit, i = 0) => {
       };
 
       var restaurant = {};
-      let numReviews = faker.random.number({ min: 15, max: 25 });
+      let numReviews = faker.random.number({ min: 15, max: 16 });
 
       restaurant.restaurantID = i;
       restaurant.keyWords = faker.fake('{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}},{{lorem.word}}');
@@ -113,4 +113,4 @@ const dataGen = (limit, i = 0) => {
     }
 }
 
-dataGen(20);
+dataGen(10000000);

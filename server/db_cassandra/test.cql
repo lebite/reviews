@@ -64,3 +64,5 @@ INSERT INTO restaurant_reviews (
 UPDATE reviews_by_rating SET username='JULIOFUENTES' WHERE reviewoverallrating=3 AND restaurantid=7 AND reviewdate='2019-07-29' AND reviewid=e573dc8c-fbc3-4834-856f-0ea3db11aaa9;
 
 
+
+select *  from restaurant_reviews WHERE restaurantid=7 AND reviewdate='2019-07-29' AND username='XzavierKonopelski' AND reviewid=b4eafbed-0dd4-4d21-b4bf-3c8d520965fe;
