@@ -1,10 +1,10 @@
 const cassandra = require('cassandra-driver');
 
-const client = new cassandra.client({
+const client = new cassandra.Client({
   contactPoints: ['localhost'],
-  localDataCenter: 'localCenter1',
+  localDataCenter: 'datacenter1',
   keyspace: 'reservlyreviews'
 });
 
 
-modules.exports.client = client;
+module.exports.client = client;

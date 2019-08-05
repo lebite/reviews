@@ -1,1 +1,1 @@
- copy reviews_by_rating (restaurantid,reviewdate,username,reviewid,reviewambiencerating,reviewbody,reviewfoodrating,reviewhelpfulcount,reviewnoise,reviewoverallrating,reviewrecommend,reviewservicerating,reviewvaluerating,userlocation,usertotalreviews) from 'restaurantReviews.csv' ;
+ copy reviews_by_rating (restaurantid,reviewdate,username,reviewid,reviewambiencerating,reviewbody,reviewfoodrating,reviewhelpfulcount,reviewnoise,reviewoverallrating,reviewrecommend,reviewservicerating,reviewvaluerating,userlocation,usertotalreviews) from 'restaurantReviews.csv';

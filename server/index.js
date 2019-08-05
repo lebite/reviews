@@ -6,6 +6,7 @@ const app = express();
 const port = 3004;
 
 const db = require('./db/index.js');
+const cassandraDB = require('./db_cassandra/controller.js');
 
 app.use(express.json());
 
@@ -22,8 +23,19 @@ app.use('/', expressStaticGzip(path.join(__dirname, '../client/dist'), {
   orderPreference: ['br', 'gz']
  }));
 
+app.get('/:id/testing', (req,res) => {
+  console.log('TESTING ROUTE RECEIVED');
+  cassandraDB.getData(req,res);
+});
+
+app.post('/:id/postTest', (req,res) => {
+  cassandraDB.createData(req,res);
+});
+
+
 
 app.get('/:restaurantID/reviews', (req, res) => {
+  console.log('I AM REVIEWS ROUTE');
   let sqlreq = '';
   let sqlargs = [];
   if (req.query.sort === 'Highest Rating') {
@@ -87,6 +99,11 @@ app.get('/:restaurantID/reviews', (req, res) => {
     }
   });
 });
+
+
+app.post('/:restaurantID/reviews', (req,res) => {
+  //req.body
+})
 
 app.patch('/:restaurantID/reviews', (req, res) => {
   const sqlreq = 'UPDATE reviews SET reviewHelpfulCount = ? WHERE reviewID = ?';
