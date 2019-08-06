@@ -2,15 +2,18 @@ const cassandraClient = require('./index.js').client;
 
 
 const getData = (req, res) => {
-  //THIS STILL NEEDS TO USE STUBBED IN DATA , ID CANNOT BE HARDCODED
-  console.log('GET DATA IS EXECUTING');
   const query = 'select * from restaurant_info WHERE restaurantid=?;';
-  const id = 1;
+  const id = req.params.id;
   cassandraClient.execute(query, [id], {prepare: true})
   .then(result => {
-    console.log('result below');
-    console.log(result);
-    res.status(200).send(result);
+    //GET RESTAURANTINFO THEN GET RESTAURANT_REVIEWS
+    cassandraClient.execute('select * from restaurant_reviews WHERE restaurantid=?', [id], {prepare: true})
+    .then(reviews => {
+      res.status(200).send([result.rows, reviews.rows]);
+    })
+    .catch(error => {
+
+    });
   })
   .catch(error => {
     console.log('CATCHING ERROR BELOW');
@@ -23,14 +26,77 @@ const deleteData = (req, res) => {
 }
 
 const updateData = (req, res) => {
+  //put guard clause to ensure only ALLOWED changes come through
+  console.log(req.body);
+  // console.log(req.params);
+  // console.log(req.query);
 
+
+
+  let values = [];
+  let field;
+
+  //GET FIELD WHICH IS FIRST PROPERTY OF REQ.BODY and push value to array
+  for (let key in req.body) {
+    if (!field) field = key;
+    values.push(req.body[key]);
+    break;
+  }
+  //for this API to work, they must provide the following fields ,
+  //field to be changed,reviewoverallrating,restaurantid,reviewdate,reviewid,username
+  let queryColumns = ['reviewoverallratings', 'restaurantid', 'reviewdate', 'reviewid'];
+
+  let query = `UPDATE reviews_by_rating SET ${field}=? WHERE reviewoverallrating=? AND restaurantid=? AND reviewdate=? AND reviewid=?`;
+
+  //NOW GET OTHER PROPERTIES
+  for (let value of queryColumns) {
+    values.push(req.body[value]);
+  }
+
+
+  //UPDATE SECOND TABLE;
+  let secondQuery =  `UPDATE restaurant_reviews SET ${field}=? WHERE restaurantid=? AND reviewdate=? AND username=? AND reviewid=?`;
+  let secondColumns = ['restaurantid', 'reviewdate', 'username', 'reviewid'];
+  let secondValues = [];
+  secondValues.push(req.body[field]);
+
+  //USE EXISTING FIELD VARIABLE SINCE ITS SHARED AMONGST 2 TABLES;
+  for (let value of secondColumns) {
+    secondValues.push(req.body[value]);
+  }
+
+
+  console.log('SECOND VALUES BELOW');
+  console.log(secondValues);
+
+  cassandraClient.execute(query, values, {prepare: true})
+  .then(result => {
+    console.log('REVIEWS_BY_RATING HAS BEEN UPDATED');
+    cassandraClient.execute(secondQuery, secondValues, {prepare: true})
+    .then(result => {
+      console.log('RESTAURANT_REVIEWS HAS BEEN UPDATED');
+      res.status(200).send(result);
+    })
+    .catch(error => {
+      console.log('CANNOT WRITE TO 2ND TABLE RESTAURANT_REVIEWS');
+      console.log(error);
+    });
+  })
+  .catch(error => {
+    console.log('COULD NOT UPDATE');
+    console.log(error);
+    res.status(400).send(error);
+  });
 }
+
 
 const createData = (req, res) => {
   let values = [];
   for(var key in req.body) {
     values.push(req.body[key]);
   }
+  //do not FORGET YOU NEED TO INSTALL CASSANDRA UUID GENERATOR
+  //YOU ARE CURLING IN UUIDS, WE WON'T BE AABLE TO ALWAYS DO THAT. WE HAVE TO GENERATE THEM HERE
 
   let restaurant_reviews_col = 'restaurantid,reviewdate,username,reviewid,reviewambiencerating,reviewbody,reviewfoodrating,reviewhelpfulcount,reviewnoise,reviewoverallrating,reviewrecommend,reviewservicerating,reviewvaluerating,userlocation,usertotalreviews';
   let query = `INSERT INTO restaurant_reviews (${restaurant_reviews_col}) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;

@@ -32,6 +32,10 @@ app.post('/:id/postTest', (req,res) => {
   cassandraDB.createData(req,res);
 });
 
+app.patch('/:id/patchTest', (req,res) => {
+  cassandraDB.updateData(req,res);
+});
+
 
 
 app.get('/:restaurantID/reviews', (req, res) => {
