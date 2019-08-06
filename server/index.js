@@ -37,6 +37,11 @@ app.patch('/:id/patchTest', (req,res) => {
 });
 
 
+app.delete('/:id/delete', (req,res) => {
+  cassandraDB.deleteData(req,res);
+});
+
+
 
 app.get('/:restaurantID/reviews', (req, res) => {
   console.log('I AM REVIEWS ROUTE');

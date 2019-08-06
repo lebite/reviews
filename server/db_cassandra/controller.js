@@ -22,16 +22,21 @@ const getData = (req, res) => {
 }
 
 const deleteData = (req, res) => {
+  res.status(200).send('deleted');
+  // let firstQuery = `DELETE FROM restaurant_reviews WHERE restaurantid=? AND reviewdate=? AND username=? AND reviewid=?`;
 
+  // cassandraClient.execute(query, values, {prepare: true})
+  // .then(result => {
+
+  // })
+  // .catch(error => {
+
+  // });
 }
 
 const updateData = (req, res) => {
   //put guard clause to ensure only ALLOWED changes come through
   console.log(req.body);
-  // console.log(req.params);
-  // console.log(req.query);
-
-
 
   let values = [];
   let field;
@@ -52,7 +57,6 @@ const updateData = (req, res) => {
   for (let value of queryColumns) {
     values.push(req.body[value]);
   }
-
 
   //UPDATE SECOND TABLE;
   let secondQuery =  `UPDATE restaurant_reviews SET ${field}=? WHERE restaurantid=? AND reviewdate=? AND username=? AND reviewid=?`;
