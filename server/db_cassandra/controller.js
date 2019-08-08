@@ -1,18 +1,36 @@
 const cassandraClient = require('./index.js').client;
+const redis = require('redis');
+const redisClient = redis.createClient();
 
+const getCache = (req,res) => {
+  let keyId = req.params.restaurantID;
+
+  redisClient.get(keyId, (error, result) => {
+    if (result) {
+      res.status(200).send(result);
+    } else {
+      getData(req,res);
+    }
+  });
+}
 
 const getData = (req, res) => {
-  const query = 'select * from restaurant_info WHERE restaurantid=?;';
-  const id = req.params.id;
+
+  const query = 'select * from restaurant_info WHERE restaurantid=?';
+  const id = req.params.restaurantID;
+
   cassandraClient.execute(query, [id], {prepare: true})
   .then(result => {
-    //GET RESTAURANTINFO THEN GET RESTAURANT_REVIEWS
+    // console.log(`FOUND RESTAURANT ${id}`);
     cassandraClient.execute('select * from restaurant_reviews WHERE restaurantid=?', [id], {prepare: true})
     .then(reviews => {
+      // console.log(`FOUND REVIEWS FOR RESTAURANT OF id: ${id}`);
+      redisClient.set(id, JSON.stringify([result.rows, reviews.rows]));
       res.status(200).send([result.rows, reviews.rows]);
     })
     .catch(error => {
-
+      console.log('SORRY ERROR OCCURED DURING GET REQUEST');
+      console.log(error);
     });
   })
   .catch(error => {
@@ -140,4 +158,4 @@ const createData = (req, res) => {
 
 } //end of createData
 
-module.exports = {getData, deleteData, updateData, createData};
+module.exports = {getData, deleteData, updateData, createData, getCache};

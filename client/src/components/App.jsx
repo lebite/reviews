@@ -44,6 +44,8 @@ class App extends React.Component {
           },
         })
           .then((indivRev) => {
+            console.log('indivRev below');
+            console.log(indivRev);
             this.setState({ justReviews: indivRev.data });
             this.setState({ searchLength: indivRev.data[0].restaurantTotalReviews })
           })
