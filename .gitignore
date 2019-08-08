@@ -2,3 +2,5 @@
 node_modules/
 coverage/
 config/reviews.pem
+server/db_cassandra/restaurantInfo.csv
+server/db_cassandra/restaurantReviews.csv
