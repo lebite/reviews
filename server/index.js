@@ -26,7 +26,8 @@ app.use('/', expressStaticGzip(path.join(__dirname, '../client/dist'), {
  }));
 
 app.get('/:restaurantID/testing', (req,res) => {
-  cassandraDB.getCache(req,res);
+  // cassandraDB.getCache(req,res);
+  cassandraDB.getData(req,res);
 });
 
 // app.get('/:id/testing/reviews', (req,res) => {
