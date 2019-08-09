@@ -7,7 +7,7 @@ const path = require('path');
 const app = express();
 const port = 3004;
 
-const db = require('./db/index.js');
+// const db = require('./db/index.js');
 const cassandraDB = require('./db_cassandra/controller.js');
 
 app.use(express.json());
